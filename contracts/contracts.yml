@@ -1,0 +1,255 @@
+# Data contracts for the silver and gold layers. Every rule here is turned into SQL by oulad/contracts.py and
+# run after each weekly load; the outcome of every rule is stored per run in ops.dq_results.
+# severity: error = the run is marked FAILED_CHECKS; warn = the run succeeds with warnings.
+# The ranges are the author's ASSUMPTION about what is plausible; they are not Open University rules.
+version: 1
+tables:
+  silver.courses:
+    owner: data engineering
+    description: One row per module-presentation.
+    primary_key: [code_module, code_presentation]
+    columns:
+      code_module: {type: VARCHAR, nullable: false}
+      code_presentation: {type: VARCHAR, nullable: false, regex: "^20[0-9][0-9][BJ]$"}
+      module_presentation_length: {type: INTEGER, nullable: false, min: 1, max: 400}
+
+  silver.assessments:
+    description: One row per assessment. due_day is as published; due_day_effective fills a missing exam date.
+    primary_key: [id_assessment]
+    columns:
+      id_assessment: {type: INTEGER, nullable: false}
+      assessment_type: {type: VARCHAR, nullable: false, allowed: [TMA, CMA, Exam]}
+      due_day: {type: INTEGER, nullable: true, min: 0, max: 400}
+      due_day_effective: {type: INTEGER, nullable: false, min: 0, max: 400}
+      weight: {type: DOUBLE, nullable: false, min: 0, max: 100}
+    foreign_keys:
+      - {columns: [code_module, code_presentation], references: silver.courses}
+    checks:
+      - id: only_exams_lack_a_due_day
+        severity: error
+        sql: select count(*) from silver.assessments where due_day is null and assessment_type <> 'Exam'
+
+  silver.vle_sites:
+    description: One row per piece of online material.
+    primary_key: [id_site]
+    columns:
+      id_site: {type: INTEGER, nullable: false}
+      activity_type: {type: VARCHAR, nullable: false}
+    foreign_keys:
+      - {columns: [code_module, code_presentation], references: silver.courses}
+
+  silver.student_registration:
+    description: Current state of each registration (latest delivery wins).
+    primary_key: [code_module, code_presentation, id_student]
+    columns:
+      id_student: {type: INTEGER, nullable: false}
+      date_registration: {type: INTEGER, nullable: true, min: -400, max: 400}
+      date_unregistration: {type: INTEGER, nullable: true, min: -400, max: 500}
+    foreign_keys:
+      - {columns: [code_module, code_presentation], references: silver.courses}
+    checks:
+      - id: registration_date_recorded
+        severity: warn
+        description: Registrations with no registration date cannot be placed in time.
+        sql: select count(*) from silver.student_registration where date_registration is null
+
+  silver.student_info:
+    description: Latest demographic record and, once released, the final result.
+    primary_key: [code_module, code_presentation, id_student]
+    columns:
+      id_student: {type: INTEGER, nullable: false}
+      gender: {type: VARCHAR, nullable: false, allowed: [M, F]}
+      disability: {type: VARCHAR, nullable: false, allowed: [Y, N]}
+      age_band: {type: VARCHAR, nullable: false, allowed: ["0-35", "35-55", "55<="]}
+      imd_band: {type: VARCHAR, nullable: true, regex: "^[0-9]+-[0-9]+%$"}
+      final_result: {type: VARCHAR, nullable: true, allowed: [Pass, Fail, Withdrawn, Distinction]}
+      num_of_prev_attempts: {type: INTEGER, nullable: false, min: 0, max: 20}
+      studied_credits: {type: INTEGER, nullable: false, min: 0, max: 1000}
+    foreign_keys:
+      - {columns: [code_module, code_presentation, id_student], references: silver.student_registration}
+    checks:
+      - id: withdrawn_has_unregistration_date
+        severity: warn
+        description: A student recorded as Withdrawn should have an unregistration date.
+        sql: >
+          select count(*) from silver.student_info i
+          join silver.student_registration r using (code_module, code_presentation, id_student)
+          where i.final_result = 'Withdrawn' and r.date_unregistration is null
+      - id: unregistered_is_withdrawn
+        severity: warn
+        description: A student with an unregistration date should not have a result other than Withdrawn.
+        sql: >
+          select count(*) from silver.student_info i
+          join silver.student_registration r using (code_module, code_presentation, id_student)
+          where r.date_unregistration is not null and i.final_result is not null and i.final_result <> 'Withdrawn'
+
+  silver.student_assessment:
+    description: One row per student per submitted assessment.
+    primary_key: [id_assessment, id_student]
+    columns:
+      id_assessment: {type: INTEGER, nullable: false}
+      id_student: {type: INTEGER, nullable: false}
+      date_submitted: {type: INTEGER, nullable: true}
+      is_banked: {type: INTEGER, nullable: false, allowed: [0, 1]}
+      score: {type: DOUBLE, nullable: true, min: 0, max: 100}
+    foreign_keys:
+      - {columns: [id_assessment], references: silver.assessments}
+      - {columns: [code_module, code_presentation, id_student], references: silver.student_registration}
+    checks:
+      - id: submission_within_presentation
+        severity: warn
+        description: A submission dated after the presentation has ended is implausible.
+        sql: >
+          select count(*) from silver.student_assessment s
+          join silver.courses c using (code_module, code_presentation)
+          where s.date_submitted > c.module_presentation_length + 30
+      - id: score_recorded
+        severity: warn
+        sql: select count(*) from silver.student_assessment where score is null
+
+  silver.vle_daily:
+    description: Clicks per student, material and day.
+    primary_key: [code_module, code_presentation, id_student, id_site, date]
+    columns:
+      id_student: {type: INTEGER, nullable: false}
+      id_site: {type: INTEGER, nullable: false}
+      date: {type: INTEGER, nullable: false, min: -60, max: 400}
+      sum_click: {type: BIGINT, nullable: false, min: 1}
+      n_source_rows: {type: BIGINT, nullable: false, min: 1}
+      event_week: {type: INTEGER, nullable: false}
+    foreign_keys:
+      - {columns: [code_module, code_presentation, id_student], references: silver.student_registration}
+      - {columns: [id_site], references: silver.vle_sites}
+    checks:
+      - id: clicks_after_unregistration
+        severity: warn
+        description: Clicks dated after the student's unregistration date.
+        sql: >
+          select count(*) from silver.vle_daily v
+          join silver.student_registration r using (code_module, code_presentation, id_student)
+          where v.date > r.date_unregistration
+      - id: event_week_matches_date
+        severity: error
+        sql: select count(*) from silver.vle_daily where event_week <> cast(floor(date / 7.0) as integer)
+
+  gold.dim_module_presentation:
+    primary_key: [mp_key]
+    columns:
+      mp_key: {type: VARCHAR, nullable: false}
+      length_days: {type: INTEGER, nullable: false, min: 1, max: 400}
+
+  gold.dim_student_presentation:
+    description: One row per student per module-presentation, keyed by salted hashes.
+    primary_key: [sp_key]
+    columns:
+      sp_key: {type: VARCHAR, nullable: false, regex: "^[0-9a-f]{12}$"}
+      student_key: {type: VARCHAR, nullable: false, regex: "^[0-9a-f]{12}$"}
+      at_risk: {type: INTEGER, nullable: true, allowed: [0, 1]}
+    foreign_keys:
+      - {columns: [mp_key], references: gold.dim_module_presentation}
+    checks:
+      - id: no_source_student_number_in_gold
+        severity: error
+        description: The source student number must not appear as a column in any gold table.
+        sql: >
+          select count(*) from information_schema.columns
+          where table_schema = 'gold' and column_name = 'id_student'
+
+  gold.dim_assessment:
+    primary_key: [assessment_key]
+    columns:
+      due_day_effective: {type: INTEGER, nullable: false}
+    foreign_keys:
+      - {columns: [mp_key], references: gold.dim_module_presentation}
+
+  gold.dim_activity_type:
+    primary_key: [activity_type]
+    columns:
+      activity_group: {type: VARCHAR, nullable: false, allowed: [Content, Communication, Assessment practice, Homepage, Other]}
+
+  gold.dim_week:
+    primary_key: [week_index]
+    columns:
+      week_index: {type: INTEGER, nullable: false, min: -5, max: 39}
+
+  gold.fact_student_week:
+    primary_key: [sp_key, week_index]
+    columns:
+      clicks: {type: BIGINT, nullable: false, min: 1}
+      active_days: {type: BIGINT, nullable: false, min: 1, max: 7}
+    foreign_keys:
+      - {columns: [sp_key], references: gold.dim_student_presentation}
+      - {columns: [week_index], references: gold.dim_week}
+
+  gold.fact_engagement_weekly:
+    primary_key: [sp_key, week_index, activity_type]
+    columns:
+      clicks: {type: BIGINT, nullable: false, min: 1}
+      active_days: {type: BIGINT, nullable: false, min: 1, max: 7}
+    foreign_keys:
+      - {columns: [sp_key], references: gold.dim_student_presentation}
+      - {columns: [activity_type], references: gold.dim_activity_type}
+
+  gold.fact_assessment:
+    primary_key: [sp_key, assessment_key]
+    columns:
+      score: {type: DOUBLE, nullable: true, min: 0, max: 100}
+    foreign_keys:
+      - {columns: [sp_key], references: gold.dim_student_presentation}
+      - {columns: [assessment_key], references: gold.dim_assessment}
+    checks:
+      - id: banked_rows_have_no_lateness
+        severity: error
+        sql: select count(*) from gold.fact_assessment where is_banked = 1 and days_late is not null
+
+# Counts that must agree between layers. Each side is one SQL scalar.
+reconciliations:
+  - id: bronze_clicks_rows_accounted_for
+    description: Every bronze click row is either summed into silver.vle_daily or sits in quarantine.
+    left: select count(*) from bronze.student_vle
+    right: >
+      select coalesce((select sum(n_source_rows) from silver.vle_daily), 0)
+           + (select count(*) from silver.quarantine where source_table = 'student_vle')
+  - id: silver_to_gold_clicks
+    description: Total clicks are the same in silver.vle_daily and in both gold engagement facts.
+    left: select coalesce(sum(sum_click), 0) from silver.vle_daily
+    right: select coalesce(sum(clicks), 0) from gold.fact_student_week
+  - id: gold_facts_agree_on_clicks
+    left: select coalesce(sum(clicks), 0) from gold.fact_student_week
+    right: select coalesce(sum(clicks), 0) from gold.fact_engagement_weekly
+  - id: bronze_registrations_accounted_for
+    description: Bronze registration rows = versions folded into silver + quarantined rows.
+    left: select count(*) from bronze.student_registration
+    right: >
+      select coalesce((select sum(n_versions) from silver.student_registration), 0)
+           + (select count(*) from silver.quarantine where source_table = 'student_registration')
+  - id: bronze_student_info_accounted_for
+    left: select count(*) from bronze.student_info
+    right: >
+      select coalesce((select sum(n_versions) from silver.student_info), 0)
+           + (select count(*) from silver.quarantine where source_table = 'student_info')
+  - id: bronze_submissions_accounted_for
+    left: select count(*) from bronze.student_assessment
+    right: >
+      select coalesce((select sum(n_versions) from silver.student_assessment), 0)
+           + (select count(*) from silver.quarantine where source_table = 'student_assessment')
+  - id: registrations_silver_to_gold
+    left: select count(*) from silver.student_registration
+    right: select count(*) from gold.dim_student_presentation
+  - id: submissions_silver_to_gold
+    left: select count(*) from silver.student_assessment
+    right: select count(*) from gold.fact_assessment
+  - id: ledger_matches_bronze_clicks
+    description: The row counts in the batch ledger add up to the rows actually in bronze.
+    left: select coalesce(sum("rows"), 0) from ops.batch_ledger where source = 'studentVle'
+    right: select count(*) from bronze.student_vle
+
+# Weekly click volume: a delivery far from the recent median is flagged for a person to look at.
+volume:
+  source: studentVle
+  window_weeks: 4
+  min_ratio: 0.4
+  max_ratio: 2.5
+  applies_from_week: 2
+  applies_to_week: 33
+  severity: warn

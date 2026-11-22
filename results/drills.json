@@ -1,0 +1,167 @@
+{
+ "n_drills": 9,
+ "n_fault_drills": 8,
+ "n_detected": 8,
+ "n_recovered_to_clean_state": 9,
+ "data": "data/fixture (sample of the real extract)",
+ "drill_week": 4,
+ "drills": [
+  {
+   "drill": "corrupt_file",
+   "injected": "studentVle.csv cut off half-way (manifest unchanged)",
+   "expected_check": "checksum_mismatch",
+   "detected": true,
+   "detected_by": [
+    "ingest_gate:checksum_mismatch"
+   ],
+   "status": "REJECTED_AT_INGEST",
+   "published_tables_untouched": true,
+   "remediation": "ask the source for the file again; re-run the week",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "malformed_rows",
+   "injected": "two rows with the wrong number of fields (manifest consistent)",
+   "expected_check": "unparseable_file",
+   "detected": true,
+   "detected_by": [
+    "ingest_gate:unparseable_file"
+   ],
+   "status": "REJECTED_AT_INGEST",
+   "published_tables_untouched": true,
+   "remediation": "ask the source for a corrected file; re-run the week",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "schema_drift",
+   "injected": "column sum_click renamed to clicks",
+   "expected_check": "schema_drift",
+   "detected": true,
+   "detected_by": [
+    "ingest_gate:schema_drift"
+   ],
+   "status": "REJECTED_AT_INGEST",
+   "published_tables_untouched": true,
+   "remediation": "agree the change with the source, update the contract and the staging SQL, or ask for the old layout; re-run the week",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "duplicated_batch",
+   "injected": "previous week's click file delivered again as this week's",
+   "expected_check": "duplicate_batch",
+   "detected": true,
+   "detected_by": [
+    "ingest_gate:duplicate_batch"
+   ],
+   "status": "REJECTED_AT_INGEST",
+   "published_tables_untouched": true,
+   "remediation": "ask the source for the right week; re-run the week",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "missing_week",
+   "injected": "one weekly delivery never arrived; the next week is run",
+   "expected_check": "missing_week",
+   "detected": true,
+   "detected_by": [
+    "ingest_gate:missing_week"
+   ],
+   "status": "REJECTED_AT_INGEST",
+   "published_tables_untouched": true,
+   "remediation": "obtain the missing delivery; run the weeks in order",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "poisoned_batch",
+   "injected": "well-formed click file whose student numbers match nobody",
+   "expected_check": "quarantine_share_of_delivery",
+   "detected": true,
+   "detected_by": [
+    "quarantine_share_of_delivery"
+   ],
+   "status": "ROLLED_BACK",
+   "published_tables_untouched": false,
+   "remediation": "inspect silver.quarantine in bronze as landed; ask the source for a corrected file; re-run the week (the corrected file replaces the bad one)",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS",
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true,
+   "bronze_kept_the_bad_delivery_until_replaced": true
+  },
+  {
+   "drill": "late_dimension",
+   "injected": "one student's registration arrives after their clicks",
+   "expected_check": "quarantine_is_empty",
+   "detected": true,
+   "detected_by": [
+    "quarantine_is_empty"
+   ],
+   "status": "SUCCESS_WITH_WARNINGS",
+   "rows_quarantined_while_waiting": 4,
+   "rows_in_quarantine_after_registration_arrived": 0,
+   "quarantine_reasons_at_end": {},
+   "published_tables_untouched": null,
+   "remediation": "none needed: the rows are released automatically when the registration arrives",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  },
+  {
+   "drill": "late_data",
+   "injected": "20% of click rows arrive one or two weeks late (SYNTHETIC)",
+   "expected_check": "rows_arriving_late",
+   "detected": true,
+   "detected_by": [
+    "silver.vle_daily.last_batch_week > event_week"
+   ],
+   "status": "SUCCESS_WITH_WARNINGS",
+   "late_daily_rows_seen": 2679,
+   "reconciliations_passed_every_week": true,
+   "published_tables_untouched": null,
+   "remediation": "none needed: the weeks a late row belongs to are recomputed when it arrives",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true,
+   "term_time_snapshot_day14_students": 153,
+   "term_time_snapshot_day14_students_with_undercounted_clicks": 103
+  },
+  {
+   "drill": "idempotent_rerun",
+   "injected": "the same weekly delivery is loaded twice",
+   "expected_check": "none (must be harmless)",
+   "detected": true,
+   "detected_by": [],
+   "status": "SUCCESS_WITH_WARNINGS",
+   "bronze_rows_loaded_second_time": 0,
+   "published_tables_untouched": true,
+   "remediation": "none needed",
+   "status_after_remediation": [
+    "SUCCESS_WITH_WARNINGS"
+   ],
+   "matches_clean_run_after_remediation": true
+  }
+ ]
+}

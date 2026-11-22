@@ -1,0 +1,297 @@
+{
+ "runs": {
+  "n": 45,
+  "by_status": {
+   "SUCCESS_WITH_WARNINGS": 45
+  },
+  "total_seconds": 454.8,
+  "median_seconds": 11.592,
+  "max_seconds": 16.968,
+  "first_week": -5,
+  "last_week": 39
+ },
+ "source_rows": {
+  "courses": 22,
+  "assessments": 206,
+  "vle": 6364,
+  "studentInfo": 32593,
+  "studentRegistration": 32593,
+  "studentAssessment": 173912,
+  "studentVle": 10655280
+ },
+ "layers": {
+  "bronze.assessments": 206,
+  "bronze.courses": 22,
+  "bronze.student_assessment": 173912,
+  "bronze.student_info": 65186,
+  "bronze.student_registration": 41430,
+  "bronze.student_vle": 10655280,
+  "bronze.vle": 6364,
+  "silver.assessments": 206,
+  "silver.courses": 22,
+  "silver.quarantine": 0,
+  "silver.student_assessment": 173912,
+  "silver.student_info": 32593,
+  "silver.student_registration": 32593,
+  "silver.vle_daily": 8459320,
+  "silver.vle_sites": 6364,
+  "gold.dim_activity_type": 20,
+  "gold.dim_assessment": 206,
+  "gold.dim_module_presentation": 22,
+  "gold.dim_student_presentation": 32593,
+  "gold.dim_week": 45,
+  "gold.fact_assessment": 173912,
+  "gold.fact_engagement_weekly": 2518170,
+  "gold.fact_student_week": 627031,
+  "gold.features_asof": 107828,
+  "gold.features_early_warning": 107828,
+  "gold.sec_lecturer_assignment": 27
+ },
+ "checks_last_run": {
+  "n": 163,
+  "failed_error": 0,
+  "failed_warn": 6,
+  "by_kind": {
+   "allowed": {
+    "checks": 8,
+    "failed": 0
+   },
+   "not_null": {
+    "checks": 36,
+    "failed": 0
+   },
+   "schema": {
+    "checks": 45,
+    "failed": 0
+   },
+   "unique": {
+    "checks": 15,
+    "failed": 0
+   },
+   "foreign_key": {
+    "checks": 16,
+    "failed": 0
+   },
+   "range": {
+    "checks": 19,
+    "failed": 0
+   },
+   "custom": {
+    "checks": 10,
+    "failed": 6
+   },
+   "regex": {
+    "checks": 4,
+    "failed": 0
+   },
+   "quarantine": {
+    "checks": 1,
+    "failed": 0
+   },
+   "reconciliation": {
+    "checks": 9,
+    "failed": 0
+   }
+  }
+ },
+ "checks_all_runs": {
+  "n": 7367,
+  "failed_error": 0
+ },
+ "warnings_last_run": [
+  {
+   "check_id": "silver.student_assessment:score_recorded",
+   "observed": "173",
+   "detail": ""
+  },
+  {
+   "check_id": "silver.student_assessment:submission_within_presentation",
+   "observed": "67",
+   "detail": "A submission dated after the presentation has ended is implausible."
+  },
+  {
+   "check_id": "silver.student_info:unregistered_is_withdrawn",
+   "observed": "9",
+   "detail": "A student with an unregistration date should not have a result other than Withdrawn."
+  },
+  {
+   "check_id": "silver.student_info:withdrawn_has_unregistration_date",
+   "observed": "93",
+   "detail": "A student recorded as Withdrawn should have an unregistration date."
+  },
+  {
+   "check_id": "silver.student_registration:registration_date_recorded",
+   "observed": "45",
+   "detail": "Registrations with no registration date cannot be placed in time."
+  },
+  {
+   "check_id": "silver.vle_daily:clicks_after_unregistration",
+   "observed": "23891",
+   "detail": "Clicks dated after the student's unregistration date."
+  }
+ ],
+ "reconciliation": [
+  {
+   "check_id": "reconcile:bronze_clicks_rows_accounted_for",
+   "left": "10655280",
+   "right": "10655280",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:bronze_registrations_accounted_for",
+   "left": "41430",
+   "right": "41430",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:bronze_student_info_accounted_for",
+   "left": "65186",
+   "right": "65186",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:bronze_submissions_accounted_for",
+   "left": "173912",
+   "right": "173912",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:gold_facts_agree_on_clicks",
+   "left": "39605099",
+   "right": "39605099",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:ledger_matches_bronze_clicks",
+   "left": "10655280",
+   "right": "10655280",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:registrations_silver_to_gold",
+   "left": "32593",
+   "right": "32593",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:silver_to_gold_clicks",
+   "left": "39605099",
+   "right": "39605099",
+   "passed": true
+  },
+  {
+   "check_id": "reconcile:submissions_silver_to_gold",
+   "left": "173912",
+   "right": "173912",
+   "passed": true
+  }
+ ],
+ "volume": {
+  "weeks_checked": 32,
+  "weeks_flagged": [],
+  "min_ratio": 0.62,
+  "max_ratio": 1.428
+ },
+ "quarantine": {
+  "rows": 0,
+  "by_reason": {}
+ },
+ "clicks": {
+  "source_rows": 10655280,
+  "silver_rows": 8459320,
+  "rows_folded_into_daily_totals": 2195960,
+  "total_clicks": 39605099,
+  "rows_arriving_late": 0
+ },
+ "students": {
+  "registrations": 32593,
+  "distinct_students": 28785,
+  "students_in_more_than_one_presentation": 3538,
+  "module_presentations": 22,
+  "modules": 7
+ },
+ "asof_equivalence": {
+  "feature_columns_compared": 34,
+  "cutoffs": {
+   "14": {
+    "rows_snapshot": 28062,
+    "rows_rebuilt": 28062,
+    "rows_matched": 28062,
+    "rows_with_any_difference": 0
+   },
+   "28": {
+    "rows_snapshot": 27528,
+    "rows_rebuilt": 27528,
+    "rows_matched": 27528,
+    "rows_with_any_difference": 0
+   },
+   "56": {
+    "rows_snapshot": 26516,
+    "rows_rebuilt": 26516,
+    "rows_matched": 26516,
+    "rows_with_any_difference": 0
+   },
+   "84": {
+    "rows_snapshot": 25722,
+    "rows_rebuilt": 25722,
+    "rows_matched": 25722,
+    "rows_with_any_difference": 0
+   }
+  },
+  "identical": true
+ },
+ "seconds_by_step": {
+  "silver.vle_daily": 139.05,
+  "silver.quarantine": 123.912,
+  "contract_checks": 88.248,
+  "bronze.ingest": 20.77,
+  "gold.fact_engagement_weekly": 12.115,
+  "gold.fact_student_week": 10.418,
+  "silver.student_assessment": 6.499,
+  "gold.fact_assessment": 5.899,
+  "gold.dim_student_presentation": 5.765,
+  "silver.student_info": 5.71,
+  "silver.student_registration": 4.736,
+  "silver.assessments": 2.647,
+  "silver.vle_sites": 2.626,
+  "silver.courses": 2.149,
+  "gold.dim_module_presentation": 2.106,
+  "gold.sec_lecturer_assignment": 2.081,
+  "gold.dim_assessment": 1.782,
+  "gold.dim_activity_type": 1.717,
+  "gold.dim_week": 1.67,
+  "gold.features_asof": 0.919
+ },
+ "delta_versions": {
+  "bronze.assessments": 1,
+  "bronze.courses": 1,
+  "bronze.student_assessment": 42,
+  "bronze.student_info": 24,
+  "bronze.student_registration": 41,
+  "bronze.student_vle": 43,
+  "bronze.vle": 1,
+  "silver.assessments": 44,
+  "silver.courses": 44,
+  "silver.quarantine": 44,
+  "silver.student_assessment": 44,
+  "silver.student_info": 44,
+  "silver.student_registration": 44,
+  "silver.vle_daily": 43,
+  "silver.vle_sites": 44,
+  "gold.dim_activity_type": 44,
+  "gold.dim_assessment": 44,
+  "gold.dim_module_presentation": 44,
+  "gold.dim_student_presentation": 44,
+  "gold.dim_week": 44,
+  "gold.fact_assessment": 44,
+  "gold.fact_engagement_weekly": 43,
+  "gold.fact_student_week": 43,
+  "gold.features_asof": 3,
+  "gold.features_early_warning": 0,
+  "gold.sec_lecturer_assignment": 44,
+  "ops.batch_ledger": 45,
+  "ops.dq_results": 48,
+  "ops.run_log": 48
+ },
+ "wall_clock_seconds_this_invocation": 476.5
+}
