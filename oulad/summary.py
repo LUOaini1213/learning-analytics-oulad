@@ -94,6 +94,8 @@ def pipeline_summary(lake: Lake, raw_dir: Path | None = None) -> dict:
                    "min_ratio": min((float(v[1]) for v in vol if v[1] != "n/a"), default=None),
                    "max_ratio": max((float(v[1]) for v in vol if v[1] != "n/a"), default=None)},
         "quarantine": {"rows": one("select count(*) from silver.quarantine"),
+                       "peak_rows_during_replay": max(r["quarantine_rows"] for r in runs),
+                       "weeks_with_rows_waiting": sum(1 for r in runs if r["quarantine_rows"] > 0),
                        "by_reason": dict(con.execute("select reject_reason, count(*) from silver.quarantine "
                                                      "group by 1 order by 1").fetchall())},
         "clicks": {"source_rows": one("select count(*) from bronze.student_vle"),

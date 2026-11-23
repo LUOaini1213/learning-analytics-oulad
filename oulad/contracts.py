@@ -8,6 +8,7 @@ from __future__ import annotations
 import statistics
 from pathlib import Path
 
+import duckdb
 import yaml
 
 from .common import CONTRACTS
@@ -18,7 +19,11 @@ def load_contracts(path: Path | None = None) -> dict:
 
 
 def _scalar(con, sql: str):
-    return con.execute(sql).fetchone()[0]
+    """One value; a query that cannot run (for example a table has gone) counts as a failed check."""
+    try:
+        return con.execute(sql).fetchone()[0]
+    except duckdb.Error as e:
+        return f"query failed: {str(e).splitlines()[0][:120]}"
 
 
 def _lit(v) -> str:

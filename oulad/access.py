@@ -6,6 +6,7 @@ tests to check it, and by the dashboard export.
 from __future__ import annotations
 
 from .common import SQL
+from .lineage import strip_comments
 
 ROLES = ("lecturer", "management", "data_engineer")
 THRESHOLD = 5
@@ -20,7 +21,7 @@ def install(con, app_user: str, app_role: str) -> None:
     con.execute("create or replace table run.session (app_user varchar, app_role varchar)")
     con.execute("insert into run.session values (?, ?)", [app_user, app_role])
     for path in sorted((SQL / "access").glob("*.sql")):
-        for statement in path.read_text(encoding="utf-8").split(";"):
+        for statement in strip_comments(path.read_text(encoding="utf-8")).split(";"):
             if statement.strip():
                 con.execute(statement)
 
