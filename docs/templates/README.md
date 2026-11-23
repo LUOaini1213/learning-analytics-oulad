@@ -63,8 +63,9 @@ Singapore institution exists, so OULAD stands in. What that means for transfer i
   {{digest.json:variants.4.pass_rate|pct0}} of the time under the best prompt, but most passing notes still said something wrong
   when read; the fixed template stays the default.
 - **Tests.** {{tests.json:n_tests|int}} tests. Mutation testing: {{mutation.json:first.killed|int}} of
-  {{mutation.json:first.total|int}} planted bugs caught on the first run, {{mutation.json:final.killed|int}} of
-  {{mutation.json:final.total|int}} after adding tests.
+  {{mutation.json:first.total|int}} planted bugs were caught by the suite as first written,
+  {{mutation.json:final.killed|int}} of {{mutation.json:final.total|int}} after tests were added for the survivors;
+  the last one is equivalent (it cannot change any output). See [Testing](#testing).
 
 ## How it maps to two kinds of data role
 
@@ -259,6 +260,28 @@ classes. A language-model draft would only ever be sent after passing the verifi
 default: it costs nothing, cannot invent a figure, and reads much the same. The verifier checks wording, not truth
 beyond the figures; it is a word list and a number match, and a model could still write something misleading that
 passes. Raw model outputs are cached in `results/digest_cache.json` so the scoring re-runs offline.
+
+## Testing
+
+- {{tests.json:n_tests|int}} tests run offline on the committed sample and on a hand-written class of seven students
+  small enough to work every expected value out on paper (`tests/helpers.py`).
+- **Mutation testing.** `scripts/mutate.py` plants {{mutation.json:mutants_defined|int}} bugs one at a time
+  (transformations, as-of cut-offs, suppression, the ingest gate, metrics, the DAX in the model files, the security
+  roles) and checks that some test fails. With the suite as first written, {{mutation.json:first.survived|int}}
+  survived:
+
+{{table:mutation_survivors}}
+
+  Each got a test, except one that is equivalent: dropping `date_registration is not null` changes nothing, because
+  the next condition is never true for a missing date. Final: {{mutation.json:final.killed|int}} of
+  {{mutation.json:final.total|int}} killed. The first-run figure was measured twice. A pass made while other files in
+  the repository were being edited reported one more kill, which did not reproduce; the figure here is from a
+  second pass of the same commit run on its own.
+- **Canaries**, where the method must fail: a model trained on shuffled labels falls to chance; four injected
+  future-looking features, a dropped week filter and a hindsight-defined population are each caught by the leakage
+  detector; every contract rule fails on its own planted defect.
+- Not covered by mutation testing: the slow replay tests and the tests that generated files match their generators
+  are excluded from the kill criterion, and the Power BI project itself is tested only through the DAX interpreter.
 
 ## Limits and what does not transfer
 

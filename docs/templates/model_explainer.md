@@ -74,8 +74,8 @@ student's score can be broken into named parts: that is where the "reasons" come
 
 The model does not see protected attributes, but it can still flag one group more readily than another. The share
 of truly at-risk students who get flagged is compared between groups in the README. At day 28 the largest gap is
-{{model.json:cutoffs.28.fairness_gradient_boosting.age_band.recall_gap|pct1}} between age bands (the 55-and-over
-group is small) and {{model.json:cutoffs.28.fairness_gradient_boosting.gender.recall_gap|pct1}} between men and
+{{model.json:cutoffs.28.fairness_gradient_boosting.age_band.recall_gap|pp1}} between age bands (the 55-and-over
+group is small) and {{model.json:cutoffs.28.fairness_gradient_boosting.gender.recall_gap|pp1}} between men and
 women. These gaps are reported, not corrected. Whether a gap is acceptable is a decision for the institution, not
 for the model.
 

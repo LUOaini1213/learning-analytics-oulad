@@ -1,7 +1,7 @@
 """Render the generated documents from their templates and results/*.json.
 
 Placeholders:
-  {{file.json:dotted.path|fmt}}   fmt: .Nf  ,.Nf  +.Nf  pctN  int  str
+  {{file.json:dotted.path|fmt}}   fmt: .Nf  ,.Nf  +.Nf  pctN  ppN  int  str
   {{table:name}}                  tables and diagrams built from results files and the SQL
 Usage: python scripts/build_docs.py [--check]
 """
@@ -48,6 +48,8 @@ def fmt_value(v, fmt: str) -> str:
         return str(v)
     if fmt == "int":
         return f"{int(round(v)):,}"
+    if fmt.startswith("pp"):
+        return f"{v * 100:.{int(fmt[2:])}f} percentage points"
     if fmt.startswith("pct"):
         return f"{v * 100:.{int(fmt[3:])}f}%"
     if fmt[:1] in ".,+":
@@ -203,13 +205,13 @@ def table(name: str, res: dict) -> str:
         return "\n".join(rows)
     if name == "mutation_survivors":
         m = res["mutation.json"]["first"]
-        return "\n".join(f"- `{s['file']}`: `{s['original'][:90]}`" for s in m["survivors"]) or "- none"
+        return "\n".join(f"  - `{s['file']}`: `{' '.join(s['original'].split())[:90]}`" for s in m["survivors"]) or "  - none"
     if name == "digest":
         d = res["digest.json"]
-        rows = ["| Prompt variant | Model | Digests | Passed the verifier | Invented number | Student identifier | Causal wording | Too long or empty |", "|---|---|---|---|---|---|---|---|"]
+        rows = ["| Prompt variant | Model | Drafts | Passed the verifier | Invented or misspelt placeholder | Number not in the data | Student identifier | Causal wording | Too long or empty |", "|---|---|---|---|---|---|---|---|---|"]
         for v in d["variants"]:
             f = v["failures"]
-            rows.append(f"| {v['variant']} | {v['model']} | {v['n']} | {v['passed']} ({v['pass_rate'] * 100:.0f}%) | {f.get('number_not_in_source', 0)} | "
+            rows.append(f"| {v['variant']} | {v['model']} | {v['n']} | {v['passed']} ({v['pass_rate'] * 100:.0f}%) | {f.get('unfilled_placeholder', 0)} | {f.get('number_not_in_source', 0)} | "
                         f"{f.get('student_identifier', 0)} | {f.get('causal_claim', 0)} | {f.get('length', 0)} |")
         return "\n".join(rows)
     raise KeyError(f"unknown table {name}")

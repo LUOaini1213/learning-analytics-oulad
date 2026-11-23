@@ -62,9 +62,10 @@ Singapore institution exists, so OULAD stands in. What that means for transfer i
 - **Language-model digest: a negative result.** A small local model's weekly notes passed an automatic check
   93% of the time under the best prompt, but most passing notes still said something wrong
   when read; the fixed template stays the default.
-- **Tests.** 243 tests. Mutation testing: 101 of
-  108 planted bugs caught on the first run, 106 of
-  108 after adding tests.
+- **Tests.** 243 tests. Mutation testing: 100 of
+  108 planted bugs were caught by the suite as first written,
+  107 of 108 after tests were added for the survivors;
+  the last one is equivalent (it cannot change any output). See [Testing](#testing).
 
 ## How it maps to two kinds of data role
 
@@ -384,14 +385,14 @@ place of figures; the placeholders are filled from the data afterwards; and a ve
 number that is not in the class facts, a student identifier, causal wording, an unfilled placeholder, or more than
 120 words. One seeded draft per class and variant, 14 classes:
 
-| Prompt variant | Model | Digests | Passed the verifier | Invented number | Student identifier | Causal wording | Too long or empty |
-|---|---|---|---|---|---|---|---|
-| few_shot | gemma3:4b | 14 | 9 (64%) | 0 | 0 | 0 | 0 |
-| structured | gemma3:4b | 14 | 5 (36%) | 5 | 0 | 0 | 0 |
-| zero_shot | gemma3:4b | 14 | 5 (36%) | 2 | 0 | 0 | 0 |
-| few_shot | qwen3.5:4b | 14 | 12 (86%) | 0 | 0 | 0 | 0 |
-| structured | qwen3.5:4b | 14 | 13 (93%) | 1 | 0 | 0 | 0 |
-| zero_shot | qwen3.5:4b | 14 | 12 (86%) | 2 | 0 | 1 | 0 |
+| Prompt variant | Model | Drafts | Passed the verifier | Invented or misspelt placeholder | Number not in the data | Student identifier | Causal wording | Too long or empty |
+|---|---|---|---|---|---|---|---|---|
+| few_shot | gemma3:4b | 14 | 9 (64%) | 5 | 0 | 0 | 0 | 0 |
+| structured | gemma3:4b | 14 | 5 (36%) | 4 | 5 | 0 | 0 | 0 |
+| zero_shot | gemma3:4b | 14 | 5 (36%) | 8 | 2 | 0 | 0 | 0 |
+| few_shot | qwen3.5:4b | 14 | 12 (86%) | 2 | 0 | 0 | 0 | 0 |
+| structured | qwen3.5:4b | 14 | 13 (93%) | 0 | 1 | 0 | 0 | 0 |
+| zero_shot | qwen3.5:4b | 14 | 12 (86%) | 0 | 2 | 0 | 1 | 0 |
 
 **Passing the verifier is not the same as being right.** Of the 37 drafts
 from qwen3.5:4b that passed, 22 still read as wrong or
@@ -406,6 +407,35 @@ classes. A language-model draft would only ever be sent after passing the verifi
 default: it costs nothing, cannot invent a figure, and reads much the same. The verifier checks wording, not truth
 beyond the figures; it is a word list and a number match, and a model could still write something misleading that
 passes. Raw model outputs are cached in `results/digest_cache.json` so the scoring re-runs offline.
+
+## Testing
+
+- 243 tests run offline on the committed sample and on a hand-written class of seven students
+  small enough to work every expected value out on paper (`tests/helpers.py`).
+- **Mutation testing.** `scripts/mutate.py` plants 108 bugs one at a time
+  (transformations, as-of cut-offs, suppression, the ingest gate, metrics, the DAX in the model files, the security
+  roles) and checks that some test fails. With the suite as first written, 8
+  survived:
+
+  - `sql/gold/fact_student_week.sql`: `count(distinct date) as active_days`
+  - `sql/features/features_early_warning.sql`: `where d.date_registration is not null`
+  - `sql/features/features_early_warning.sql`: `sum(case when f.days_late > 0 then 1 else 0 end) as n_late`
+  - `sql/features/features_early_warning.sql`: `over (partition by j.cutoff_day, j.mp_key)`
+  - `oulad/contracts.py`: `ok = ratio is not None and rule["min_ratio"] <= ratio <= rule["max_ratio"]`
+  - `oulad/analytics/metrics.py`: `diffs.append(metric(y[i], a[i]) - metric(y[i], b[i]))`
+  - `oulad/analytics/model.py`: `names = [c for c in row.sort_values(ascending=False).index if row[c] > 0][:top]`
+  - `scripts/export_dashboard.py`: `case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd`
+
+  Each got a test, except one that is equivalent: dropping `date_registration is not null` changes nothing, because
+  the next condition is never true for a missing date. Final: 107 of
+  108 killed. The first-run figure was measured twice. A pass made while other files in
+  the repository were being edited reported one more kill, which did not reproduce; the figure here is from a
+  second pass of the same commit run on its own.
+- **Canaries**, where the method must fail: a model trained on shuffled labels falls to chance; four injected
+  future-looking features, a dropped week filter and a hindsight-defined population are each caught by the leakage
+  detector; every contract rule fails on its own planted defect.
+- Not covered by mutation testing: the slow replay tests and the tests that generated files match their generators
+  are excluded from the kill criterion, and the Power BI project itself is tested only through the DAX interpreter.
 
 ## Limits and what does not transfer
 

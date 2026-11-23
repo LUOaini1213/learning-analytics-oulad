@@ -1,8 +1,8 @@
 {
  "first": {
   "total": 108,
-  "killed": 101,
-  "survived": 7,
+  "killed": 100,
+  "survived": 8,
   "equivalent": 0,
   "survivors": [
    {
@@ -21,6 +21,12 @@
     "id": 34,
     "file": "sql/features/features_early_warning.sql",
     "original": "sum(case when f.days_late > 0 then 1 else 0 end) as n_late",
+    "equivalent_because": null
+   },
+   {
+    "id": 35,
+    "file": "sql/features/features_early_warning.sql",
+    "original": "over (partition by j.cutoff_day, j.mp_key)",
     "equivalent_because": null
    },
    {
@@ -48,13 +54,13 @@
     "equivalent_because": null
    }
   ],
-  "seconds": 1455
+  "seconds": 2132
  },
  "mutants_defined": 108,
  "final": {
   "total": 108,
-  "killed": 106,
-  "survived": 2,
+  "killed": 107,
+  "survived": 1,
   "equivalent": 1,
   "survivors": [
    {
@@ -62,14 +68,10 @@
     "file": "sql/features/features_early_warning.sql",
     "original": "    where d.date_registration is not null\n",
     "equivalent_because": "Dropping 'date_registration is not null' changes nothing: the next condition, date_registration < cutoff_day, is not true for a NULL date under SQL three-valued logic, so a student with no registration date is excluded either way."
-   },
-   {
-    "id": 35,
-    "file": "sql/features/features_early_warning.sql",
-    "original": "over (partition by j.cutoff_day, j.mp_key)",
-    "equivalent_because": null
    }
   ],
-  "seconds": 1031
- }
+  "seconds": 1478
+ },
+ "first_run_note": "Measured with the test suite as it stood before any test was added in response to survivors (commit e6a7978), run on its own. An earlier pass of the same commit, run while other files in the repository were being edited, reported 101 killed; one of those kills (mutant 35) did not reproduce.",
+ "first_run_commit": "e6a7978"
 }

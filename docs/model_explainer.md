@@ -91,8 +91,8 @@ student's score can be broken into named parts: that is where the "reasons" come
 
 The model does not see protected attributes, but it can still flag one group more readily than another. The share
 of truly at-risk students who get flagged is compared between groups in the README. At day 28 the largest gap is
-16.9% between age bands (the 55-and-over
-group is small) and 6.7% between men and
+16.9 percentage points between age bands (the 55-and-over
+group is small) and 6.7 percentage points between men and
 women. These gaps are reported, not corrected. Whether a gap is acceptable is a decision for the institution, not
 for the model.
 
