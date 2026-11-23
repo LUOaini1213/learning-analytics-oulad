@@ -31,7 +31,7 @@ Singapore institution exists, so OULAD stands in. What that means for transfer i
   later data had been loaded, equal the features rebuilt afterwards from the complete tables on all
   {{pipeline.json:asof_equivalence.rows_compared|int}} student-cut-off rows
   ({{pipeline.json:asof_equivalence.feature_columns_compared|int}} columns compared). A separate detector rewrites
-  everything dated after the cut-off and confirms no feature moves.
+  everything dated on or after the cut-off, rebuilds the features on the full data, and finds no column that moves.
 - **The source has no primary key for clicks.** {{pipeline.json:clicks.rows_folded_into_daily_totals|int}} click rows
   share a student, material and day with another row. They are added up, not treated as duplicates;
   de-duplicating them would drop about a fifth of the rows.

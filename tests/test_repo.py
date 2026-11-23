@@ -89,6 +89,7 @@ def test_prose_claims_still_hold():
     assert p["checks_all_runs"]["failed_error"] == 0 and p["asof_equivalence"]["identical"]
     assert all(r["passed"] for r in p["reconciliation"]) and p["quarantine"]["rows"] == 0
     assert 0.18 < p["clicks"]["rows_folded_into_daily_totals"] / p["clicks"]["source_rows"] < 0.23      # "about a fifth"
+    assert RES["model.json"]["leakage_detector"] == {"14": [], "28": [], "56": [], "84": []}
     assert p["volume"]["weeks_flagged"] == [] and p["runs"]["by_status"] == {"SUCCESS_WITH_WARNINGS": p["runs"]["n"]}
     assert d["n_detected"] == d["n_fault_drills"] and d["n_recovered_to_clean_state"] == d["n_drills"]
     assert d["drills"][7]["drill"] == "late_data"

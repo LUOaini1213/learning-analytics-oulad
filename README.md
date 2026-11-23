@@ -31,7 +31,7 @@ Singapore institution exists, so OULAD stands in. What that means for transfer i
   later data had been loaded, equal the features rebuilt afterwards from the complete tables on all
   107,828 student-cut-off rows
   (34 columns compared). A separate detector rewrites
-  everything dated after the cut-off and confirms no feature moves.
+  everything dated on or after the cut-off, rebuilds the features on the full data, and finds no column that moves.
 - **The source has no primary key for clicks.** 2,195,960 click rows
   share a student, material and day with another row. They are added up, not treated as duplicates;
   de-duplicating them would drop about a fifth of the rows.
@@ -62,8 +62,8 @@ Singapore institution exists, so OULAD stands in. What that means for transfer i
 - **Language-model digest: a negative result.** A small local model's weekly notes passed an automatic check
   93% of the time under the best prompt, but most passing notes still said something wrong
   when read; the fixed template stays the default.
-- **Tests.** 242 tests. Mutation testing: 101 of
-  108 planted bugs caught on the first run, 101 of
+- **Tests.** 243 tests. Mutation testing: 101 of
+  108 planted bugs caught on the first run, 106 of
   108 after adding tests.
 
 ## How it maps to two kinds of data role

@@ -68,7 +68,7 @@ MUTANTS = [
     (FEAT, "sum(case when f.is_banked = 0 then 1 else 0 end) as n_submitted", "count(*) as n_submitted", [FE]),
     (FEAT, "coalesce(d.n_due, 0) - coalesce(s.n_submitted_due, 0) as n_missed", "coalesce(d.n_due, 0) - coalesce(s.n_submitted, 0) as n_missed", [FE]),
     (FEAT, "sum(case when f.days_late > 0 then 1 else 0 end) as n_late", "sum(case when f.days_late >= 0 then 1 else 0 end) as n_late", [MO, FE]),
-    (FEAT, "over (partition by j.cutoff_day, j.mp_key)", "over (partition by j.mp_key)", [FE]),
+    (FEAT, "over (partition by j.cutoff_day, j.mp_key)", "over (partition by j.mp_key)", [MO, FE]),
     ("oulad/leakage.py", "    perturb_future(altered, cutoff_day)\n", "", [FE]),
     ("oulad/leakage.py", 'if list(before["sp_key"]) != list(after["sp_key"]):', "if False:", [FE]),
     # --- suppression and access

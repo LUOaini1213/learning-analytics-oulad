@@ -88,3 +88,10 @@ def test_withdrawal_extract_withholds_small_counts():
     con.execute("create or replace table gold.dim_student_presentation as "
                 "select 'M1' as mp_key, case when i < 17 then 10 end as date_unregistration from range(20) t(i)")
     assert all(n is None and left is None for _, w, n, left in con.execute(WITHDRAWAL_SQL).fetchall() if w >= 1)
+
+
+def test_cohort_median_is_taken_within_one_cutoff():
+    # at day 28 the class has clicks 24, 4, 0, 0 -> median 2; pooled over cut-offs the median would be 4
+    con = build(mem_lake(bad=False), [7, 14, 28])
+    assert feat(con, 28, 1)["clicks_vs_cohort_median"] == 12.0
+    assert feat(con, 28, 3)["clicks_vs_cohort_median"] == 2.0 and feat(con, 7, 2)["clicks_vs_cohort_median"] == pytest.approx(10 / 6.5)

@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd  # noqa: E402
 
+from oulad import leakage, transform  # noqa: E402
 from oulad.analytics import clustering, descriptive, model  # noqa: E402
 from oulad.lake import Lake  # noqa: E402
 from oulad.pipeline import CUTOFFS  # noqa: E402
@@ -44,6 +45,8 @@ def run(lake: Lake, out: Path, fast: bool = False) -> dict:
     res["canary_shuffled_labels"] = model.shuffled_label_canary(features, 28)
     res["ablation_max_abs_pr_auc_difference"] = max(
         abs(r["ablation_with_protected_attributes"]["vs_main_model_pr_auc"]["difference"]) for r in res["cutoffs"].values())
+    # rewrite everything dated on or after each cut-off and rebuild the features: any column that moves is a leak
+    res["leakage_detector"] = {str(c): leakage.leaking_columns(con, transform.features_sql(), c) for c in CUTOFFS}
     (out / "model.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
     exports = lake.root / "exports"
     exports.mkdir(exist_ok=True)

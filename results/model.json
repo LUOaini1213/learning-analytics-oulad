@@ -2706,5 +2706,11 @@
   "pr_auc_shuffled_labels_min": 0.41846313758142867,
   "pr_auc_shuffled_labels_max": 0.4547644396578131
  },
- "ablation_max_abs_pr_auc_difference": 0.008016895496776533
+ "ablation_max_abs_pr_auc_difference": 0.008016895496776533,
+ "leakage_detector": {
+  "14": [],
+  "28": [],
+  "56": [],
+  "84": []
+ }
 }
