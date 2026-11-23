@@ -288,13 +288,21 @@ def run_cutoff(df: pd.DataFrame, cutoff: int, n_boot: int = 300) -> tuple[dict, 
     return res, scored
 
 
-def shuffled_label_canary(df: pd.DataFrame, cutoff: int) -> dict:
-    """Train on shuffled labels: the test PR-AUC must fall to the prevalence (chance)."""
+def shuffled_label_canary(df: pd.DataFrame, cutoff: int, repeats: int = 5) -> dict:
+    """Train on shuffled labels: the test PR-AUC must fall back to the prevalence (chance).
+
+    One shuffle can land a little above or below chance, because any arbitrary function of features that
+    do predict the outcome is itself weakly related to it; the mean over several shuffles is what is checked.
+    """
     d = prepare(df[df["cutoff_day"] == cutoff])
     train, test, _ = split(d)
-    rng = np.random.default_rng(SEED)
-    y_shuffled = rng.permutation(train["at_risk"].to_numpy())
-    gb = boosted(design(train), y_shuffled)
-    s = gb.predict_proba(design(test).to_numpy())[:, 1]
     y = test["at_risk"].to_numpy()
-    return {"cutoff_day": cutoff, "prevalence": float(y.mean()), "pr_auc_shuffled_labels": M.average_precision(y, s)}
+    x_tr, x_te = design(train), design(test).to_numpy()
+    vals = []
+    for r in range(repeats):
+        rng = np.random.default_rng(SEED + r)
+        gb = boosted(x_tr, rng.permutation(train["at_risk"].to_numpy()))
+        vals.append(M.average_precision(y, gb.predict_proba(x_te)[:, 1]))
+    return {"cutoff_day": cutoff, "repeats": repeats, "prevalence": float(y.mean()),
+            "pr_auc_shuffled_labels_mean": float(np.mean(vals)), "pr_auc_shuffled_labels_min": float(np.min(vals)),
+            "pr_auc_shuffled_labels_max": float(np.max(vals))}

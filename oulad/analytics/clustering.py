@@ -17,7 +17,7 @@ from . import metrics as M
 
 WEEKS = list(range(-2, 6))       # two weeks before the start to week 5
 AS_OF_DAY = 42
-STABLE_ARI = 0.80                # ASSUMPTION: below this mean ARI a clustering is called unstable
+STABLE_ARI = 0.80                # ASSUMPTION: below this ARI a clustering is called unstable
 SEED = 20261123
 
 
@@ -61,13 +61,14 @@ def stability(x: np.ndarray, k: int, n_boot: int = 20, seed: int = SEED) -> dict
 
 
 def choose_k(table: list[dict]) -> dict:
-    """Largest k whose mean ARI reaches the threshold; if none does, say so and fall back to the most stable."""
-    stable = [r for r in table if r["mean_ari"] >= STABLE_ARI]
+    """Largest k that is stable both on average and in the worst resample; if none is, say so and fall back
+    to the k with the highest mean ARI."""
+    rule = f"largest k with mean ARI >= {STABLE_ARI} and worst-resample ARI >= {STABLE_ARI}"
+    stable = [r for r in table if r["mean_ari"] >= STABLE_ARI and r["min_ari"] >= STABLE_ARI]
     if stable:
-        best = max(stable, key=lambda r: r["k"])
-        return {"k": best["k"], "stable": True, "rule": f"largest k with mean ARI >= {STABLE_ARI}"}
+        return {"k": max(r["k"] for r in stable), "stable": True, "rule": rule}
     best = max(table, key=lambda r: r["mean_ari"])
-    return {"k": best["k"], "stable": False, "rule": f"no k reached mean ARI >= {STABLE_ARI}; most stable k shown"}
+    return {"k": best["k"], "stable": False, "rule": f"no k met: {rule}; most stable k shown"}
 
 
 def run(con, ks=range(2, 8), n_boot: int = 20, sample: int = 6000) -> dict:

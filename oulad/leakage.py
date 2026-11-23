@@ -20,8 +20,9 @@ def copy_gold(src: duckdb.DuckDBPyConnection) -> duckdb.DuckDBPyConnection:
     dst = duckdb.connect()
     for schema in ("gold", "run"):
         dst.execute(f"create schema if not exists {schema}")
+    src.execute("select 1").fetchall()      # finish any half-read result left on the connection
     for t in GOLD_INPUTS:
-        dst.register("_t", src.cursor().sql(f"select * from gold.{t}").to_arrow_table())
+        dst.register("_t", src.sql(f"select * from gold.{t}").to_arrow_table())
         dst.execute(f"create table gold.{t} as select * from _t")
         dst.unregister("_t")
     return dst

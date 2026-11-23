@@ -1,0 +1,742 @@
+{
+ "outcomes": {
+  "n": 32593,
+  "Pass": {
+   "n": 12361,
+   "share": 0.37925321388028105
+  },
+  "Withdrawn": {
+   "n": 10156,
+   "share": 0.3116006504464149
+  },
+  "Fail": {
+   "n": 7052,
+   "share": 0.2163654772497162
+  },
+  "Distinction": {
+   "n": 3024,
+   "share": 0.09278065842358789
+  },
+  "at_risk_share": 0.527966127696131
+ },
+ "engagement_by_week": [
+  {
+   "week_index": 0,
+   "n_enrolled": 29393,
+   "n_active": 23658,
+   "clicks": 2013077,
+   "median_clicks": 49.0,
+   "mean_active_days": 3.1856454476287093,
+   "share_active": 0.8048855169598204
+  },
+  {
+   "week_index": 1,
+   "n_enrolled": 29110,
+   "n_active": 23168,
+   "clicks": 1797648,
+   "median_clicks": 45.0,
+   "mean_active_days": 3.124784185082873,
+   "share_active": 0.7958777052559258
+  },
+  {
+   "week_index": 2,
+   "n_enrolled": 28086,
+   "n_active": 23822,
+   "clicks": 2307080,
+   "median_clicks": 62.0,
+   "mean_active_days": 3.380362689950466,
+   "share_active": 0.8481805881934059
+  },
+  {
+   "week_index": 3,
+   "n_enrolled": 27883,
+   "n_active": 22135,
+   "clicks": 1663598,
+   "median_clicks": 41.0,
+   "mean_active_days": 3.3175965665236054,
+   "share_active": 0.7938528852705949
+  },
+  {
+   "week_index": 4,
+   "n_enrolled": 27516,
+   "n_active": 21661,
+   "clicks": 1505334,
+   "median_clicks": 39.0,
+   "mean_active_days": 3.288398504224182,
+   "share_active": 0.7872147114406164
+  },
+  {
+   "week_index": 5,
+   "n_enrolled": 27225,
+   "n_active": 20361,
+   "clicks": 1228901,
+   "median_clicks": 33.0,
+   "mean_active_days": 3.0854574922646236,
+   "share_active": 0.7478787878787879
+  },
+  {
+   "week_index": 6,
+   "n_enrolled": 27007,
+   "n_active": 20237,
+   "clicks": 1350506,
+   "median_clicks": 37.0,
+   "mean_active_days": 3.1587685921826356,
+   "share_active": 0.7493242492687081
+  },
+  {
+   "week_index": 7,
+   "n_enrolled": 26760,
+   "n_active": 19888,
+   "clicks": 1287543,
+   "median_clicks": 37.0,
+   "mean_active_days": 3.1387771520514884,
+   "share_active": 0.7431988041853512
+  },
+  {
+   "week_index": 8,
+   "n_enrolled": 26507,
+   "n_active": 18390,
+   "clicks": 930074,
+   "median_clicks": 25.0,
+   "mean_active_days": 2.902175095160413,
+   "share_active": 0.6937790017731166
+  },
+  {
+   "week_index": 9,
+   "n_enrolled": 26278,
+   "n_active": 17559,
+   "clicks": 1061916,
+   "median_clicks": 31.0,
+   "mean_active_days": 2.9253943846460504,
+   "share_active": 0.6682015374077175
+  },
+  {
+   "week_index": 10,
+   "n_enrolled": 26055,
+   "n_active": 14544,
+   "clicks": 646965,
+   "median_clicks": 20.0,
+   "mean_active_days": 2.5560368536853684,
+   "share_active": 0.5582037996545769
+  },
+  {
+   "week_index": 11,
+   "n_enrolled": 25862,
+   "n_active": 13660,
+   "clicks": 578012,
+   "median_clicks": 20.0,
+   "mean_active_days": 2.469765739385066,
+   "share_active": 0.5281880751682004
+  },
+  {
+   "week_index": 12,
+   "n_enrolled": 25713,
+   "n_active": 16232,
+   "clicks": 831892,
+   "median_clicks": 24.0,
+   "mean_active_days": 2.692890586495811,
+   "share_active": 0.6312760082448566
+  },
+  {
+   "week_index": 13,
+   "n_enrolled": 25549,
+   "n_active": 16948,
+   "clicks": 992429,
+   "median_clicks": 27.0,
+   "mean_active_days": 2.8921996695775314,
+   "share_active": 0.6633527731026655
+  },
+  {
+   "week_index": 14,
+   "n_enrolled": 25343,
+   "n_active": 16365,
+   "clicks": 871409,
+   "median_clicks": 25.0,
+   "mean_active_days": 2.846135044301864,
+   "share_active": 0.6457404411474569
+  },
+  {
+   "week_index": 15,
+   "n_enrolled": 25126,
+   "n_active": 16515,
+   "clicks": 857669,
+   "median_clicks": 27.0,
+   "mean_active_days": 2.897850438994853,
+   "share_active": 0.6572872721483722
+  },
+  {
+   "week_index": 16,
+   "n_enrolled": 24923,
+   "n_active": 15988,
+   "clicks": 881720,
+   "median_clicks": 29.0,
+   "mean_active_days": 2.9193144858643985,
+   "share_active": 0.6414958070858243
+  },
+  {
+   "week_index": 17,
+   "n_enrolled": 24773,
+   "n_active": 16152,
+   "clicks": 941970,
+   "median_clicks": 32.0,
+   "mean_active_days": 2.9645245170876673,
+   "share_active": 0.6520001614661123
+  },
+  {
+   "week_index": 18,
+   "n_enrolled": 24610,
+   "n_active": 16190,
+   "clicks": 1139199,
+   "median_clicks": 40.0,
+   "mean_active_days": 3.079987646695491,
+   "share_active": 0.6578626574563186
+  },
+  {
+   "week_index": 19,
+   "n_enrolled": 24442,
+   "n_active": 15424,
+   "clicks": 1169565,
+   "median_clicks": 43.0,
+   "mean_active_days": 3.094463174273859,
+   "share_active": 0.6310449226740856
+  },
+  {
+   "week_index": 20,
+   "n_enrolled": 24282,
+   "n_active": 15443,
+   "clicks": 1189027,
+   "median_clicks": 44.0,
+   "mean_active_days": 3.15573398950981,
+   "share_active": 0.6359855036652664
+  },
+  {
+   "week_index": 21,
+   "n_enrolled": 24122,
+   "n_active": 15577,
+   "clicks": 1121396,
+   "median_clicks": 38.0,
+   "mean_active_days": 3.0905822687295372,
+   "share_active": 0.6457590581212171
+  },
+  {
+   "week_index": 22,
+   "n_enrolled": 23951,
+   "n_active": 14998,
+   "clicks": 1020242,
+   "median_clicks": 34.0,
+   "mean_active_days": 3.013801840245366,
+   "share_active": 0.6261951484280406
+  },
+  {
+   "week_index": 23,
+   "n_enrolled": 23748,
+   "n_active": 14912,
+   "clicks": 929476,
+   "median_clicks": 31.0,
+   "mean_active_days": 2.9751877682403434,
+   "share_active": 0.62792656223682
+  },
+  {
+   "week_index": 24,
+   "n_enrolled": 23553,
+   "n_active": 13628,
+   "clicks": 740699,
+   "median_clicks": 25.0,
+   "mean_active_days": 2.8045201056648077,
+   "share_active": 0.5786099435316095
+  },
+  {
+   "week_index": 25,
+   "n_enrolled": 23379,
+   "n_active": 12477,
+   "clicks": 625103,
+   "median_clicks": 20.0,
+   "mean_active_days": 2.575699286687505,
+   "share_active": 0.533684075452329
+  },
+  {
+   "week_index": 26,
+   "n_enrolled": 23257,
+   "n_active": 12370,
+   "clicks": 630384,
+   "median_clicks": 21.0,
+   "mean_active_days": 2.5268391269199677,
+   "share_active": 0.5318828739734274
+  },
+  {
+   "week_index": 27,
+   "n_enrolled": 23178,
+   "n_active": 12941,
+   "clicks": 738416,
+   "median_clicks": 27.0,
+   "mean_active_days": 2.621049377946063,
+   "share_active": 0.5583311761152817
+  },
+  {
+   "week_index": 28,
+   "n_enrolled": 23100,
+   "n_active": 13231,
+   "clicks": 825611,
+   "median_clicks": 30.0,
+   "mean_active_days": 2.7632831985488626,
+   "share_active": 0.5727705627705628
+  },
+  {
+   "week_index": 29,
+   "n_enrolled": 23004,
+   "n_active": 13340,
+   "clicks": 940123,
+   "median_clicks": 34.0,
+   "mean_active_days": 2.8326836581709145,
+   "share_active": 0.5798991479742653
+  },
+  {
+   "week_index": 30,
+   "n_enrolled": 22901,
+   "n_active": 12875,
+   "clicks": 1021242,
+   "median_clicks": 35.0,
+   "mean_active_days": 2.8521941747572814,
+   "share_active": 0.562202523907253
+  },
+  {
+   "week_index": 31,
+   "n_enrolled": 22805,
+   "n_active": 12817,
+   "clicks": 1077034,
+   "median_clicks": 31.0,
+   "mean_active_days": 2.8078333463368965,
+   "share_active": 0.5620258715194036
+  },
+  {
+   "week_index": 32,
+   "n_enrolled": 22695,
+   "n_active": 12879,
+   "clicks": 993318,
+   "median_clicks": 32.0,
+   "mean_active_days": 2.8984393198229674,
+   "share_active": 0.5674818241903503
+  },
+  {
+   "week_index": 33,
+   "n_enrolled": 22595,
+   "n_active": 11397,
+   "clicks": 906980,
+   "median_clicks": 26.0,
+   "mean_active_days": 2.85891023953672,
+   "share_active": 0.5044036291214871
+  },
+  {
+   "week_index": 34,
+   "n_enrolled": 21409,
+   "n_active": 8635,
+   "clicks": 525560,
+   "median_clicks": 12.0,
+   "mean_active_days": 2.4627678054429647,
+   "share_active": 0.4033350460086879
+  },
+  {
+   "week_index": 35,
+   "n_enrolled": 13990,
+   "n_active": 4363,
+   "clicks": 54192,
+   "median_clicks": 5.0,
+   "mean_active_days": 1.9665367866147145,
+   "share_active": 0.31186561829878484
+  },
+  {
+   "week_index": 36,
+   "n_enrolled": 13990,
+   "n_active": 3855,
+   "clicks": 31014,
+   "median_clicks": 4.0,
+   "mean_active_days": 1.8088197146562905,
+   "share_active": 0.27555396711937097
+  },
+  {
+   "week_index": 37,
+   "n_enrolled": 13990,
+   "n_active": 3229,
+   "clicks": 22657,
+   "median_clicks": 4.0,
+   "mean_active_days": 1.6673892846082379,
+   "share_active": 0.23080771979985704
+  },
+  {
+   "week_index": 38,
+   "n_enrolled": 9121,
+   "n_active": 1574,
+   "clicks": 8171,
+   "median_clicks": 3.0,
+   "mean_active_days": 1.3526048284625158,
+   "share_active": 0.17256879728099989
+  }
+ ],
+ "activity_mix": [
+  {
+   "activity_group": "Content",
+   "clicks": 16529826,
+   "share": 0.41736610732875584
+  },
+  {
+   "activity_group": "Communication",
+   "clicks": 9015904,
+   "share": 0.22764503126226246
+  },
+  {
+   "activity_group": "Assessment practice",
+   "clicks": 7110305,
+   "share": 0.17953003980623808
+  },
+  {
+   "activity_group": "Homepage",
+   "clicks": 6949064,
+   "share": 0.17545882160274362
+  }
+ ],
+ "assessment_timeliness": {
+  "by_type": [
+   {
+    "assessment_type": "CMA",
+    "n": 69956,
+    "share_late": 0.47159643204299845,
+    "median_days_late": -1.0,
+    "p90_days_late": 3.0
+   },
+   {
+    "assessment_type": "Exam",
+    "n": 4959,
+    "share_late": 0.0024198427102238356,
+    "median_days_late": -19.0,
+    "p90_days_late": -7.0
+   },
+   {
+    "assessment_type": "TMA",
+    "n": 97088,
+    "share_late": 0.16809492419248517,
+    "median_days_late": -1.0,
+    "p90_days_late": 6.0
+   }
+  ],
+  "not_submitted": [
+   {
+    "assessment_type": "CMA",
+    "n_expected": 91727,
+    "n_not_submitted": 22455,
+    "share": 0.24480251180132348
+   },
+   {
+    "assessment_type": "TMA",
+    "n_expected": 125430,
+    "n_not_submitted": 27488,
+    "share": 0.21915012357490232
+   }
+  ],
+  "banked_results": 1909
+ },
+ "withdrawal": {
+  "registrations": 32593,
+  "left_on_or_before_day_0": 3097,
+  "left_after_day_0": 6975,
+  "withdrawn_with_no_date": 93,
+  "followed_from_day_0": 29496,
+  "still_registered": {
+   "14": 0.9533157038242472,
+   "28": 0.9336181177108759,
+   "56": 0.8991727691890427,
+   "84": 0.872118253322484,
+   "168": 0.7987184703010576
+  },
+  "still_registered_ci": {
+   "14": [
+    0.9509081373312244,
+    0.9557232703172701
+   ],
+   "28": [
+    0.9307770346813554,
+    0.9364592007403963
+   ],
+   "56": [
+    0.895736517218404,
+    0.9026090211596813
+   ],
+   "84": [
+    0.8683070117509119,
+    0.8759294948940562
+   ],
+   "168": [
+    0.7941426039117498,
+    0.8032943366903653
+   ]
+  },
+  "by_module": {
+   "AAA": {
+    "n": 728,
+    "day_14": 0.9917582417582418,
+    "day_28": 0.9862637362637363,
+    "day_56": 0.9711538461538463,
+    "day_84": 0.9519230769230771,
+    "day_168": 0.9079670329670333
+   },
+   "BBB": {
+    "n": 6921,
+    "day_14": 0.948706834272504,
+    "day_28": 0.9296344458893223,
+    "day_56": 0.9037711313394017,
+    "day_84": 0.8839763040023118,
+    "day_168": 0.8260366998988578
+   },
+   "CCC": {
+    "n": 3935,
+    "day_14": 0.9339263024142315,
+    "day_28": 0.8942820838627702,
+    "day_56": 0.8231257941550193,
+    "day_84": 0.7827191867852608,
+    "day_168": 0.6775095298602292
+   },
+   "DDD": {
+    "n": 5676,
+    "day_14": 0.953312191684285,
+    "day_28": 0.9309372797744897,
+    "day_56": 0.8898872445384083,
+    "day_84": 0.8576462297392538,
+    "day_168": 0.7644467935165615
+   },
+   "EEE": {
+    "n": 2701,
+    "day_14": 0.953720844131803,
+    "day_28": 0.945205479452055,
+    "day_56": 0.9218807848944838,
+    "day_84": 0.8955942243613482,
+    "day_168": 0.843391336542022
+   },
+   "FFF": {
+    "n": 7069,
+    "day_14": 0.9506295091243456,
+    "day_28": 0.9326637431036922,
+    "day_56": 0.9015419436978356,
+    "day_84": 0.872542085160561,
+    "day_168": 0.793747347573915
+   },
+   "GGG": {
+    "n": 2466,
+    "day_14": 0.9931062449310624,
+    "day_28": 0.9882400648824006,
+    "day_56": 0.9760746147607461,
+    "day_84": 0.9643146796431469,
+    "day_168": 0.9274128142741279
+   }
+  },
+  "curve": [
+   {
+    "day": 7,
+    "survival": 0.98922
+   },
+   {
+    "day": 14,
+    "survival": 0.95332
+   },
+   {
+    "day": 21,
+    "survival": 0.94616
+   },
+   {
+    "day": 28,
+    "survival": 0.93362
+   },
+   {
+    "day": 35,
+    "survival": 0.92365
+   },
+   {
+    "day": 42,
+    "survival": 0.91619
+   },
+   {
+    "day": 49,
+    "survival": 0.90778
+   },
+   {
+    "day": 56,
+    "survival": 0.89917
+   },
+   {
+    "day": 63,
+    "survival": 0.89138
+   },
+   {
+    "day": 70,
+    "survival": 0.88381
+   },
+   {
+    "day": 77,
+    "survival": 0.87717
+   },
+   {
+    "day": 84,
+    "survival": 0.87212
+   },
+   {
+    "day": 91,
+    "survival": 0.86656
+   },
+   {
+    "day": 98,
+    "survival": 0.85954
+   },
+   {
+    "day": 105,
+    "survival": 0.85215
+   },
+   {
+    "day": 112,
+    "survival": 0.84527
+   },
+   {
+    "day": 119,
+    "survival": 0.84015
+   },
+   {
+    "day": 126,
+    "survival": 0.83462
+   },
+   {
+    "day": 133,
+    "survival": 0.82893
+   },
+   {
+    "day": 140,
+    "survival": 0.8235
+   },
+   {
+    "day": 147,
+    "survival": 0.81804
+   },
+   {
+    "day": 154,
+    "survival": 0.81225
+   },
+   {
+    "day": 161,
+    "survival": 0.80533
+   },
+   {
+    "day": 168,
+    "survival": 0.79872
+   },
+   {
+    "day": 175,
+    "survival": 0.79282
+   },
+   {
+    "day": 182,
+    "survival": 0.78868
+   },
+   {
+    "day": 189,
+    "survival": 0.786
+   },
+   {
+    "day": 196,
+    "survival": 0.78336
+   },
+   {
+    "day": 203,
+    "survival": 0.78011
+   },
+   {
+    "day": 210,
+    "survival": 0.77661
+   },
+   {
+    "day": 217,
+    "survival": 0.77336
+   },
+   {
+    "day": 224,
+    "survival": 0.76963
+   },
+   {
+    "day": 231,
+    "survival": 0.76624
+   }
+  ],
+  "median_day_of_leaving_among_leavers": 73.0
+ },
+ "associations_day_28": [
+  {
+   "comparison": "no clicks in the two weeks before day 28",
+   "n_in_group": 2670,
+   "n_others": 24858,
+   "at_risk_rate_in_group": 0.7385767790262172,
+   "at_risk_rate_others": 0.4094456512993805,
+   "risk_ratio": 1.803845703776155,
+   "risk_ratio_ci": [
+    1.750059909217049,
+    1.8504697821057299
+   ],
+   "note": "all students in the day-28 population"
+  },
+  {
+   "comparison": "no clicks at all before day 28",
+   "n_in_group": 915,
+   "n_others": 26613,
+   "at_risk_rate_in_group": 0.8240437158469945,
+   "at_risk_rate_others": 0.4282117761996017,
+   "risk_ratio": 1.9243835915967062,
+   "risk_ratio_ci": [
+    1.8594964906032283,
+    1.9845764193777997
+   ],
+   "note": "all students in the day-28 population"
+  },
+  {
+   "comparison": "did not open the site before the start",
+   "n_in_group": 5451,
+   "n_others": 22077,
+   "at_risk_rate_in_group": 0.5960374243258117,
+   "at_risk_rate_others": 0.4031797798613942,
+   "risk_ratio": 1.4783415590204412,
+   "risk_ratio_ci": [
+    1.437895805044613,
+    1.515358620512353
+   ],
+   "note": "all students in the day-28 population"
+  },
+  {
+   "comparison": "an assessment was due before day 28 and was not submitted",
+   "n_in_group": 2653,
+   "n_others": 19886,
+   "at_risk_rate_in_group": 0.8937052393516773,
+   "at_risk_rate_others": 0.3999798853464749,
+   "risk_ratio": 2.2343754575996297,
+   "risk_ratio_ci": [
+    2.1840138720376467,
+    2.2808511732474352
+   ],
+   "note": "students with at least one assessment due before day 28"
+  },
+  {
+   "comparison": "has attempted this module before",
+   "n_in_group": 3467,
+   "n_others": 24061,
+   "at_risk_rate_in_group": 0.6031150850879723,
+   "at_risk_rate_others": 0.4180624246706288,
+   "risk_ratio": 1.4426436089374393,
+   "risk_ratio_ci": [
+    1.3954605307570338,
+    1.4867189403845236
+   ],
+   "note": "all students in the day-28 population"
+  },
+  {
+   "comparison": "rank correlation between clicks before day 28 and being at risk",
+   "spearman_rho": -0.27644268169911146,
+   "spearman_rho_ci": [
+    -0.28812415835971067,
+    -0.2657077877505752
+   ],
+   "n": 27528
+  }
+ ]
+}

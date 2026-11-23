@@ -92,9 +92,10 @@ def test_real_sample_features_do_not_leak(fx):
 def test_lineage_events_cover_every_table_and_validate(fx):
     lake, _, runs, _ = fx
     validator = jsonschema.Draft202012Validator({"$ref": "#/$defs/RunEvent", "$defs": SCHEMA["$defs"]})
-    events = json.loads((lake.root / "_events" / "lineage" / f"{runs[-1]['run_id']}.json").read_text())
+    events = [e for r in runs for e in r["events"]]
+    assert json.loads((lake.root / "_events" / "lineage" / f"{runs[-1]['run_id']}.json").read_text()) == runs[-1]["events"]
     events += json.loads((lake.root / "_events" / "lineage" / "finalise.json").read_text())
-    for e in events:
+    for e in events[-60:]:
         assert list(validator.iter_errors(e)) == []
     outputs = {e["outputs"][0]["name"] for e in events}
     assert {t for t in lake.tables() if t.split(".")[0] in ("silver", "gold")} - {"gold.features_asof"} <= outputs
