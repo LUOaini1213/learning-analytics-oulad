@@ -1,0 +1,57 @@
+/// Clicks per module-presentation, week and activity group. Blank below 5 students.
+table AggActivityWeek
+	lineageTag: cf365d82-5277-5cee-abfe-c7e3868121d0
+
+	/// Clicks by activity group.
+	measure 'Activity Clicks' = SUM(AggActivityWeek[Clicks])
+		formatString: #,##0
+		lineageTag: ddbc63c6-1dc2-547e-9efe-778bce7bdb53
+
+	/// Share of clicks that went to the activity group(s) in view.
+	measure 'Activity Share' = DIVIDE([Activity Clicks], CALCULATE([Activity Clicks], AggActivityWeek[ActivityGroup] <> ""))
+		formatString: 0.0%
+		lineageTag: d59e1b66-21ab-5472-bc67-d6f2ddf5549f
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: 8f4a645d-8ba1-5466-86a9-988f0c92001d
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column WeekIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d99656ae-50fc-53e5-97bb-81c546f42dba
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column ActivityGroup
+		dataType: string
+		lineageTag: a3d8fb9f-e858-56cb-84e3-6b1f8dc48200
+		summarizeBy: none
+		sourceColumn: ActivityGroup
+
+	column Clicks
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3d39b758-9355-5037-9261-784ee63f796b
+		summarizeBy: none
+		sourceColumn: Clicks
+
+	partition AggActivityWeek = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "agg_activity_week.csv") else File.Contents(DataFolder & "agg_activity_week.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"WeekIndex", Int64.Type}, {"ActivityGroup", type text}, {"Clicks", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

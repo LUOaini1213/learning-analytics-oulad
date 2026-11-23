@@ -1,0 +1,6 @@
+/// Folder or URL that holds the CSV extracts, ending with a slash. The default reads the files committed to
+/// the repository; for a local clone set it to the dashboard/data folder.
+expression DataFolder = "https://raw.githubusercontent.com/LUOaini1213/learning-analytics-oulad/main/dashboard/data/" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: c0970170-1e67-542f-a34a-873f6142e847
+
+	annotation PBI_ResultType = Text

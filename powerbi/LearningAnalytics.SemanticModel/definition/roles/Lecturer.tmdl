@@ -1,0 +1,7 @@
+/// Sees student rows and aggregates only for the module-presentations assigned to the signed-in user.
+role Lecturer
+	modelPermission: read
+
+	tablePermission DimModulePresentation = CONTAINS(SecLecturerModule, SecLecturerModule[AppUser], USERNAME(), SecLecturerModule[MpKey], DimModulePresentation[MpKey])
+
+	tablePermission SecLecturerModule = SecLecturerModule[AppUser] = USERNAME()

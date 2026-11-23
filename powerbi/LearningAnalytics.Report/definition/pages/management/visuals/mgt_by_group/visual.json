@@ -1,0 +1,133 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "mgt_by_group",
+  "position": {
+    "x": 20,
+    "y": 470,
+    "z": 5000,
+    "height": 230,
+    "width": 1240,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Dimension"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Dimension",
+              "nativeQueryRef": "Dimension"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Band"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Band",
+              "nativeQueryRef": "Band"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Group Students"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Group Students",
+              "nativeQueryRef": "Group Students"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Group At-risk Rate"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Group At-risk Rate",
+              "nativeQueryRef": "Group At-risk Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Cells Withheld"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Cells Withheld",
+              "nativeQueryRef": "Cells Withheld"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AggOutcomeByGroup"
+                  }
+                },
+                "Property": "Dimension"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outcomes by learner group'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

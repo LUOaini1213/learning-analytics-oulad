@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ops_checks_by_kind",
+  "position": {
+    "x": 660,
+    "y": 220,
+    "z": 3000,
+    "height": 230,
+    "width": 600,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsChecks"
+                    }
+                  },
+                  "Property": "Kind"
+                }
+              },
+              "queryRef": "OpsChecks.Kind",
+              "nativeQueryRef": "Kind",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsChecks"
+                    }
+                  },
+                  "Property": "Checks Run"
+                }
+              },
+              "queryRef": "OpsChecks.Checks Run",
+              "nativeQueryRef": "Checks Run"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsChecks"
+                    }
+                  },
+                  "Property": "Checks Failed"
+                }
+              },
+              "queryRef": "OpsChecks.Checks Failed",
+              "nativeQueryRef": "Checks Failed"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OpsChecks"
+                  }
+                },
+                "Property": "Checks Run"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Checks by kind'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

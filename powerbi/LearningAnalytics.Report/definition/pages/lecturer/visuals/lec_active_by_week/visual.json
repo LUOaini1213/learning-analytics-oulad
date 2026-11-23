@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "lec_active_by_week",
+  "position": {
+    "x": 20,
+    "y": 220,
+    "z": 4000,
+    "height": 230,
+    "width": 600,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimWeek"
+                    }
+                  },
+                  "Property": "WeekIndex"
+                }
+              },
+              "queryRef": "DimWeek.WeekIndex",
+              "nativeQueryRef": "WeekIndex",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggModuleWeek"
+                    }
+                  },
+                  "Property": "Active Share"
+                }
+              },
+              "queryRef": "AggModuleWeek.Active Share",
+              "nativeQueryRef": "Active Share"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimWeek"
+                  }
+                },
+                "Property": "WeekIndex"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Share of enrolled students active online, by week'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

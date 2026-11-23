@@ -1,0 +1,56 @@
+/// Students followed from day 0 and how many had left by the end of each week (weeks 0 to 33). Cells where fewer than 5 had left, or fewer than 5 remained, are blank.
+table AggWithdrawal
+	lineageTag: 6d7e962a-e1f0-5822-894d-a95e96d520dc
+
+	/// Share of the students registered on day 0 who had not unregistered by the end of the week.
+	measure 'Still Registered Share' = 
+			VAR gone = DIVIDE(SUM(AggWithdrawal[LeftByWeekEnd]), SUM(AggWithdrawal[Followed]))
+			RETURN IF(ISBLANK(gone), BLANK(), 1 - gone)
+		formatString: 0.0%
+		lineageTag: 07530b94-acfe-5572-8e78-0f86c667215e
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: 7923d0da-adc2-5bf4-84b0-f93d2efc86e0
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column WeekIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 262e8c7e-c273-5d32-aefd-cac0c5c804b4
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column Followed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: de9529dc-2c02-5e93-89ed-f539a5bce145
+		summarizeBy: none
+		sourceColumn: Followed
+
+	column LeftByWeekEnd
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f2ffe077-2c47-5b14-8f93-a8afb8e68756
+		summarizeBy: none
+		sourceColumn: LeftByWeekEnd
+
+	partition AggWithdrawal = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "agg_withdrawal.csv") else File.Contents(DataFolder & "agg_withdrawal.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"WeekIndex", Int64.Type}, {"Followed", Int64.Type}, {"LeftByWeekEnd", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

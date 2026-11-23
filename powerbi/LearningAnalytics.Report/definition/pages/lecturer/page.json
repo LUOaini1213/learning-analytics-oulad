@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "lecturer",
+  "displayName": "My module this week",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "lec_cutoff_slicer",
+      "target": "lec_active_by_week",
+      "type": "NoFilter"
+    },
+    {
+      "source": "lec_cutoff_slicer",
+      "target": "lec_activity_mix",
+      "type": "NoFilter"
+    }
+  ]
+}

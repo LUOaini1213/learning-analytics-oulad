@@ -1,0 +1,84 @@
+/// Students and at-risk students per module-presentation by one learner attribute at a time. Small cells are blank, and one more cell is blanked where a single hidden cell could be worked out from the total.
+table AggOutcomeByGroup
+	lineageTag: c78a6c84-fdc7-5be2-a53b-e8f1befdfb7f
+
+	/// Students in the group(s) in view, where the count may be shown.
+	measure 'Group Students' = SUM(AggOutcomeByGroup[Students])
+		formatString: #,##0
+		lineageTag: 65d5c4ef-dc86-58b0-998c-1feda706c511
+
+	/// Withdrawn or failed as a share of students, over the cells where both counts may be shown.
+	measure 'Group At-risk Rate' = DIVIDE(SUM(AggOutcomeByGroup[AtRisk]), SUM(AggOutcomeByGroup[StudentsWithRate]))
+		formatString: 0.0%
+		lineageTag: faeaf6bc-cf2b-52b6-b14a-21d904fbca06
+
+	/// Number of group cells whose student count is withheld.
+	measure 'Cells Withheld' = CALCULATE(COUNTROWS(AggOutcomeByGroup), AggOutcomeByGroup[Suppressed] = 1)
+		formatString: #,##0
+		lineageTag: 0b081582-ca43-5c2a-82d4-e3bd2a0b1951
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: a055d3d9-6b58-58ab-8e78-206533768ffd
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column Dimension
+		dataType: string
+		lineageTag: 88d749db-b9d8-58c8-a56a-91a7d3bd1ee2
+		summarizeBy: none
+		sourceColumn: Dimension
+
+	column Band
+		dataType: string
+		lineageTag: c704da0a-84c0-58c9-bc98-0f86c0c6e937
+		summarizeBy: none
+		sourceColumn: Band
+
+	column Students
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3aa25569-80ca-5b13-b571-99a8433ea15e
+		summarizeBy: none
+		sourceColumn: Students
+
+	column AtRisk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0170833e-8227-5c17-bc66-92b753d0f3e2
+		summarizeBy: none
+		sourceColumn: AtRisk
+
+	column StudentsWithRate
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36e178d4-05f0-5bd4-a291-b2cca97b88b8
+		summarizeBy: none
+		sourceColumn: StudentsWithRate
+
+	column Suppressed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: dd04d27d-5b9b-5b71-bb5a-2a2fcac32f66
+		summarizeBy: none
+		sourceColumn: Suppressed
+
+	partition AggOutcomeByGroup = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "agg_outcome_by_group.csv") else File.Contents(DataFolder & "agg_outcome_by_group.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"Dimension", type text}, {"Band", type text}, {"Students", Int64.Type}, {"AtRisk", Int64.Type}, {"StudentsWithRate", Int64.Type}, {"Suppressed", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

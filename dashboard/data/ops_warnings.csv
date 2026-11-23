@@ -1,0 +1,7 @@
+CheckId,Severity,Observed,Detail
+silver.student_assessment:score_recorded,warn,173,
+silver.student_assessment:submission_within_presentation,warn,67,A submission dated after the presentation has ended is implausible.
+silver.student_info:unregistered_is_withdrawn,warn,9,A student with an unregistration date should not have a result other than Withdrawn.
+silver.student_info:withdrawn_has_unregistration_date,warn,93,A student recorded as Withdrawn should have an unregistration date.
+silver.student_registration:registration_date_recorded,warn,45,Registrations with no registration date cannot be placed in time.
+silver.vle_daily:clicks_after_unregistration,warn,23891,Clicks dated after the student's unregistration date.

@@ -1,0 +1,30 @@
+/// SYNTHETIC teaching assignments used by the Lecturer role: which sign-in name may see which module-presentations.
+table SecLecturerModule
+	lineageTag: da258eed-c98a-53cd-8dee-f9872c276bc7
+
+	column AppUser
+		dataType: string
+		lineageTag: 3adec669-cd42-57d3-ad30-cc83310c58c7
+		summarizeBy: none
+		sourceColumn: AppUser
+
+	column MpKey
+		dataType: string
+		lineageTag: d6c14ac3-adf3-56e3-9c32-e24d64399623
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	partition SecLecturerModule = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "sec_lecturer_module.csv") else File.Contents(DataFolder & "sec_lecturer_module.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"AppUser", type text}, {"MpKey", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

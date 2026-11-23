@@ -1,0 +1,42 @@
+/// Checks that did not pass in the latest run.
+table OpsWarnings
+	lineageTag: 64e7a184-d936-5384-8811-780436037c2f
+
+	column CheckId
+		dataType: string
+		lineageTag: 8b2f5e76-6a8e-5464-a0ea-9c82f27f4a2b
+		summarizeBy: none
+		sourceColumn: CheckId
+
+	column Severity
+		dataType: string
+		lineageTag: 860ca198-4e72-5088-9b33-65434fd4e98e
+		summarizeBy: none
+		sourceColumn: Severity
+
+	column Observed
+		dataType: string
+		lineageTag: 7fa94e39-0bd8-5202-be84-fc57c934f8fc
+		summarizeBy: none
+		sourceColumn: Observed
+
+	column Detail
+		dataType: string
+		lineageTag: 5f0b41dd-4a2d-54fb-9926-a5c213b0fc59
+		summarizeBy: none
+		sourceColumn: Detail
+
+	partition OpsWarnings = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "ops_warnings.csv") else File.Contents(DataFolder & "ops_warnings.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"CheckId", type text}, {"Severity", type text}, {"Observed", type text}, {"Detail", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

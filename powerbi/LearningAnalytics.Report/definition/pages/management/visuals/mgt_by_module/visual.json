@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "mgt_by_module",
+  "position": {
+    "x": 660,
+    "y": 220,
+    "z": 4000,
+    "height": 240,
+    "width": 600,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimModulePresentation"
+                    }
+                  },
+                  "Property": "MpKey"
+                }
+              },
+              "queryRef": "DimModulePresentation.MpKey",
+              "nativeQueryRef": "MpKey",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "Withdrawal Rate"
+                }
+              },
+              "queryRef": "AggOutcome.Withdrawal Rate",
+              "nativeQueryRef": "Withdrawal Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "At-risk Rate"
+                }
+              },
+              "queryRef": "AggOutcome.At-risk Rate",
+              "nativeQueryRef": "At-risk Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AggOutcome"
+                  }
+                },
+                "Property": "At-risk Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Withdrawal and at-risk rate by module-presentation'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

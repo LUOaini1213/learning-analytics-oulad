@@ -1,0 +1,100 @@
+/// Final results per module-presentation. Counts below 5 are blank.
+table AggOutcome
+	lineageTag: adf31545-4fc1-52ef-89b0-df96f8992f6a
+
+	/// Students registered on the module-presentation.
+	measure Registrations = SUM(AggOutcome[Students])
+		formatString: #,##0
+		lineageTag: aea69936-eeac-5092-aba0-6db6c5e2e610
+
+	/// Students whose final result is Withdrawn.
+	measure Withdrawn = SUM(AggOutcome[Withdrawn])
+		formatString: #,##0
+		lineageTag: d3b58aca-abec-5c4c-946c-b5ed3aca2ffd
+
+	/// Students whose final result is Fail.
+	measure Failed = SUM(AggOutcome[Failed])
+		formatString: #,##0
+		lineageTag: 3a77a5e4-e97e-571f-84f6-2f62e0b6a0e1
+
+	/// Students whose final result is Pass or Distinction.
+	measure Passed = SUM(AggOutcome[Passed])
+		formatString: #,##0
+		lineageTag: 37a5e651-0eca-5f2d-aa34-d1de6d1b2688
+
+	/// Withdrawn divided by registrations.
+	measure 'Withdrawal Rate' = DIVIDE([Withdrawn], [Registrations])
+		formatString: 0.0%
+		lineageTag: 73403078-7f4b-57d2-a471-506fa005df32
+
+	/// Withdrawn or failed, divided by registrations.
+	measure 'At-risk Rate' = DIVIDE([Withdrawn] + [Failed], [Registrations])
+		formatString: 0.0%
+		lineageTag: fd7f4aa9-3fe6-5df0-a11e-6cd2798d8c0e
+
+	/// Passed divided by registrations.
+	measure 'Pass Rate' = DIVIDE([Passed], [Registrations])
+		formatString: 0.0%
+		lineageTag: 3398676b-fcab-530a-ab7a-0c9af7264283
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: 5efcf066-1334-5ca3-b5f9-33c476fbbc4d
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column Students
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7451483d-3233-51bf-9010-18477751a968
+		summarizeBy: none
+		sourceColumn: Students
+
+	column Withdrawn
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 77b37d49-d942-555e-82a4-710dbd4c1ed5
+		summarizeBy: none
+		sourceColumn: Withdrawn
+
+	column Failed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c8b7e681-c0a8-5fa7-9fd8-c169d8a1688f
+		summarizeBy: none
+		sourceColumn: Failed
+
+	column Passed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2d6114ff-48d5-5c50-ab5c-ab2060628079
+		summarizeBy: none
+		sourceColumn: Passed
+
+	column Suppressed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: efd921bf-c137-57de-a826-00f3b1c0b8c9
+		summarizeBy: none
+		sourceColumn: Suppressed
+
+	partition AggOutcome = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "agg_outcome.csv") else File.Contents(DataFolder & "agg_outcome.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"Students", Int64.Type}, {"Withdrawn", Int64.Type}, {"Failed", Int64.Type}, {"Passed", Int64.Type}, {"Suppressed", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

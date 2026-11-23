@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ops_cards",
+  "position": {
+    "x": 20,
+    "y": 90,
+    "z": 1000,
+    "height": 120,
+    "width": 1240,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Runs"
+                }
+              },
+              "queryRef": "OpsRunLog.Runs",
+              "nativeQueryRef": "Runs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Runs Stopped"
+                }
+              },
+              "queryRef": "OpsRunLog.Runs Stopped",
+              "nativeQueryRef": "Runs Stopped"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Rows Loaded"
+                }
+              },
+              "queryRef": "OpsRunLog.Rows Loaded",
+              "nativeQueryRef": "Rows Loaded"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsChecks"
+                    }
+                  },
+                  "Property": "Check Pass Rate"
+                }
+              },
+              "queryRef": "OpsChecks.Check Pass Rate",
+              "nativeQueryRef": "Check Pass Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Peak Quarantine Rows"
+                }
+              },
+              "queryRef": "OpsRunLog.Peak Quarantine Rows",
+              "nativeQueryRef": "Peak Quarantine Rows"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All runs'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

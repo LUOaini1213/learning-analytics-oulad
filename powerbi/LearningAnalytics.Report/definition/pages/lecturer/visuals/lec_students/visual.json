@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "lec_students",
+  "position": {
+    "x": 20,
+    "y": 460,
+    "z": 6000,
+    "height": 240,
+    "width": 1240,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "SpKey"
+                }
+              },
+              "queryRef": "StudentSnapshot.SpKey",
+              "nativeQueryRef": "SpKey"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "RiskScore"
+                }
+              },
+              "queryRef": "StudentSnapshot.RiskScore",
+              "nativeQueryRef": "RiskScore"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Flagged"
+                }
+              },
+              "queryRef": "StudentSnapshot.Flagged",
+              "nativeQueryRef": "Flagged"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "DaysSinceLastActive"
+                }
+              },
+              "queryRef": "StudentSnapshot.DaysSinceLastActive",
+              "nativeQueryRef": "DaysSinceLastActive"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "ClicksLast2w"
+                }
+              },
+              "queryRef": "StudentSnapshot.ClicksLast2w",
+              "nativeQueryRef": "ClicksLast2w"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "AssessmentsMissed"
+                }
+              },
+              "queryRef": "StudentSnapshot.AssessmentsMissed",
+              "nativeQueryRef": "AssessmentsMissed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "AvgScore"
+                }
+              },
+              "queryRef": "StudentSnapshot.AvgScore",
+              "nativeQueryRef": "AvgScore"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Reason1"
+                }
+              },
+              "queryRef": "StudentSnapshot.Reason1",
+              "nativeQueryRef": "Reason1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Reason2"
+                }
+              },
+              "queryRef": "StudentSnapshot.Reason2",
+              "nativeQueryRef": "Reason2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Reason3"
+                }
+              },
+              "queryRef": "StudentSnapshot.Reason3",
+              "nativeQueryRef": "Reason3"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "StudentSnapshot"
+                  }
+                },
+                "Property": "RiskScore"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Students, highest risk score first'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

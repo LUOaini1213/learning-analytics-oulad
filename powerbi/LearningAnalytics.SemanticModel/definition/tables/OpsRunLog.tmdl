@@ -1,0 +1,112 @@
+/// One row per weekly pipeline run.
+table OpsRunLog
+	lineageTag: 5b29bcb0-6f13-519c-9cb7-e59f82dc3708
+
+	/// Weekly pipeline runs.
+	measure Runs = COUNTROWS(OpsRunLog)
+		formatString: #,##0
+		lineageTag: 0c401c5a-68df-5779-88f6-4f9aa726ff3b
+
+	/// Runs rejected at the ingest gate or rolled back after a failed check.
+	measure 'Runs Stopped' = CALCULATE(COUNTROWS(OpsRunLog), OpsRunLog[Status] IN {"REJECTED_AT_INGEST", "ROLLED_BACK"})
+		formatString: #,##0
+		lineageTag: 1898fe6f-8fac-59b3-9f7b-4d24153e3b23
+
+	/// Source rows landed in bronze.
+	measure 'Rows Loaded' = SUM(OpsRunLog[RowsLoaded])
+		formatString: #,##0
+		lineageTag: 61da43b5-2fe8-59b4-b9f2-3216467ba409
+
+	/// Total run time.
+	measure 'Run Seconds' = SUM(OpsRunLog[DurationSeconds])
+		formatString: #,##0.0
+		lineageTag: 21bc15bf-d8c7-50e5-bc56-9a3b8d45a5b4
+
+	/// Largest number of rejected rows waiting after any run.
+	measure 'Peak Quarantine Rows' = MAX(OpsRunLog[QuarantineRows])
+		formatString: #,##0
+		lineageTag: e17ba752-0d62-5a69-a757-c95461b8a1a2
+
+	column RunId
+		dataType: string
+		lineageTag: 1724710c-dc58-5e02-816f-72381a1cd894
+		summarizeBy: none
+		sourceColumn: RunId
+
+	column WeekIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e1427d52-4333-57a7-ad3d-2434ed4d8837
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column Status
+		dataType: string
+		lineageTag: d7bb598f-8d87-568f-adfc-4f27144f5b0a
+		summarizeBy: none
+		sourceColumn: Status
+
+	column DurationSeconds
+		dataType: double
+		formatString: 0.000
+		lineageTag: e3e62db9-f742-50f3-b691-7e2f7a82d42a
+		summarizeBy: none
+		sourceColumn: DurationSeconds
+
+	column RowsLoaded
+		dataType: int64
+		formatString: 0
+		lineageTag: ac84fbff-8a42-5e54-90ea-0dd34b5ef412
+		summarizeBy: none
+		sourceColumn: RowsLoaded
+
+	column QuarantineRows
+		dataType: int64
+		formatString: 0
+		lineageTag: c0d4edb0-6336-504c-8cbc-eeeb05b96105
+		summarizeBy: none
+		sourceColumn: QuarantineRows
+
+	column WeeksRecomputed
+		dataType: int64
+		formatString: 0
+		lineageTag: 09f59e6b-af13-59ac-a990-d0b64a4572f4
+		summarizeBy: none
+		sourceColumn: WeeksRecomputed
+
+	column Checks
+		dataType: int64
+		formatString: 0
+		lineageTag: 337a938e-d519-5b2a-ae64-45bbcfb9bb15
+		summarizeBy: none
+		sourceColumn: Checks
+
+	column FailedError
+		dataType: int64
+		formatString: 0
+		lineageTag: f6c15a9a-81d8-587b-aac5-8fea6bd596e8
+		summarizeBy: none
+		sourceColumn: FailedError
+
+	column FailedWarn
+		dataType: int64
+		formatString: 0
+		lineageTag: f403433f-d524-515d-beee-3df9969a89a8
+		summarizeBy: none
+		sourceColumn: FailedWarn
+
+	partition OpsRunLog = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "ops_run_log.csv") else File.Contents(DataFolder & "ops_run_log.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"RunId", type text}, {"WeekIndex", Int64.Type}, {"Status", type text}, {"DurationSeconds", type number}, {"RowsLoaded", Int64.Type}, {"QuarantineRows", Int64.Type}, {"WeeksRecomputed", Int64.Type}, {"Checks", Int64.Type}, {"FailedError", Int64.Type}, {"FailedWarn", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

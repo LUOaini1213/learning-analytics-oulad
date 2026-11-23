@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ops_rows_by_week",
+  "position": {
+    "x": 20,
+    "y": 220,
+    "z": 2000,
+    "height": 230,
+    "width": 620,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimWeek"
+                    }
+                  },
+                  "Property": "WeekIndex"
+                }
+              },
+              "queryRef": "DimWeek.WeekIndex",
+              "nativeQueryRef": "WeekIndex",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Rows Loaded"
+                }
+              },
+              "queryRef": "OpsRunLog.Rows Loaded",
+              "nativeQueryRef": "Rows Loaded"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimWeek"
+                  }
+                },
+                "Property": "WeekIndex"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rows loaded per weekly run'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

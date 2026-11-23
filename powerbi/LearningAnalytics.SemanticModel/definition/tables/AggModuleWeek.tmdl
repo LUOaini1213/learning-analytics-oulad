@@ -1,0 +1,82 @@
+/// Per module-presentation and week: students enrolled at the start of the week, students active online, and clicks. Cells based on fewer than 5 students are blank.
+table AggModuleWeek
+	lineageTag: 5e5ef541-4f2e-5cfe-be48-84a3b642fa2b
+
+	/// Students registered at the start of the week (sum over the weeks and classes in view).
+	measure 'Enrolled Students' = SUM(AggModuleWeek[EnrolledStudents])
+		formatString: #,##0
+		lineageTag: 1b796fd1-5ad2-5ba3-9fce-3c4ca739a5a9
+
+	/// Students with at least one click in the week.
+	measure 'Active Students' = SUM(AggModuleWeek[ActiveStudents])
+		formatString: #,##0
+		lineageTag: 72fdc806-e5cc-593a-ac17-f1ff55ab058e
+
+	/// Clicks on the online learning environment.
+	measure Clicks = SUM(AggModuleWeek[Clicks])
+		formatString: #,##0
+		lineageTag: f7b738ff-3b46-5b19-ac07-0411520f4d5d
+
+	/// Active students divided by enrolled students.
+	measure 'Active Share' = DIVIDE([Active Students], [Enrolled Students])
+		formatString: 0.0%
+		lineageTag: 2b8a6794-4304-50eb-8306-add761723931
+
+	/// Clicks divided by active students.
+	measure 'Clicks per Active Student' = DIVIDE([Clicks], [Active Students])
+		formatString: #,##0.0
+		lineageTag: c738ed9c-58d9-5e94-8cb7-8c8e54c19ea3
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: 3f7aa985-f593-54e4-92a2-0a80dcb374c3
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column WeekIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c5f33a6d-6d6a-51f0-9e88-4601ec09871e
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column EnrolledStudents
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e82784b6-56b3-5c7f-a31b-b2220d0b7d57
+		summarizeBy: none
+		sourceColumn: EnrolledStudents
+
+	column ActiveStudents
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8ff9bc38-c8a2-599a-934a-889d3dd36c95
+		summarizeBy: none
+		sourceColumn: ActiveStudents
+
+	column Clicks
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9fd4c4b0-40c3-5fdf-8409-6d7b3c04c3f2
+		summarizeBy: none
+		sourceColumn: Clicks
+
+	partition AggModuleWeek = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "agg_module_week.csv") else File.Contents(DataFolder & "agg_module_week.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"WeekIndex", Int64.Type}, {"EnrolledStudents", Int64.Type}, {"ActiveStudents", Int64.Type}, {"Clicks", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

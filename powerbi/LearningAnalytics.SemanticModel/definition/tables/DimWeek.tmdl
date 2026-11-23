@@ -1,0 +1,37 @@
+/// Weeks on each presentation's own clock: week 0 is the first seven days.
+table DimWeek
+	lineageTag: 7e491014-ed38-5391-8457-b1761d9caa28
+
+	column WeekIndex
+		dataType: int64
+		formatString: 0
+		lineageTag: f9239172-e786-5399-807d-9063cccdd96e
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column WeekLabel
+		dataType: string
+		lineageTag: 1426f485-7e78-57a2-9aef-517ac7f8b562
+		summarizeBy: none
+		sourceColumn: WeekLabel
+
+	column Phase
+		dataType: string
+		lineageTag: a23e63f1-01d6-5530-87ca-cd0a28c957d2
+		summarizeBy: none
+		sourceColumn: Phase
+
+	partition DimWeek = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "dim_week.csv") else File.Contents(DataFolder & "dim_week.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"WeekIndex", Int64.Type}, {"WeekLabel", type text}, {"Phase", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

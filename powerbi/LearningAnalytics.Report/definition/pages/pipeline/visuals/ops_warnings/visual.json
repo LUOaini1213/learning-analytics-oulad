@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ops_warnings",
+  "position": {
+    "x": 740,
+    "y": 460,
+    "z": 5000,
+    "height": 240,
+    "width": 520,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsWarnings"
+                    }
+                  },
+                  "Property": "CheckId"
+                }
+              },
+              "queryRef": "OpsWarnings.CheckId",
+              "nativeQueryRef": "CheckId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsWarnings"
+                    }
+                  },
+                  "Property": "Severity"
+                }
+              },
+              "queryRef": "OpsWarnings.Severity",
+              "nativeQueryRef": "Severity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsWarnings"
+                    }
+                  },
+                  "Property": "Observed"
+                }
+              },
+              "queryRef": "OpsWarnings.Observed",
+              "nativeQueryRef": "Observed"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OpsWarnings"
+                  }
+                },
+                "Property": "CheckId"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Checks not passed in the latest run'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

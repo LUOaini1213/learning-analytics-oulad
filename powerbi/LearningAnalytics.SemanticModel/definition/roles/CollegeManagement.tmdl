@@ -1,0 +1,7 @@
+/// Sees aggregates only: every student-level row is filtered out.
+role CollegeManagement
+	modelPermission: read
+
+	tablePermission StudentSnapshot = FALSE()
+
+	tablePermission SecLecturerModule = FALSE()

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "lec_activity_mix",
+  "position": {
+    "x": 640,
+    "y": 220,
+    "z": 5000,
+    "height": 230,
+    "width": 620,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggActivityWeek"
+                    }
+                  },
+                  "Property": "ActivityGroup"
+                }
+              },
+              "queryRef": "AggActivityWeek.ActivityGroup",
+              "nativeQueryRef": "ActivityGroup",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggActivityWeek"
+                    }
+                  },
+                  "Property": "Activity Share"
+                }
+              },
+              "queryRef": "AggActivityWeek.Activity Share",
+              "nativeQueryRef": "Activity Share"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AggActivityWeek"
+                  }
+                },
+                "Property": "Activity Share"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Where the clicks went'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

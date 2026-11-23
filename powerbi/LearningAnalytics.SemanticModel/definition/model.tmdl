@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder","DimModulePresentation","DimWeek","StudentSnapshot","AggModuleWeek","AggActivityWeek","AggOutcome","AggOutcomeByGroup","AggWithdrawal","OpsRunLog","OpsChecks","OpsWarnings","SecLecturerModule"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimModulePresentation
+ref table DimWeek
+ref table StudentSnapshot
+ref table AggModuleWeek
+ref table AggActivityWeek
+ref table AggOutcome
+ref table AggOutcomeByGroup
+ref table AggWithdrawal
+ref table OpsRunLog
+ref table OpsChecks
+ref table OpsWarnings
+ref table SecLecturerModule
+
+ref role Lecturer
+ref role CollegeManagement
+ref role DataEngineer

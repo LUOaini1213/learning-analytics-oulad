@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "lec_cards",
+  "position": {
+    "x": 20,
+    "y": 90,
+    "z": 3000,
+    "height": 120,
+    "width": 1240,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Students"
+                }
+              },
+              "queryRef": "StudentSnapshot.Students",
+              "nativeQueryRef": "Students"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Flagged Students"
+                }
+              },
+              "queryRef": "StudentSnapshot.Flagged Students",
+              "nativeQueryRef": "Flagged Students"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Inactive Students"
+                }
+              },
+              "queryRef": "StudentSnapshot.Inactive Students",
+              "nativeQueryRef": "Inactive Students"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Students Missing an Assessment"
+                }
+              },
+              "queryRef": "StudentSnapshot.Students Missing an Assessment",
+              "nativeQueryRef": "Students Missing an Assessment"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StudentSnapshot"
+                    }
+                  },
+                  "Property": "Average Score"
+                }
+              },
+              "queryRef": "StudentSnapshot.Average Score",
+              "nativeQueryRef": "Average Score"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Class at the cut-off'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

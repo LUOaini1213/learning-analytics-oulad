@@ -1,0 +1,147 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ops_runs",
+  "position": {
+    "x": 20,
+    "y": 460,
+    "z": 4000,
+    "height": 240,
+    "width": 700,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "RunId"
+                }
+              },
+              "queryRef": "OpsRunLog.RunId",
+              "nativeQueryRef": "RunId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "OpsRunLog.Status",
+              "nativeQueryRef": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "DurationSeconds"
+                }
+              },
+              "queryRef": "OpsRunLog.DurationSeconds",
+              "nativeQueryRef": "DurationSeconds"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "RowsLoaded"
+                }
+              },
+              "queryRef": "OpsRunLog.RowsLoaded",
+              "nativeQueryRef": "RowsLoaded"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "QuarantineRows"
+                }
+              },
+              "queryRef": "OpsRunLog.QuarantineRows",
+              "nativeQueryRef": "QuarantineRows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OpsRunLog"
+                    }
+                  },
+                  "Property": "FailedWarn"
+                }
+              },
+              "queryRef": "OpsRunLog.FailedWarn",
+              "nativeQueryRef": "FailedWarn"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OpsRunLog"
+                  }
+                },
+                "Property": "RunId"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Runs'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

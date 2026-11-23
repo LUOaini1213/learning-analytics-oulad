@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "mgt_cards",
+  "position": {
+    "x": 20,
+    "y": 90,
+    "z": 2000,
+    "height": 120,
+    "width": 1240,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "Registrations"
+                }
+              },
+              "queryRef": "AggOutcome.Registrations",
+              "nativeQueryRef": "Registrations"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "Withdrawal Rate"
+                }
+              },
+              "queryRef": "AggOutcome.Withdrawal Rate",
+              "nativeQueryRef": "Withdrawal Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "At-risk Rate"
+                }
+              },
+              "queryRef": "AggOutcome.At-risk Rate",
+              "nativeQueryRef": "At-risk Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcome"
+                    }
+                  },
+                  "Property": "Pass Rate"
+                }
+              },
+              "queryRef": "AggOutcome.Pass Rate",
+              "nativeQueryRef": "Pass Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggOutcomeByGroup"
+                    }
+                  },
+                  "Property": "Cells Withheld"
+                }
+              },
+              "queryRef": "AggOutcomeByGroup.Cells Withheld",
+              "nativeQueryRef": "Cells Withheld"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All module-presentations in view'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

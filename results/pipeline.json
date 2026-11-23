@@ -194,6 +194,8 @@
  },
  "quarantine": {
   "rows": 0,
+  "peak_rows_during_replay": 115,
+  "weeks_with_rows_waiting": 18,
   "by_reason": {}
  },
  "clicks": {
@@ -287,7 +289,7 @@
   "gold.fact_engagement_weekly": 43,
   "gold.fact_student_week": 43,
   "gold.features_asof": 3,
-  "gold.features_early_warning": 0,
+  "gold.features_early_warning": 1,
   "gold.sec_lecturer_assignment": 44,
   "ops.batch_ledger": 45,
   "ops.dq_results": 48,

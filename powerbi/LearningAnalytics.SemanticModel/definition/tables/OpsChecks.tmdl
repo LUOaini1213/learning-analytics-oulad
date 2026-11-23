@@ -1,0 +1,63 @@
+/// Data-quality checks per week and kind of check.
+table OpsChecks
+	lineageTag: 4a89868b-77ca-5faf-bb68-81c2daa0a879
+
+	/// Contract checks evaluated.
+	measure 'Checks Run' = SUM(OpsChecks[Checks])
+		formatString: #,##0
+		lineageTag: 10a84c7f-d8ef-58a2-97fc-d656fdc2cf78
+
+	/// Checks that did not pass (warnings included).
+	measure 'Checks Failed' = SUM(OpsChecks[Failed])
+		formatString: #,##0
+		lineageTag: 2ff72195-7ac2-5c45-ab6a-3b9d061a03b3
+
+	/// Share of checks that passed.
+	measure 'Check Pass Rate' = DIVIDE([Checks Run] - [Checks Failed], [Checks Run])
+		formatString: 0.00%
+		lineageTag: c75c0f68-0b95-5e37-bde6-f9622cad6435
+
+	column WeekIndex
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 43cc24c2-5eb1-5bea-a401-3a1fb931163e
+		summarizeBy: none
+		sourceColumn: WeekIndex
+
+	column Kind
+		dataType: string
+		lineageTag: ec8550f8-819e-57df-bba4-ead4a959da90
+		summarizeBy: none
+		sourceColumn: Kind
+
+	column Checks
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 831ee96b-8020-5629-9839-0f7e96c5d169
+		summarizeBy: none
+		sourceColumn: Checks
+
+	column Failed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 79a69748-3774-598d-b1ee-a6bd4bed3ff7
+		summarizeBy: none
+		sourceColumn: Failed
+
+	partition OpsChecks = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "ops_checks.csv") else File.Contents(DataFolder & "ops_checks.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"WeekIndex", Int64.Type}, {"Kind", type text}, {"Checks", Int64.Type}, {"Failed", Int64.Type}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

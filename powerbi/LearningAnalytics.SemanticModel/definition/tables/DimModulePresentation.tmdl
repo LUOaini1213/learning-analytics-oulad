@@ -1,0 +1,62 @@
+/// One row per module-presentation (a module taught in one term).
+table DimModulePresentation
+	lineageTag: b3c02ee4-4465-55b5-9ad5-ea0a0666112f
+
+	column MpKey
+		dataType: string
+		lineageTag: a33c1d49-dfb2-5f92-a393-bb57e08aa9d5
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column Module
+		dataType: string
+		lineageTag: 456b19f1-ce9c-5097-98bd-ebff35d32ab0
+		summarizeBy: none
+		sourceColumn: Module
+
+	column Presentation
+		dataType: string
+		lineageTag: a54a7b06-53a1-55e9-a8e1-3eb37c940369
+		summarizeBy: none
+		sourceColumn: Presentation
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a6a0eaf-2c6c-5e5a-8e4c-4fb1cc704f6c
+		summarizeBy: none
+		sourceColumn: Year
+
+	column StartMonth
+		dataType: string
+		lineageTag: 56fcd631-f4b5-589f-a218-82909f2f0746
+		summarizeBy: none
+		sourceColumn: StartMonth
+
+	column LengthDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ca0c86e-14ed-5b50-ad40-e7a83ca5e4bf
+		summarizeBy: none
+		sourceColumn: LengthDays
+
+	column IsCurrentTerm
+		dataType: string
+		lineageTag: 47dba0f1-cc24-533b-978e-1b54b89478be
+		summarizeBy: none
+		sourceColumn: IsCurrentTerm
+
+	partition DimModulePresentation = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "dim_module_presentation.csv") else File.Contents(DataFolder & "dim_module_presentation.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"MpKey", type text}, {"Module", type text}, {"Presentation", type text}, {"Year", Int64.Type}, {"StartMonth", type text}, {"LengthDays", Int64.Type}, {"IsCurrentTerm", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

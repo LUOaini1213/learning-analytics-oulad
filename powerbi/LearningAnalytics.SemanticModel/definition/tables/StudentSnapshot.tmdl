@@ -1,0 +1,157 @@
+/// One row per student per cut-off day (14, 28, 56, 84) for presentations that started in October 2014: what was known at the end of the day before the cut-off, the risk score from the logistic model trained on 2013 presentations, and the reasons behind a flag. Pseudonymous keys; no protected attributes and no final results.
+table StudentSnapshot
+	lineageTag: 9a50d079-02b5-539a-866e-5b54443910fa
+
+	/// Students in the snapshot (registered and not withdrawn at the cut-off).
+	measure Students = COUNTROWS(StudentSnapshot)
+		formatString: #,##0
+		lineageTag: e20ff851-7fa1-5b21-879d-2aee48ac1508
+
+	/// Students in the top 20% of risk scores in their class at the cut-off.
+	measure 'Flagged Students' = CALCULATE(COUNTROWS(StudentSnapshot), StudentSnapshot[Flagged] = 1)
+		formatString: #,##0
+		lineageTag: 2f141c9a-51f1-5a0b-a8ed-638cd19feda1
+
+	/// Flagged students as a share of the snapshot.
+	measure 'Flagged Share' = DIVIDE([Flagged Students], [Students])
+		formatString: 0.0%
+		lineageTag: 1850e9c0-826d-5d0a-81a1-c95a18713310
+
+	/// Students with no clicks in the two weeks before the cut-off.
+	measure 'Inactive Students' = CALCULATE(COUNTROWS(StudentSnapshot), StudentSnapshot[ClicksLast2w] = 0)
+		formatString: #,##0
+		lineageTag: 00a35dac-c143-531d-ae02-96414a7aacee
+
+	/// Inactive students as a share of the snapshot.
+	measure 'Inactive Share' = DIVIDE([Inactive Students], [Students])
+		formatString: 0.0%
+		lineageTag: 38d1d2c9-11dc-5464-8e0e-8fc4fc2230d8
+
+	/// Students with at least one assessment due before the cut-off and not submitted.
+	measure 'Students Missing an Assessment' = CALCULATE(COUNTROWS(StudentSnapshot), StudentSnapshot[AssessmentsMissed] > 0)
+		formatString: #,##0
+		lineageTag: bcbdef78-5d6e-5e99-aa61-a1d64263e43e
+
+	/// Mean of the students' average assessment scores so far (students with a score).
+	measure 'Average Score' = AVERAGE(StudentSnapshot[AvgScore])
+		formatString: 0.0
+		lineageTag: 1b3410b7-e3d6-531b-be09-ae0bf2095cac
+
+	/// Mean model score; a ranking aid, not a probability to quote to a student.
+	measure 'Average Risk Score' = AVERAGE(StudentSnapshot[RiskScore])
+		formatString: 0.000
+		lineageTag: 3e039d1f-02aa-5216-bcfb-741046287c16
+
+	/// Median days since a student was last seen online.
+	measure 'Median Days Since Last Active' = PERCENTILE.INC(StudentSnapshot[DaysSinceLastActive], 0.5)
+		formatString: 0.0
+		lineageTag: b5471bb8-eb97-54e6-a46e-dadc05978f0d
+
+	column SpKey
+		dataType: string
+		lineageTag: 227bee7e-5399-5465-a42d-96bd13822d72
+		summarizeBy: none
+		sourceColumn: SpKey
+
+	column MpKey
+		dataType: string
+		isHidden
+		lineageTag: be6228bc-e948-5a6e-ad9d-7cbbfc99ba5f
+		summarizeBy: none
+		sourceColumn: MpKey
+
+	column CutoffDay
+		dataType: int64
+		formatString: 0
+		lineageTag: aeed50fd-0697-51e8-a2b6-43c91a685bb9
+		summarizeBy: none
+		sourceColumn: CutoffDay
+
+	column ClicksTotal
+		dataType: int64
+		formatString: 0
+		lineageTag: d44254a6-12d4-52f4-9ceb-7d279fa0c20f
+		summarizeBy: none
+		sourceColumn: ClicksTotal
+
+	column ClicksLast2w
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ca24ba7-46ae-53fe-956d-1d7924044348
+		summarizeBy: none
+		sourceColumn: ClicksLast2w
+
+	column DaysSinceLastActive
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fa9e846-588f-577f-83c8-61fb722dfb90
+		summarizeBy: none
+		sourceColumn: DaysSinceLastActive
+
+	column AssessmentsDue
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b3c7988-b1bd-5a5d-b34c-d7d9b0d2fdcf
+		summarizeBy: none
+		sourceColumn: AssessmentsDue
+
+	column AssessmentsMissed
+		dataType: int64
+		formatString: 0
+		lineageTag: cf7ca221-f1e5-5b32-b543-31f82ec89eab
+		summarizeBy: none
+		sourceColumn: AssessmentsMissed
+
+	column AvgScore
+		dataType: double
+		formatString: 0.000
+		lineageTag: 3cea1f71-9f22-5ff2-a1c7-b8285525e21a
+		summarizeBy: none
+		sourceColumn: AvgScore
+
+	column RiskScore
+		dataType: double
+		formatString: 0.000
+		lineageTag: c0b2a0ef-ab7e-5b95-9da0-0d29a5ccb1b0
+		summarizeBy: none
+		sourceColumn: RiskScore
+
+	column Flagged
+		dataType: int64
+		formatString: 0
+		lineageTag: 869ad3bb-c09a-5ce2-9619-357f05796027
+		summarizeBy: none
+		sourceColumn: Flagged
+
+	column Reason1
+		dataType: string
+		lineageTag: d8dba83c-fb7e-59f1-bdff-08c829cddb2d
+		summarizeBy: none
+		sourceColumn: Reason1
+
+	column Reason2
+		dataType: string
+		lineageTag: 501b6489-f3e8-5e6a-9f3b-3fcee5fce542
+		summarizeBy: none
+		sourceColumn: Reason2
+
+	column Reason3
+		dataType: string
+		lineageTag: 2483d0bd-d631-5e1f-a123-3b8b8e03ef0a
+		summarizeBy: none
+		sourceColumn: Reason3
+
+	partition StudentSnapshot = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(
+						if Text.StartsWith(DataFolder, "http") then Web.Contents(DataFolder & "student_snapshot.csv") else File.Contents(DataFolder & "student_snapshot.csv"),
+						[Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"SpKey", type text}, {"MpKey", type text}, {"CutoffDay", Int64.Type}, {"ClicksTotal", Int64.Type}, {"ClicksLast2w", Int64.Type}, {"DaysSinceLastActive", Int64.Type}, {"AssessmentsDue", Int64.Type}, {"AssessmentsMissed", Int64.Type}, {"AvgScore", type number}, {"RiskScore", type number}, {"Flagged", Int64.Type}, {"Reason1", type text}, {"Reason2", type text}, {"Reason3", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

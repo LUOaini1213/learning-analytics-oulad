@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "mgt_curve",
+  "position": {
+    "x": 20,
+    "y": 220,
+    "z": 3000,
+    "height": 240,
+    "width": 620,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimWeek"
+                    }
+                  },
+                  "Property": "WeekIndex"
+                }
+              },
+              "queryRef": "DimWeek.WeekIndex",
+              "nativeQueryRef": "WeekIndex",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AggWithdrawal"
+                    }
+                  },
+                  "Property": "Still Registered Share"
+                }
+              },
+              "queryRef": "AggWithdrawal.Still Registered Share",
+              "nativeQueryRef": "Still Registered Share"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimModulePresentation"
+                    }
+                  },
+                  "Property": "Module"
+                }
+              },
+              "queryRef": "DimModulePresentation.Module",
+              "nativeQueryRef": "Module"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimWeek"
+                  }
+                },
+                "Property": "WeekIndex"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Share still registered, by week and module'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

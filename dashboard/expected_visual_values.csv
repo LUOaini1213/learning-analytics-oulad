@@ -1,0 +1,445 @@
+visual,measure,context,value
+lec_cards,Students,"BBB-2014J, cut-off day 28",1786.0
+lec_cards,Flagged Students,"BBB-2014J, cut-off day 28",358.0
+lec_cards,Inactive Students,"BBB-2014J, cut-off day 28",165.0
+lec_cards,Students Missing an Assessment,"BBB-2014J, cut-off day 28",112.0
+lec_cards,Average Score,"BBB-2014J, cut-off day 28",59.105798
+lec_active_by_week,Active Share,"BBB-2014J, week 0",0.72997
+lec_active_by_week,Active Share,"BBB-2014J, week 1",0.701613
+lec_active_by_week,Active Share,"BBB-2014J, week 2",0.847982
+lec_active_by_week,Active Share,"BBB-2014J, week 3",0.737923
+lec_active_by_week,Active Share,"BBB-2014J, week 4",0.707727
+lec_active_by_week,Active Share,"BBB-2014J, week 5",0.667041
+lec_active_by_week,Active Share,"BBB-2014J, week 6",0.659155
+lec_active_by_week,Active Share,"BBB-2014J, week 7",0.747036
+lec_active_by_week,Active Share,"BBB-2014J, week 8",0.583429
+lec_active_by_week,Active Share,"BBB-2014J, week 9",0.516389
+lec_active_by_week,Active Share,"BBB-2014J, week 10",0.23859
+lec_active_by_week,Active Share,"BBB-2014J, week 11",0.38029
+lec_active_by_week,Active Share,"BBB-2014J, week 12",0.637261
+lec_active_by_week,Active Share,"BBB-2014J, week 13",0.602094
+lec_active_by_week,Active Share,"BBB-2014J, week 14",0.6223
+lec_active_by_week,Active Share,"BBB-2014J, week 15",0.743831
+lec_active_by_week,Active Share,"BBB-2014J, week 16",0.579539
+lec_active_by_week,Active Share,"BBB-2014J, week 17",0.577448
+lec_active_by_week,Active Share,"BBB-2014J, week 18",0.553497
+lec_active_by_week,Active Share,"BBB-2014J, week 19",0.561636
+lec_active_by_week,Active Share,"BBB-2014J, week 20",0.61413
+lec_active_by_week,Active Share,"BBB-2014J, week 21",0.711515
+lec_active_by_week,Active Share,"BBB-2014J, week 22",0.539077
+lec_active_by_week,Active Share,"BBB-2014J, week 23",0.531386
+lec_active_by_week,Active Share,"BBB-2014J, week 24",0.451411
+lec_active_by_week,Active Share,"BBB-2014J, week 25",0.425157
+lec_active_by_week,Active Share,"BBB-2014J, week 26",0.504096
+lec_active_by_week,Active Share,"BBB-2014J, week 27",0.561392
+lec_active_by_week,Active Share,"BBB-2014J, week 28",0.682308
+lec_active_by_week,Active Share,"BBB-2014J, week 29",0.455939
+lec_active_by_week,Active Share,"BBB-2014J, week 30",0.446292
+lec_active_by_week,Active Share,"BBB-2014J, week 31",0.40755
+lec_active_by_week,Active Share,"BBB-2014J, week 32",0.440179
+lec_active_by_week,Active Share,"BBB-2014J, week 33",0.65896
+lec_active_by_week,Active Share,"BBB-2014J, week 34",0.270566
+lec_active_by_week,Active Share,"BBB-2014J, week 35",0.18509
+lec_active_by_week,Active Share,"BBB-2014J, week 36",0.157455
+lec_active_by_week,Active Share,"BBB-2014J, week 37",0.090617
+lec_active_by_week,Active Share,"BBB-2014J, week 38",
+lec_active_by_week,Active Share,"BBB-2014J, week 39",
+lec_activity_mix,Activity Share,"BBB-2014J, Assessment practice",0.110435
+lec_activity_mix,Activity Share,"BBB-2014J, Communication",0.115232
+lec_activity_mix,Activity Share,"BBB-2014J, Content",0.599643
+lec_activity_mix,Activity Share,"BBB-2014J, Homepage",0.17469
+mgt_cards,Registrations,all,32593.0
+mgt_cards,Withdrawal Rate,all,0.311601
+mgt_cards,At-risk Rate,all,0.527966
+mgt_cards,Pass Rate,all,0.472034
+mgt_cards,Cells Withheld,all,34.0
+mgt_curve,Still Registered Share,"module AAA, week 0",
+mgt_curve,Still Registered Share,"module AAA, week 1",
+mgt_curve,Still Registered Share,"module AAA, week 2",
+mgt_curve,Still Registered Share,"module AAA, week 3",0.984043
+mgt_curve,Still Registered Share,"module AAA, week 4",0.980769
+mgt_curve,Still Registered Share,"module AAA, week 5",0.976648
+mgt_curve,Still Registered Share,"module AAA, week 6",0.976648
+mgt_curve,Still Registered Share,"module AAA, week 7",0.971154
+mgt_curve,Still Registered Share,"module AAA, week 8",0.962912
+mgt_curve,Still Registered Share,"module AAA, week 9",0.958791
+mgt_curve,Still Registered Share,"module AAA, week 10",0.953297
+mgt_curve,Still Registered Share,"module AAA, week 11",0.951923
+mgt_curve,Still Registered Share,"module AAA, week 12",0.951923
+mgt_curve,Still Registered Share,"module AAA, week 13",0.949176
+mgt_curve,Still Registered Share,"module AAA, week 14",0.946429
+mgt_curve,Still Registered Share,"module AAA, week 15",0.942308
+mgt_curve,Still Registered Share,"module AAA, week 16",0.940934
+mgt_curve,Still Registered Share,"module AAA, week 17",0.938187
+mgt_curve,Still Registered Share,"module AAA, week 18",0.929945
+mgt_curve,Still Registered Share,"module AAA, week 19",0.925824
+mgt_curve,Still Registered Share,"module AAA, week 20",0.921703
+mgt_curve,Still Registered Share,"module AAA, week 21",0.92033
+mgt_curve,Still Registered Share,"module AAA, week 22",0.916209
+mgt_curve,Still Registered Share,"module AAA, week 23",0.907967
+mgt_curve,Still Registered Share,"module AAA, week 24",0.898352
+mgt_curve,Still Registered Share,"module AAA, week 25",0.89011
+mgt_curve,Still Registered Share,"module AAA, week 26",0.885989
+mgt_curve,Still Registered Share,"module AAA, week 27",0.884615
+mgt_curve,Still Registered Share,"module AAA, week 28",0.880495
+mgt_curve,Still Registered Share,"module AAA, week 29",0.877747
+mgt_curve,Still Registered Share,"module AAA, week 30",0.876374
+mgt_curve,Still Registered Share,"module AAA, week 31",0.873626
+mgt_curve,Still Registered Share,"module AAA, week 32",0.865385
+mgt_curve,Still Registered Share,"module AAA, week 33",0.862637
+mgt_curve,Still Registered Share,"module BBB, week 0",0.984829
+mgt_curve,Still Registered Share,"module BBB, week 1",0.948996
+mgt_curve,Still Registered Share,"module BBB, week 2",0.942638
+mgt_curve,Still Registered Share,"module BBB, week 3",0.929779
+mgt_curve,Still Registered Share,"module BBB, week 4",0.924577
+mgt_curve,Still Registered Share,"module BBB, week 5",0.918509
+mgt_curve,Still Registered Share,"module BBB, week 6",0.910707
+mgt_curve,Still Registered Share,"module BBB, week 7",0.903916
+mgt_curve,Still Registered Share,"module BBB, week 8",0.897847
+mgt_curve,Still Registered Share,"module BBB, week 9",0.893512
+mgt_curve,Still Registered Share,"module BBB, week 10",0.889178
+mgt_curve,Still Registered Share,"module BBB, week 11",0.884121
+mgt_curve,Still Registered Share,"module BBB, week 12",0.879786
+mgt_curve,Still Registered Share,"module BBB, week 13",0.874874
+mgt_curve,Still Registered Share,"module BBB, week 14",0.868661
+mgt_curve,Still Registered Share,"module BBB, week 15",0.863026
+mgt_curve,Still Registered Share,"module BBB, week 16",0.859413
+mgt_curve,Still Registered Share,"module BBB, week 17",0.853923
+mgt_curve,Still Registered Share,"module BBB, week 18",0.850455
+mgt_curve,Still Registered Share,"module BBB, week 19",0.846698
+mgt_curve,Still Registered Share,"module BBB, week 20",0.843664
+mgt_curve,Still Registered Share,"module BBB, week 21",0.837307
+mgt_curve,Still Registered Share,"module BBB, week 22",0.831672
+mgt_curve,Still Registered Share,"module BBB, week 23",0.826326
+mgt_curve,Still Registered Share,"module BBB, week 24",0.821991
+mgt_curve,Still Registered Share,"module BBB, week 25",0.820257
+mgt_curve,Still Registered Share,"module BBB, week 26",0.816789
+mgt_curve,Still Registered Share,"module BBB, week 27",0.814189
+mgt_curve,Still Registered Share,"module BBB, week 28",0.811154
+mgt_curve,Still Registered Share,"module BBB, week 29",0.807398
+mgt_curve,Still Registered Share,"module BBB, week 30",0.805086
+mgt_curve,Still Registered Share,"module BBB, week 31",0.80263
+mgt_curve,Still Registered Share,"module BBB, week 32",0.801185
+mgt_curve,Still Registered Share,"module BBB, week 33",0.800029
+mgt_curve,Still Registered Share,"module CCC, week 0",0.989835
+mgt_curve,Still Registered Share,"module CCC, week 1",0.93418
+mgt_curve,Still Registered Share,"module CCC, week 2",0.915629
+mgt_curve,Still Registered Share,"module CCC, week 3",0.895299
+mgt_curve,Still Registered Share,"module CCC, week 4",0.864295
+mgt_curve,Still Registered Share,"module CCC, week 5",0.849555
+mgt_curve,Still Registered Share,"module CCC, week 6",0.836595
+mgt_curve,Still Registered Share,"module CCC, week 7",0.823888
+mgt_curve,Still Registered Share,"module CCC, week 8",0.812961
+mgt_curve,Still Registered Share,"module CCC, week 9",0.797713
+mgt_curve,Still Registered Share,"module CCC, week 10",0.787039
+mgt_curve,Still Registered Share,"module CCC, week 11",0.783227
+mgt_curve,Still Registered Share,"module CCC, week 12",0.776112
+mgt_curve,Still Registered Share,"module CCC, week 13",0.770267
+mgt_curve,Still Registered Share,"module CCC, week 14",0.758323
+mgt_curve,Still Registered Share,"module CCC, week 15",0.743075
+mgt_curve,Still Registered Share,"module CCC, week 16",0.734689
+mgt_curve,Still Registered Share,"module CCC, week 17",0.727827
+mgt_curve,Still Registered Share,"module CCC, week 18",0.720457
+mgt_curve,Still Registered Share,"module CCC, week 19",0.713596
+mgt_curve,Still Registered Share,"module CCC, week 20",0.705718
+mgt_curve,Still Registered Share,"module CCC, week 21",0.698348
+mgt_curve,Still Registered Share,"module CCC, week 22",0.686912
+mgt_curve,Still Registered Share,"module CCC, week 23",0.67751
+mgt_curve,Still Registered Share,"module CCC, week 24",0.671156
+mgt_curve,Still Registered Share,"module CCC, week 25",0.664803
+mgt_curve,Still Registered Share,"module CCC, week 26",0.661245
+mgt_curve,Still Registered Share,"module CCC, week 27",0.65845
+mgt_curve,Still Registered Share,"module CCC, week 28",0.65413
+mgt_curve,Still Registered Share,"module CCC, week 29",0.649809
+mgt_curve,Still Registered Share,"module CCC, week 30",0.645235
+mgt_curve,Still Registered Share,"module CCC, week 31",0.639644
+mgt_curve,Still Registered Share,"module CCC, week 32",0.635832
+mgt_curve,Still Registered Share,"module CCC, week 33",0.632783
+mgt_curve,Still Registered Share,"module DDD, week 0",0.985729
+mgt_curve,Still Registered Share,"module DDD, week 1",0.953665
+mgt_curve,Still Registered Share,"module DDD, week 2",0.946089
+mgt_curve,Still Registered Share,"module DDD, week 3",0.931466
+mgt_curve,Still Registered Share,"module DDD, week 4",0.922481
+mgt_curve,Still Registered Share,"module DDD, week 5",0.912791
+mgt_curve,Still Registered Share,"module DDD, week 6",0.904158
+mgt_curve,Still Registered Share,"module DDD, week 7",0.89024
+mgt_curve,Still Registered Share,"module DDD, week 8",0.880726
+mgt_curve,Still Registered Share,"module DDD, week 9",0.872445
+mgt_curve,Still Registered Share,"module DDD, week 10",0.864517
+mgt_curve,Still Registered Share,"module DDD, week 11",0.857999
+mgt_curve,Still Registered Share,"module DDD, week 12",0.851832
+mgt_curve,Still Registered Share,"module DDD, week 13",0.843552
+mgt_curve,Still Registered Share,"module DDD, week 14",0.836857
+mgt_curve,Still Registered Share,"module DDD, week 15",0.829105
+mgt_curve,Still Registered Share,"module DDD, week 16",0.821882
+mgt_curve,Still Registered Share,"module DDD, week 17",0.81272
+mgt_curve,Still Registered Share,"module DDD, week 18",0.808492
+mgt_curve,Still Registered Share,"module DDD, week 19",0.802326
+mgt_curve,Still Registered Share,"module DDD, week 20",0.794926
+mgt_curve,Still Registered Share,"module DDD, week 21",0.785412
+mgt_curve,Still Registered Share,"module DDD, week 22",0.775899
+mgt_curve,Still Registered Share,"module DDD, week 23",0.764975
+mgt_curve,Still Registered Share,"module DDD, week 24",0.757223
+mgt_curve,Still Registered Share,"module DDD, week 25",0.750529
+mgt_curve,Still Registered Share,"module DDD, week 26",0.74771
+mgt_curve,Still Registered Share,"module DDD, week 27",0.743658
+mgt_curve,Still Registered Share,"module DDD, week 28",0.739958
+mgt_curve,Still Registered Share,"module DDD, week 29",0.733968
+mgt_curve,Still Registered Share,"module DDD, week 30",0.726744
+mgt_curve,Still Registered Share,"module DDD, week 31",0.721283
+mgt_curve,Still Registered Share,"module DDD, week 32",0.714235
+mgt_curve,Still Registered Share,"module DDD, week 33",0.71124
+mgt_curve,Still Registered Share,"module EEE, week 0",0.993741
+mgt_curve,Still Registered Share,"module EEE, week 1",0.954461
+mgt_curve,Still Registered Share,"module EEE, week 2",0.949648
+mgt_curve,Still Registered Share,"module EEE, week 3",0.945205
+mgt_curve,Still Registered Share,"module EEE, week 4",0.935579
+mgt_curve,Still Registered Share,"module EEE, week 5",0.931137
+mgt_curve,Still Registered Share,"module EEE, week 6",0.925583
+mgt_curve,Still Registered Share,"module EEE, week 7",0.921881
+mgt_curve,Still Registered Share,"module EEE, week 8",0.917808
+mgt_curve,Still Registered Share,"module EEE, week 9",0.910404
+mgt_curve,Still Registered Share,"module EEE, week 10",0.898556
+mgt_curve,Still Registered Share,"module EEE, week 11",0.895594
+mgt_curve,Still Registered Share,"module EEE, week 12",0.893003
+mgt_curve,Still Registered Share,"module EEE, week 13",0.88893
+mgt_curve,Still Registered Share,"module EEE, week 14",0.884857
+mgt_curve,Still Registered Share,"module EEE, week 15",0.879304
+mgt_curve,Still Registered Share,"module EEE, week 16",0.875602
+mgt_curve,Still Registered Share,"module EEE, week 17",0.871529
+mgt_curve,Still Registered Share,"module EEE, week 18",0.865235
+mgt_curve,Still Registered Share,"module EEE, week 19",0.861533
+mgt_curve,Still Registered Share,"module EEE, week 20",0.85709
+mgt_curve,Still Registered Share,"module EEE, week 21",0.852647
+mgt_curve,Still Registered Share,"module EEE, week 22",0.847464
+mgt_curve,Still Registered Share,"module EEE, week 23",0.843391
+mgt_curve,Still Registered Share,"module EEE, week 24",0.838208
+mgt_curve,Still Registered Share,"module EEE, week 25",0.836357
+mgt_curve,Still Registered Share,"module EEE, week 26",0.834876
+mgt_curve,Still Registered Share,"module EEE, week 27",0.832655
+mgt_curve,Still Registered Share,"module EEE, week 28",0.831174
+mgt_curve,Still Registered Share,"module EEE, week 29",0.829322
+mgt_curve,Still Registered Share,"module EEE, week 30",0.828582
+mgt_curve,Still Registered Share,"module EEE, week 31",0.82562
+mgt_curve,Still Registered Share,"module EEE, week 32",0.823399
+mgt_curve,Still Registered Share,"module EEE, week 33",0.820437
+mgt_curve,Still Registered Share,"module FFF, week 0",0.991157
+mgt_curve,Still Registered Share,"module FFF, week 1",0.950771
+mgt_curve,Still Registered Share,"module FFF, week 2",0.945537
+mgt_curve,Still Registered Share,"module FFF, week 3",0.933513
+mgt_curve,Still Registered Share,"module FFF, week 4",0.925732
+mgt_curve,Still Registered Share,"module FFF, week 5",0.919649
+mgt_curve,Still Registered Share,"module FFF, week 6",0.910313
+mgt_curve,Still Registered Share,"module FFF, week 7",0.902108
+mgt_curve,Still Registered Share,"module FFF, week 8",0.89263
+mgt_curve,Still Registered Share,"module FFF, week 9",0.885132
+mgt_curve,Still Registered Share,"module FFF, week 10",0.879474
+mgt_curve,Still Registered Share,"module FFF, week 11",0.873108
+mgt_curve,Still Registered Share,"module FFF, week 12",0.86363
+mgt_curve,Still Registered Share,"module FFF, week 13",0.852737
+mgt_curve,Still Registered Share,"module FFF, week 14",0.843401
+mgt_curve,Still Registered Share,"module FFF, week 15",0.83845
+mgt_curve,Still Registered Share,"module FFF, week 16",0.833498
+mgt_curve,Still Registered Share,"module FFF, week 17",0.829537
+mgt_curve,Still Registered Share,"module FFF, week 18",0.821757
+mgt_curve,Still Registered Share,"module FFF, week 19",0.814401
+mgt_curve,Still Registered Share,"module FFF, week 20",0.808884
+mgt_curve,Still Registered Share,"module FFF, week 21",0.804781
+mgt_curve,Still Registered Share,"module FFF, week 22",0.798557
+mgt_curve,Still Registered Share,"module FFF, week 23",0.794172
+mgt_curve,Still Registered Share,"module FFF, week 24",0.787523
+mgt_curve,Still Registered Share,"module FFF, week 25",0.782996
+mgt_curve,Still Registered Share,"module FFF, week 26",0.781016
+mgt_curve,Still Registered Share,"module FFF, week 27",0.778469
+mgt_curve,Still Registered Share,"module FFF, week 28",0.774933
+mgt_curve,Still Registered Share,"module FFF, week 29",0.772528
+mgt_curve,Still Registered Share,"module FFF, week 30",0.770265
+mgt_curve,Still Registered Share,"module FFF, week 31",0.767152
+mgt_curve,Still Registered Share,"module FFF, week 32",0.764323
+mgt_curve,Still Registered Share,"module FFF, week 33",0.761918
+mgt_curve,Still Registered Share,"module GGG, week 0",
+mgt_curve,Still Registered Share,"module GGG, week 1",0.991536
+mgt_curve,Still Registered Share,"module GGG, week 2",0.99189
+mgt_curve,Still Registered Share,"module GGG, week 3",0.988646
+mgt_curve,Still Registered Share,"module GGG, week 4",0.984996
+mgt_curve,Still Registered Share,"module GGG, week 5",0.983779
+mgt_curve,Still Registered Share,"module GGG, week 6",0.979319
+mgt_curve,Still Registered Share,"module GGG, week 7",0.976075
+mgt_curve,Still Registered Share,"module GGG, week 8",0.973236
+mgt_curve,Still Registered Share,"module GGG, week 9",0.970397
+mgt_curve,Still Registered Share,"module GGG, week 10",0.966342
+mgt_curve,Still Registered Share,"module GGG, week 11",0.964315
+mgt_curve,Still Registered Share,"module GGG, week 12",0.962693
+mgt_curve,Still Registered Share,"module GGG, week 13",0.958637
+mgt_curve,Still Registered Share,"module GGG, week 14",0.954177
+mgt_curve,Still Registered Share,"module GGG, week 15",0.95296
+mgt_curve,Still Registered Share,"module GGG, week 16",0.950122
+mgt_curve,Still Registered Share,"module GGG, week 17",0.947283
+mgt_curve,Still Registered Share,"module GGG, week 18",0.942417
+mgt_curve,Still Registered Share,"module GGG, week 19",0.938362
+mgt_curve,Still Registered Share,"module GGG, week 20",0.935523
+mgt_curve,Still Registered Share,"module GGG, week 21",0.933496
+mgt_curve,Still Registered Share,"module GGG, week 22",0.930251
+mgt_curve,Still Registered Share,"module GGG, week 23",0.927818
+mgt_curve,Still Registered Share,"module GGG, week 24",0.923763
+mgt_curve,Still Registered Share,"module GGG, week 25",0.922141
+mgt_curve,Still Registered Share,"module GGG, week 26",0.920114
+mgt_curve,Still Registered Share,"module GGG, week 27",0.918897
+mgt_curve,Still Registered Share,"module GGG, week 28",0.918086
+mgt_curve,Still Registered Share,"module GGG, week 29",0.916464
+mgt_curve,Still Registered Share,"module GGG, week 30",0.914842
+mgt_curve,Still Registered Share,"module GGG, week 31",0.912409
+mgt_curve,Still Registered Share,"module GGG, week 32",0.910381
+mgt_curve,Still Registered Share,"module GGG, week 33",0.910381
+mgt_by_module,At-risk Rate,AAA-2013J,0.274151
+mgt_by_module,At-risk Rate,AAA-2014J,0.306849
+mgt_by_module,At-risk Rate,BBB-2013B,0.545557
+mgt_by_module,At-risk Rate,BBB-2013J,0.520787
+mgt_by_module,At-risk Rate,BBB-2014B,0.549287
+mgt_by_module,At-risk Rate,BBB-2014J,0.497382
+mgt_by_module,At-risk Rate,CCC-2014B,0.657541
+mgt_by_module,At-risk Rate,CCC-2014J,0.593675
+mgt_by_module,At-risk Rate,DDD-2013B,0.608596
+mgt_by_module,At-risk Rate,DDD-2013J,0.572239
+mgt_by_module,At-risk Rate,DDD-2014B,0.609935
+mgt_by_module,At-risk Rate,DDD-2014J,0.560732
+mgt_by_module,At-risk Rate,EEE-2013J,0.421103
+mgt_by_module,At-risk Rate,EEE-2014B,0.485591
+mgt_by_module,At-risk Rate,EEE-2014J,0.424242
+mgt_by_module,At-risk Rate,FFF-2013B,0.515489
+mgt_by_module,At-risk Rate,FFF-2013J,0.520368
+mgt_by_module,At-risk Rate,FFF-2014B,0.564
+mgt_by_module,At-risk Rate,FFF-2014J,0.527696
+mgt_by_module,At-risk Rate,GGG-2013J,0.378151
+mgt_by_module,At-risk Rate,GGG-2014B,0.42617
+mgt_by_module,At-risk Rate,GGG-2014J,0.40721
+mgt_by_group,Group Students,age_band = 0-35,22944.0
+mgt_by_group,Group At-risk Rate,age_band = 0-35,0.549686
+mgt_by_group,Cells Withheld,age_band = 0-35,
+mgt_by_group,Group Students,age_band = 35-55,5911.0
+mgt_by_group,Group At-risk Rate,age_band = 35-55,0.500423
+mgt_by_group,Cells Withheld,age_band = 35-55,9.0
+mgt_by_group,Group Students,age_band = 55<=,195.0
+mgt_by_group,Group At-risk Rate,age_band = 55<=,0.435374
+mgt_by_group,Cells Withheld,age_band = 55<=,9.0
+mgt_by_group,Group Students,disability = N,29429.0
+mgt_by_group,Group At-risk Rate,disability = N,0.51823
+mgt_by_group,Cells Withheld,disability = N,
+mgt_by_group,Group Students,disability = Y,3164.0
+mgt_by_group,Group At-risk Rate,disability = Y,0.618521
+mgt_by_group,Cells Withheld,disability = Y,
+mgt_by_group,Group Students,gender = F,14718.0
+mgt_by_group,Group At-risk Rate,gender = F,0.515627
+mgt_by_group,Cells Withheld,gender = F,
+mgt_by_group,Group Students,gender = M,17875.0
+mgt_by_group,Group At-risk Rate,gender = M,0.538126
+mgt_by_group,Cells Withheld,gender = M,
+mgt_by_group,Group Students,highest_education = A Level or Equivalent,14045.0
+mgt_by_group,Group At-risk Rate,highest_education = A Level or Equivalent,0.479672
+mgt_by_group,Cells Withheld,highest_education = A Level or Equivalent,
+mgt_by_group,Group Students,highest_education = HE Qualification,4730.0
+mgt_by_group,Group At-risk Rate,highest_education = HE Qualification,0.438266
+mgt_by_group,Cells Withheld,highest_education = HE Qualification,
+mgt_by_group,Group Students,highest_education = Lower Than A Level,13158.0
+mgt_by_group,Group At-risk Rate,highest_education = Lower Than A Level,0.611491
+mgt_by_group,Cells Withheld,highest_education = Lower Than A Level,
+mgt_by_group,Group Students,highest_education = No Formal quals,255.0
+mgt_by_group,Group At-risk Rate,highest_education = No Formal quals,0.686391
+mgt_by_group,Cells Withheld,highest_education = No Formal quals,5.0
+mgt_by_group,Group Students,highest_education = Post Graduate Qualification,287.0
+mgt_by_group,Group At-risk Rate,highest_education = Post Graduate Qualification,0.389671
+mgt_by_group,Cells Withheld,highest_education = Post Graduate Qualification,5.0
+mgt_by_group,Group Students,imd_band = 0-10%,3311.0
+mgt_by_group,Group At-risk Rate,imd_band = 0-10%,0.651935
+mgt_by_group,Cells Withheld,imd_band = 0-10%,
+mgt_by_group,Group Students,imd_band = 10-20%,3516.0
+mgt_by_group,Group At-risk Rate,imd_band = 10-20%,0.613766
+mgt_by_group,Cells Withheld,imd_band = 10-20%,
+mgt_by_group,Group Students,imd_band = 20-30%,3654.0
+mgt_by_group,Group At-risk Rate,imd_band = 20-30%,0.592501
+mgt_by_group,Cells Withheld,imd_band = 20-30%,
+mgt_by_group,Group Students,imd_band = 30-40%,3539.0
+mgt_by_group,Group At-risk Rate,imd_band = 30-40%,0.530941
+mgt_by_group,Cells Withheld,imd_band = 30-40%,
+mgt_by_group,Group Students,imd_band = 40-50%,3256.0
+mgt_by_group,Group At-risk Rate,imd_band = 40-50%,0.534091
+mgt_by_group,Cells Withheld,imd_band = 40-50%,
+mgt_by_group,Group Students,imd_band = 50-60%,3124.0
+mgt_by_group,Group At-risk Rate,imd_band = 50-60%,0.512164
+mgt_by_group,Cells Withheld,imd_band = 50-60%,
+mgt_by_group,Group Students,imd_band = 60-70%,2905.0
+mgt_by_group,Group At-risk Rate,imd_band = 60-70%,0.480895
+mgt_by_group,Cells Withheld,imd_band = 60-70%,
+mgt_by_group,Group Students,imd_band = 70-80%,2823.0
+mgt_by_group,Group At-risk Rate,imd_band = 70-80%,0.486362
+mgt_by_group,Cells Withheld,imd_band = 70-80%,1.0
+mgt_by_group,Group Students,imd_band = 80-90%,2762.0
+mgt_by_group,Group At-risk Rate,imd_band = 80-90%,0.45945
+mgt_by_group,Cells Withheld,imd_band = 80-90%,
+mgt_by_group,Group Students,imd_band = 90-100%,2431.0
+mgt_by_group,Group At-risk Rate,imd_band = 90-100%,0.430687
+mgt_by_group,Cells Withheld,imd_band = 90-100%,2.0
+mgt_by_group,Group Students,imd_band = Not recorded,1104.0
+mgt_by_group,Group At-risk Rate,imd_band = Not recorded,0.348315
+mgt_by_group,Cells Withheld,imd_band = Not recorded,3.0
+ops_cards,Runs,all,45.0
+ops_cards,Runs Stopped,all,
+ops_cards,Rows Loaded,all,10942400.0
+ops_cards,Check Pass Rate,all,0.981268
+ops_cards,Peak Quarantine Rows,all,115.0
+ops_rows_by_week,Rows Loaded,week -5,56860.0
+ops_rows_by_week,Rows Loaded,week -4,20822.0
+ops_rows_by_week,Rows Loaded,week -3,153901.0
+ops_rows_by_week,Rows Loaded,week -2,211210.0
+ops_rows_by_week,Rows Loaded,week -1,321002.0
+ops_rows_by_week,Rows Loaded,week 0,574880.0
+ops_rows_by_week,Rows Loaded,week 1,498790.0
+ops_rows_by_week,Rows Loaded,week 2,591534.0
+ops_rows_by_week,Rows Loaded,week 3,473207.0
+ops_rows_by_week,Rows Loaded,week 4,418305.0
+ops_rows_by_week,Rows Loaded,week 5,352062.0
+ops_rows_by_week,Rows Loaded,week 6,382605.0
+ops_rows_by_week,Rows Loaded,week 7,373979.0
+ops_rows_by_week,Rows Loaded,week 8,276586.0
+ops_rows_by_week,Rows Loaded,week 9,288998.0
+ops_rows_by_week,Rows Loaded,week 10,202559.0
+ops_rows_by_week,Rows Loaded,week 11,186716.0
+ops_rows_by_week,Rows Loaded,week 12,251479.0
+ops_rows_by_week,Rows Loaded,week 13,280731.0
+ops_rows_by_week,Rows Loaded,week 14,243341.0
+ops_rows_by_week,Rows Loaded,week 15,248928.0
+ops_rows_by_week,Rows Loaded,week 16,252116.0
+ops_rows_by_week,Rows Loaded,week 17,263232.0
+ops_rows_by_week,Rows Loaded,week 18,299353.0
+ops_rows_by_week,Rows Loaded,week 19,286545.0
+ops_rows_by_week,Rows Loaded,week 20,288266.0
+ops_rows_by_week,Rows Loaded,week 21,287653.0
+ops_rows_by_week,Rows Loaded,week 22,262836.0
+ops_rows_by_week,Rows Loaded,week 23,252260.0
+ops_rows_by_week,Rows Loaded,week 24,204394.0
+ops_rows_by_week,Rows Loaded,week 25,162565.0
+ops_rows_by_week,Rows Loaded,week 26,165349.0
+ops_rows_by_week,Rows Loaded,week 27,194359.0
+ops_rows_by_week,Rows Loaded,week 28,215403.0
+ops_rows_by_week,Rows Loaded,week 29,236228.0
+ops_rows_by_week,Rows Loaded,week 30,242029.0
+ops_rows_by_week,Rows Loaded,week 31,246725.0
+ops_rows_by_week,Rows Loaded,week 32,246322.0
+ops_rows_by_week,Rows Loaded,week 33,212969.0
+ops_rows_by_week,Rows Loaded,week 34,128520.0
+ops_rows_by_week,Rows Loaded,week 35,34408.0
+ops_rows_by_week,Rows Loaded,week 36,15893.0
+ops_rows_by_week,Rows Loaded,week 37,11800.0
+ops_rows_by_week,Rows Loaded,week 38,11487.0
+ops_rows_by_week,Rows Loaded,week 39,13193.0
+ops_checks_by_kind,Checks Run,allowed,360.0
+ops_checks_by_kind,Checks Run,custom,450.0
+ops_checks_by_kind,Checks Run,foreign_key,720.0
+ops_checks_by_kind,Checks Run,not_null,1620.0
+ops_checks_by_kind,Checks Run,quarantine,45.0
+ops_checks_by_kind,Checks Run,range,855.0
+ops_checks_by_kind,Checks Run,reconciliation,405.0
+ops_checks_by_kind,Checks Run,regex,180.0
+ops_checks_by_kind,Checks Run,schema,2025.0
+ops_checks_by_kind,Checks Run,unique,675.0
+ops_checks_by_kind,Checks Run,volume,32.0

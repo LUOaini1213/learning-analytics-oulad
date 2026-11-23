@@ -1,0 +1,144 @@
+{
+ "dim_module_presentation": {
+  "rows": 22,
+  "columns": [
+   "MpKey",
+   "Module",
+   "Presentation",
+   "Year",
+   "StartMonth",
+   "LengthDays",
+   "IsCurrentTerm"
+  ],
+  "withheld_cells": null
+ },
+ "dim_week": {
+  "rows": 45,
+  "columns": [
+   "WeekIndex",
+   "WeekLabel",
+   "Phase"
+  ],
+  "withheld_cells": null
+ },
+ "student_snapshot": {
+  "rows": 35993,
+  "columns": [
+   "SpKey",
+   "MpKey",
+   "CutoffDay",
+   "ClicksTotal",
+   "ClicksLast2w",
+   "DaysSinceLastActive",
+   "AssessmentsDue",
+   "AssessmentsMissed",
+   "AvgScore",
+   "RiskScore",
+   "Flagged",
+   "Reason1",
+   "Reason2",
+   "Reason3"
+  ],
+  "withheld_cells": null
+ },
+ "agg_module_week": {
+  "rows": 817,
+  "columns": [
+   "MpKey",
+   "WeekIndex",
+   "EnrolledStudents",
+   "ActiveStudents",
+   "Clicks"
+  ],
+  "withheld_cells": 0
+ },
+ "agg_activity_week": {
+  "rows": 3154,
+  "columns": [
+   "MpKey",
+   "WeekIndex",
+   "ActivityGroup",
+   "Clicks"
+  ],
+  "withheld_cells": 50
+ },
+ "agg_outcome": {
+  "rows": 22,
+  "columns": [
+   "MpKey",
+   "Students",
+   "Withdrawn",
+   "Failed",
+   "Passed",
+   "Suppressed"
+  ],
+  "withheld_cells": 0
+ },
+ "agg_outcome_by_group": {
+  "rows": 501,
+  "columns": [
+   "MpKey",
+   "Dimension",
+   "Band",
+   "Students",
+   "AtRisk",
+   "StudentsWithRate",
+   "Suppressed"
+  ],
+  "withheld_cells": 148
+ },
+ "agg_withdrawal": {
+  "rows": 748,
+  "columns": [
+   "MpKey",
+   "WeekIndex",
+   "Followed",
+   "LeftByWeekEnd"
+  ],
+  "withheld_cells": 26
+ },
+ "ops_run_log": {
+  "rows": 45,
+  "columns": [
+   "RunId",
+   "WeekIndex",
+   "Status",
+   "DurationSeconds",
+   "RowsLoaded",
+   "QuarantineRows",
+   "WeeksRecomputed",
+   "Checks",
+   "FailedError",
+   "FailedWarn"
+  ],
+  "withheld_cells": null
+ },
+ "ops_checks": {
+  "rows": 482,
+  "columns": [
+   "WeekIndex",
+   "Kind",
+   "Checks",
+   "Failed"
+  ],
+  "withheld_cells": null
+ },
+ "ops_warnings": {
+  "rows": 6,
+  "columns": [
+   "CheckId",
+   "Severity",
+   "Observed",
+   "Detail"
+  ],
+  "withheld_cells": null
+ },
+ "sec_lecturer_module": {
+  "rows": 27,
+  "columns": [
+   "AppUser",
+   "MpKey"
+  ],
+  "withheld_cells": null
+ }
+}
