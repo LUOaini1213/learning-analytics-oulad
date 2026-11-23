@@ -385,7 +385,7 @@ mgt_by_group,Cells Withheld,imd_band = Not recorded,3.0
 ops_cards,Runs,all,45.0
 ops_cards,Runs Stopped,all,
 ops_cards,Rows Loaded,all,10942400.0
-ops_cards,Check Pass Rate,all,0.981268
+ops_cards,Check Pass Rate,all,0.978953
 ops_cards,Peak Quarantine Rows,all,115.0
 ops_rows_by_week,Rows Loaded,week -5,56860.0
 ops_rows_by_week,Rows Loaded,week -4,20822.0
@@ -436,7 +436,7 @@ ops_checks_by_kind,Checks Run,allowed,360.0
 ops_checks_by_kind,Checks Run,custom,450.0
 ops_checks_by_kind,Checks Run,foreign_key,720.0
 ops_checks_by_kind,Checks Run,not_null,1620.0
-ops_checks_by_kind,Checks Run,quarantine,45.0
+ops_checks_by_kind,Checks Run,quarantine,90.0
 ops_checks_by_kind,Checks Run,range,855.0
 ops_checks_by_kind,Checks Run,reconciliation,405.0
 ops_checks_by_kind,Checks Run,regex,180.0

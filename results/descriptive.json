@@ -5,13 +5,13 @@
    "n": 12361,
    "share": 0.37925321388028105
   },
-  "Withdrawn": {
-   "n": 10156,
-   "share": 0.3116006504464149
-  },
   "Fail": {
    "n": 7052,
    "share": 0.2163654772497162
+  },
+  "Withdrawn": {
+   "n": 10156,
+   "share": 0.3116006504464149
   },
   "Distinction": {
    "n": 3024,
@@ -672,8 +672,8 @@
    "at_risk_rate_others": 0.4094456512993805,
    "risk_ratio": 1.803845703776155,
    "risk_ratio_ci": [
-    1.750059909217049,
-    1.8504697821057299
+    1.7554169438228953,
+    1.853870083623704
    ],
    "note": "all students in the day-28 population"
   },
@@ -685,8 +685,8 @@
    "at_risk_rate_others": 0.4282117761996017,
    "risk_ratio": 1.9243835915967062,
    "risk_ratio_ci": [
-    1.8594964906032283,
-    1.9845764193777997
+    1.8642746157955947,
+    1.9844434463968361
    ],
    "note": "all students in the day-28 population"
   },
@@ -698,8 +698,8 @@
    "at_risk_rate_others": 0.4031797798613942,
    "risk_ratio": 1.4783415590204412,
    "risk_ratio_ci": [
-    1.437895805044613,
-    1.515358620512353
+    1.44121929577331,
+    1.5168500419212807
    ],
    "note": "all students in the day-28 population"
   },
@@ -711,8 +711,8 @@
    "at_risk_rate_others": 0.3999798853464749,
    "risk_ratio": 2.2343754575996297,
    "risk_ratio_ci": [
-    2.1840138720376467,
-    2.2808511732474352
+    2.1876230582544123,
+    2.282408994567002
    ],
    "note": "students with at least one assessment due before day 28"
   },
@@ -724,8 +724,8 @@
    "at_risk_rate_others": 0.4180624246706288,
    "risk_ratio": 1.4426436089374393,
    "risk_ratio_ci": [
-    1.3954605307570338,
-    1.4867189403845236
+    1.3947590431869201,
+    1.4863455112711346
    ],
    "note": "all students in the day-28 population"
   },
@@ -733,8 +733,8 @@
    "comparison": "rank correlation between clicks before day 28 and being at risk",
    "spearman_rho": -0.27644268169911146,
    "spearman_rho_ci": [
-    -0.28812415835971067,
-    -0.2657077877505752
+    -0.2871804275145699,
+    -0.26632434271980765
    ],
    "n": 27528
   }

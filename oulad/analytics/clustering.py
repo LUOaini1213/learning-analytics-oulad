@@ -28,7 +28,8 @@ def trajectories(con) -> pd.DataFrame:
         select d.sp_key, d.student_key, d.mp_key, m.presentation_year, d.at_risk, d.final_result
         from gold.dim_student_presentation d join gold.dim_module_presentation m using (mp_key)
         where d.date_registration is not null and d.date_registration < {AS_OF_DAY}
-          and (d.date_unregistration is null or d.date_unregistration >= {AS_OF_DAY})""").fetch_df()
+          and (d.date_unregistration is null or d.date_unregistration >= {AS_OF_DAY})
+        order by d.sp_key""").fetch_df()
     clicks = con.execute(f"""
         select sp_key, week_index, clicks from gold.fact_student_week
         where week_index between {WEEKS[0]} and {WEEKS[-1]}""").fetch_df()

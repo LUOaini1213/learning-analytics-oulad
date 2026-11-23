@@ -3,7 +3,7 @@ WeekIndex,Kind,Checks,Failed
 -5,custom,10,1
 -5,foreign_key,16,0
 -5,not_null,36,0
--5,quarantine,1,0
+-5,quarantine,2,0
 -5,range,19,0
 -5,reconciliation,9,0
 -5,regex,4,0
@@ -13,7 +13,7 @@ WeekIndex,Kind,Checks,Failed
 -4,custom,10,1
 -4,foreign_key,16,0
 -4,not_null,36,0
--4,quarantine,1,0
+-4,quarantine,2,0
 -4,range,19,0
 -4,reconciliation,9,0
 -4,regex,4,0
@@ -23,7 +23,7 @@ WeekIndex,Kind,Checks,Failed
 -3,custom,10,2
 -3,foreign_key,16,0
 -3,not_null,36,0
--3,quarantine,1,0
+-3,quarantine,2,0
 -3,range,19,0
 -3,reconciliation,9,0
 -3,regex,4,0
@@ -33,7 +33,7 @@ WeekIndex,Kind,Checks,Failed
 -2,custom,10,2
 -2,foreign_key,16,0
 -2,not_null,36,0
--2,quarantine,1,0
+-2,quarantine,2,0
 -2,range,19,0
 -2,reconciliation,9,0
 -2,regex,4,0
@@ -43,7 +43,7 @@ WeekIndex,Kind,Checks,Failed
 -1,custom,10,3
 -1,foreign_key,16,0
 -1,not_null,36,0
--1,quarantine,1,0
+-1,quarantine,2,1
 -1,range,19,0
 -1,reconciliation,9,0
 -1,regex,4,0
@@ -53,7 +53,7 @@ WeekIndex,Kind,Checks,Failed
 0,custom,10,3
 0,foreign_key,16,0
 0,not_null,36,0
-0,quarantine,1,0
+0,quarantine,2,1
 0,range,19,0
 0,reconciliation,9,0
 0,regex,4,0
@@ -63,7 +63,7 @@ WeekIndex,Kind,Checks,Failed
 1,custom,10,3
 1,foreign_key,16,0
 1,not_null,36,0
-1,quarantine,1,0
+1,quarantine,2,1
 1,range,19,0
 1,reconciliation,9,0
 1,regex,4,0
@@ -73,7 +73,7 @@ WeekIndex,Kind,Checks,Failed
 2,custom,10,3
 2,foreign_key,16,0
 2,not_null,36,0
-2,quarantine,1,0
+2,quarantine,2,1
 2,range,19,0
 2,reconciliation,9,0
 2,regex,4,0
@@ -84,7 +84,7 @@ WeekIndex,Kind,Checks,Failed
 3,custom,10,3
 3,foreign_key,16,0
 3,not_null,36,0
-3,quarantine,1,0
+3,quarantine,2,1
 3,range,19,0
 3,reconciliation,9,0
 3,regex,4,0
@@ -95,7 +95,7 @@ WeekIndex,Kind,Checks,Failed
 4,custom,10,3
 4,foreign_key,16,0
 4,not_null,36,0
-4,quarantine,1,0
+4,quarantine,2,1
 4,range,19,0
 4,reconciliation,9,0
 4,regex,4,0
@@ -106,7 +106,7 @@ WeekIndex,Kind,Checks,Failed
 5,custom,10,3
 5,foreign_key,16,0
 5,not_null,36,0
-5,quarantine,1,0
+5,quarantine,2,1
 5,range,19,0
 5,reconciliation,9,0
 5,regex,4,0
@@ -117,7 +117,7 @@ WeekIndex,Kind,Checks,Failed
 6,custom,10,3
 6,foreign_key,16,0
 6,not_null,36,0
-6,quarantine,1,0
+6,quarantine,2,1
 6,range,19,0
 6,reconciliation,9,0
 6,regex,4,0
@@ -128,7 +128,7 @@ WeekIndex,Kind,Checks,Failed
 7,custom,10,3
 7,foreign_key,16,0
 7,not_null,36,0
-7,quarantine,1,0
+7,quarantine,2,1
 7,range,19,0
 7,reconciliation,9,0
 7,regex,4,0
@@ -139,7 +139,7 @@ WeekIndex,Kind,Checks,Failed
 8,custom,10,3
 8,foreign_key,16,0
 8,not_null,36,0
-8,quarantine,1,0
+8,quarantine,2,1
 8,range,19,0
 8,reconciliation,9,0
 8,regex,4,0
@@ -150,7 +150,7 @@ WeekIndex,Kind,Checks,Failed
 9,custom,10,3
 9,foreign_key,16,0
 9,not_null,36,0
-9,quarantine,1,0
+9,quarantine,2,1
 9,range,19,0
 9,reconciliation,9,0
 9,regex,4,0
@@ -161,7 +161,7 @@ WeekIndex,Kind,Checks,Failed
 10,custom,10,3
 10,foreign_key,16,0
 10,not_null,36,0
-10,quarantine,1,0
+10,quarantine,2,1
 10,range,19,0
 10,reconciliation,9,0
 10,regex,4,0
@@ -172,7 +172,7 @@ WeekIndex,Kind,Checks,Failed
 11,custom,10,3
 11,foreign_key,16,0
 11,not_null,36,0
-11,quarantine,1,0
+11,quarantine,2,1
 11,range,19,0
 11,reconciliation,9,0
 11,regex,4,0
@@ -183,7 +183,7 @@ WeekIndex,Kind,Checks,Failed
 12,custom,10,3
 12,foreign_key,16,0
 12,not_null,36,0
-12,quarantine,1,0
+12,quarantine,2,1
 12,range,19,0
 12,reconciliation,9,0
 12,regex,4,0
@@ -194,7 +194,7 @@ WeekIndex,Kind,Checks,Failed
 13,custom,10,3
 13,foreign_key,16,0
 13,not_null,36,0
-13,quarantine,1,0
+13,quarantine,2,1
 13,range,19,0
 13,reconciliation,9,0
 13,regex,4,0
@@ -205,7 +205,7 @@ WeekIndex,Kind,Checks,Failed
 14,custom,10,3
 14,foreign_key,16,0
 14,not_null,36,0
-14,quarantine,1,0
+14,quarantine,2,1
 14,range,19,0
 14,reconciliation,9,0
 14,regex,4,0
@@ -216,7 +216,7 @@ WeekIndex,Kind,Checks,Failed
 15,custom,10,3
 15,foreign_key,16,0
 15,not_null,36,0
-15,quarantine,1,0
+15,quarantine,2,1
 15,range,19,0
 15,reconciliation,9,0
 15,regex,4,0
@@ -227,7 +227,7 @@ WeekIndex,Kind,Checks,Failed
 16,custom,10,3
 16,foreign_key,16,0
 16,not_null,36,0
-16,quarantine,1,0
+16,quarantine,2,1
 16,range,19,0
 16,reconciliation,9,0
 16,regex,4,0
@@ -238,7 +238,7 @@ WeekIndex,Kind,Checks,Failed
 17,custom,10,3
 17,foreign_key,16,0
 17,not_null,36,0
-17,quarantine,1,0
+17,quarantine,2,0
 17,range,19,0
 17,reconciliation,9,0
 17,regex,4,0
@@ -249,7 +249,7 @@ WeekIndex,Kind,Checks,Failed
 18,custom,10,3
 18,foreign_key,16,0
 18,not_null,36,0
-18,quarantine,1,0
+18,quarantine,2,0
 18,range,19,0
 18,reconciliation,9,0
 18,regex,4,0
@@ -260,7 +260,7 @@ WeekIndex,Kind,Checks,Failed
 19,custom,10,3
 19,foreign_key,16,0
 19,not_null,36,0
-19,quarantine,1,0
+19,quarantine,2,0
 19,range,19,0
 19,reconciliation,9,0
 19,regex,4,0
@@ -271,7 +271,7 @@ WeekIndex,Kind,Checks,Failed
 20,custom,10,3
 20,foreign_key,16,0
 20,not_null,36,0
-20,quarantine,1,0
+20,quarantine,2,0
 20,range,19,0
 20,reconciliation,9,0
 20,regex,4,0
@@ -282,7 +282,7 @@ WeekIndex,Kind,Checks,Failed
 21,custom,10,3
 21,foreign_key,16,0
 21,not_null,36,0
-21,quarantine,1,0
+21,quarantine,2,0
 21,range,19,0
 21,reconciliation,9,0
 21,regex,4,0
@@ -293,7 +293,7 @@ WeekIndex,Kind,Checks,Failed
 22,custom,10,3
 22,foreign_key,16,0
 22,not_null,36,0
-22,quarantine,1,0
+22,quarantine,2,0
 22,range,19,0
 22,reconciliation,9,0
 22,regex,4,0
@@ -304,7 +304,7 @@ WeekIndex,Kind,Checks,Failed
 23,custom,10,3
 23,foreign_key,16,0
 23,not_null,36,0
-23,quarantine,1,0
+23,quarantine,2,0
 23,range,19,0
 23,reconciliation,9,0
 23,regex,4,0
@@ -315,7 +315,7 @@ WeekIndex,Kind,Checks,Failed
 24,custom,10,3
 24,foreign_key,16,0
 24,not_null,36,0
-24,quarantine,1,0
+24,quarantine,2,0
 24,range,19,0
 24,reconciliation,9,0
 24,regex,4,0
@@ -326,7 +326,7 @@ WeekIndex,Kind,Checks,Failed
 25,custom,10,3
 25,foreign_key,16,0
 25,not_null,36,0
-25,quarantine,1,0
+25,quarantine,2,0
 25,range,19,0
 25,reconciliation,9,0
 25,regex,4,0
@@ -337,7 +337,7 @@ WeekIndex,Kind,Checks,Failed
 26,custom,10,3
 26,foreign_key,16,0
 26,not_null,36,0
-26,quarantine,1,0
+26,quarantine,2,0
 26,range,19,0
 26,reconciliation,9,0
 26,regex,4,0
@@ -348,7 +348,7 @@ WeekIndex,Kind,Checks,Failed
 27,custom,10,3
 27,foreign_key,16,0
 27,not_null,36,0
-27,quarantine,1,0
+27,quarantine,2,0
 27,range,19,0
 27,reconciliation,9,0
 27,regex,4,0
@@ -359,7 +359,7 @@ WeekIndex,Kind,Checks,Failed
 28,custom,10,3
 28,foreign_key,16,0
 28,not_null,36,0
-28,quarantine,1,0
+28,quarantine,2,0
 28,range,19,0
 28,reconciliation,9,0
 28,regex,4,0
@@ -370,7 +370,7 @@ WeekIndex,Kind,Checks,Failed
 29,custom,10,3
 29,foreign_key,16,0
 29,not_null,36,0
-29,quarantine,1,0
+29,quarantine,2,0
 29,range,19,0
 29,reconciliation,9,0
 29,regex,4,0
@@ -381,7 +381,7 @@ WeekIndex,Kind,Checks,Failed
 30,custom,10,3
 30,foreign_key,16,0
 30,not_null,36,0
-30,quarantine,1,0
+30,quarantine,2,0
 30,range,19,0
 30,reconciliation,9,0
 30,regex,4,0
@@ -392,7 +392,7 @@ WeekIndex,Kind,Checks,Failed
 31,custom,10,3
 31,foreign_key,16,0
 31,not_null,36,0
-31,quarantine,1,0
+31,quarantine,2,0
 31,range,19,0
 31,reconciliation,9,0
 31,regex,4,0
@@ -403,7 +403,7 @@ WeekIndex,Kind,Checks,Failed
 32,custom,10,3
 32,foreign_key,16,0
 32,not_null,36,0
-32,quarantine,1,0
+32,quarantine,2,0
 32,range,19,0
 32,reconciliation,9,0
 32,regex,4,0
@@ -414,7 +414,7 @@ WeekIndex,Kind,Checks,Failed
 33,custom,10,3
 33,foreign_key,16,0
 33,not_null,36,0
-33,quarantine,1,0
+33,quarantine,2,0
 33,range,19,0
 33,reconciliation,9,0
 33,regex,4,0
@@ -425,7 +425,7 @@ WeekIndex,Kind,Checks,Failed
 34,custom,10,4
 34,foreign_key,16,0
 34,not_null,36,0
-34,quarantine,1,0
+34,quarantine,2,0
 34,range,19,0
 34,reconciliation,9,0
 34,regex,4,0
@@ -435,7 +435,7 @@ WeekIndex,Kind,Checks,Failed
 35,custom,10,4
 35,foreign_key,16,0
 35,not_null,36,0
-35,quarantine,1,0
+35,quarantine,2,0
 35,range,19,0
 35,reconciliation,9,0
 35,regex,4,0
@@ -445,7 +445,7 @@ WeekIndex,Kind,Checks,Failed
 36,custom,10,4
 36,foreign_key,16,0
 36,not_null,36,0
-36,quarantine,1,0
+36,quarantine,2,0
 36,range,19,0
 36,reconciliation,9,0
 36,regex,4,0
@@ -455,7 +455,7 @@ WeekIndex,Kind,Checks,Failed
 37,custom,10,4
 37,foreign_key,16,0
 37,not_null,36,0
-37,quarantine,1,0
+37,quarantine,2,0
 37,range,19,0
 37,reconciliation,9,0
 37,regex,4,0
@@ -465,7 +465,7 @@ WeekIndex,Kind,Checks,Failed
 38,custom,10,5
 38,foreign_key,16,0
 38,not_null,36,0
-38,quarantine,1,0
+38,quarantine,2,0
 38,range,19,0
 38,reconciliation,9,0
 38,regex,4,0
@@ -475,7 +475,7 @@ WeekIndex,Kind,Checks,Failed
 39,custom,10,6
 39,foreign_key,16,0
 39,not_null,36,0
-39,quarantine,1,0
+39,quarantine,2,0
 39,range,19,0
 39,reconciliation,9,0
 39,regex,4,0

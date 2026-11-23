@@ -1,0 +1,167 @@
+{
+ "cases": 14,
+ "cutoffs": [
+  28,
+  56
+ ],
+ "template": {
+  "n": 14,
+  "passed": 14
+ },
+ "variants": [
+  {
+   "model": "gemma3:4b",
+   "variant": "few_shot",
+   "n": 14,
+   "passed": 9,
+   "pass_rate": 0.6428571428571429,
+   "failures": {
+    "unfilled_placeholder": 5
+   },
+   "failed_examples": [
+    {
+     "case": "BBB-2014J day 28",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "BBB-2014J \u2013 Week {week_number}: {flagged} students are flagged for review; please consult the dashboard. {inactive} students showed no engagement, and {missed} have outstanding assignments. The average quiz score remains {average_score}. Continue to monitor student progress closely. Further updates will be provided next week."
+    },
+    {
+     "case": "BBB-2014J day 56",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "BBB-2014J \u2013 Week {week_number}: {inactive} students showed no engagement this week, and {missed} assessments remain outstanding. {flagged} students require immediate attention; please review the dashboard for details. The average score for this cohort is currently {average_score}. Continue to monitor student activity closely."
+    }
+   ]
+  },
+  {
+   "model": "gemma3:4b",
+   "variant": "structured",
+   "n": 14,
+   "passed": 5,
+   "pass_rate": 0.35714285714285715,
+   "failures": {
+    "unfilled_placeholder": 4,
+    "number_not_in_source": 5
+   },
+   "failed_examples": [
+    {
+     "case": "AAA-2014J day 28",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "This week\u2019s assessment revealed {students} completed the assignment. {Flagged} students require attention, while {inactive} accounts remain. The {average_score} indicates a need for review of the material. Please consult the dashboard list for detailed performance data."
+    },
+    {
+     "case": "CCC-2014J day 28",
+     "problems": [
+      "number_not_in_source"
+     ],
+     "draft": "This week\u2019s session saw {students} engage with the core module content. Fifteen students were flagged for follow-up regarding the recent case study. Seven students were marked as inactive, and two assessments were missed, impacting the average score. Please review the dashboard list for detailed performance data."
+    }
+   ]
+  },
+  {
+   "model": "gemma3:4b",
+   "variant": "zero_shot",
+   "n": 14,
+   "passed": 5,
+   "pass_rate": 0.35714285714285715,
+   "failures": {
+    "unfilled_placeholder": 8,
+    "number_not_in_source": 2
+   },
+   "failed_examples": [
+    {
+     "case": "AAA-2014J day 28",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "Subject: AAA-2014J - Weekly Update\n\nDear Lecturer,\n\nA total of {students} students are registered for this week\u2019s session. We have {flagged} students requiring attention and {inactive} students with no clicks in the last two weeks. {Missed} assessments were recorded. The current {average_score} reflects student performance. Please review the flagged items and continue to monitor engagement. \n\nThan"
+    },
+    {
+     "case": "BBB-2014J day 28",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "Subject: BBB-2014J - Weekly Update\n\nGood morning,\n\nThis week\u2019s class saw {students} students registered. We have {flagged} flagged for follow-up regarding engagement. {Inactive} account remains with no clicks in the last two weeks. {Missed} assessment was unfortunately missed. The current {average_score} average score is [insert score here]. Please let me know if you have any questions. \n\nSincerel"
+    }
+   ]
+  },
+  {
+   "model": "qwen3.5:4b",
+   "variant": "few_shot",
+   "n": 14,
+   "passed": 12,
+   "pass_rate": 0.8571428571428571,
+   "failures": {
+    "unfilled_placeholder": 2
+   },
+   "failed_examples": [
+    {
+     "case": "CCC-2014J day 56",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "Your class CCC-2014J has {students} registered students. {inactive} have not logged in during the past {weeks}. The upcoming quiz on {topic} will be assessed by {count}. {flagged} learners require immediate attention; refer to the dashboard list for names and contact details."
+    },
+    {
+     "case": "DDD-2014J day 56",
+     "problems": [
+      "unfilled_placeholder"
+     ],
+     "draft": "Your class, DDD-2014J on day {day_num} of the term, has {total_count} registered students. {inactive} members had no activity recently, while {missed} missed a key assignment. {flagged} learners require immediate follow-up. Please review the dashboard list for priority contacts and monitor progress toward the {target_score} goal."
+    }
+   ]
+  },
+  {
+   "model": "qwen3.5:4b",
+   "variant": "structured",
+   "n": 14,
+   "passed": 13,
+   "pass_rate": 0.9285714285714286,
+   "failures": {
+    "number_not_in_source": 1
+   },
+   "failed_examples": [
+    {
+     "case": "FFF-2014J day 56",
+     "problems": [
+      "number_not_in_source"
+     ],
+     "draft": "The class includes {students} registered participants today. Three learners were flagged for follow-up after their last quiz. The dashboard list shows {flagged}, {inactive}, {missed}, and {average_score}."
+    }
+   ]
+  },
+  {
+   "model": "qwen3.5:4b",
+   "variant": "zero_shot",
+   "n": 14,
+   "passed": 12,
+   "pass_rate": 0.8571428571428571,
+   "failures": {
+    "number_not_in_source": 2,
+    "causal_claim": 1
+   },
+   "failed_examples": [
+    {
+     "case": "DDD-2014J day 56",
+     "problems": [
+      "number_not_in_source"
+     ],
+     "draft": "In class DDD-2014J, day 56 of the term, {students} students registered today. {flagged} were flagged for follow-up, while {inactive} had no clicks in the last two weeks. One student is {missed} with a missed assessment. The current {average_score} average score reflects overall progress. Attendance remains steady despite these challenges. We will address specific cases individually during office h"
+    },
+    {
+     "case": "EEE-2014J day 56",
+     "problems": [
+      "number_not_in_source",
+      "causal_claim"
+     ],
+     "draft": "In the EEE-2014J class on day 56 of the term, {students} students are currently registered. The cohort includes {inactive} with no clicks in the last two weeks and {flagged} flagged for follow-up. One student is {missed} with a missed assessment. Overall, the average score across all participants remains at {average_score}. No further details on specific causes were gathered during this review cyc"
+    }
+   ]
+  }
+ ],
+ "note": "temperature 0.7, one seeded draft per case; pass means the filled draft has no number outside the class facts, no student identifier, no causal wording, no unfilled placeholder, and at most 120 words"
+}

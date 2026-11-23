@@ -28,7 +28,7 @@ COLOURS = ["#1b6ca8", "#d1495b", "#3a7d44", "#edae49", "#6b4e9b", "#00798c", "#8
 
 def fmt(v, f: str) -> str:
     if v is None:
-        return "withheld / none"
+        return "none or withheld"
     if "%" in f:
         return f"{v * 100:.{len(f.split('.')[1]) - 1 if '.' in f else 0}f}%"
     if "." in f:
@@ -132,7 +132,7 @@ def build() -> tuple[str, str]:
         label = f"{r.Dimension} = {r.Band}"
         grp.append([r.Dimension, r.Band, fmt(p.value("mgt_by_group", "Group Students", ctx, label), "#,##0"),
                     fmt(p.value("mgt_by_group", "Group At-risk Rate", ctx, label), "0.0%"),
-                    fmt(p.value("mgt_by_group", "Cells Withheld", ctx, label), "#,##0").replace("withheld / none", "0")])
+                    fmt(p.value("mgt_by_group", "Cells Withheld", ctx, label), "#,##0").replace("none or withheld", "0")])
     mgt.append(table(["Attribute", "Group", "Students (shown cells)", "At-risk rate", "Cells withheld"], grp, "Outcomes by learner group"))
     ops = [p.cards("ops_cards", ["Runs", "Runs Stopped", "Rows Loaded", "Check Pass Rate", "Peak Quarantine Rows"], {}, "all")]
     all_weeks = sorted(int(w) for w in f["DimWeek"]["WeekIndex"])

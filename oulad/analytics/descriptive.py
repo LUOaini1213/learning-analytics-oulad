@@ -82,7 +82,8 @@ def withdrawal_frame(con) -> pd.DataFrame:
                case when d.date_unregistration is not null and d.date_unregistration <= m.length_days
                     then 1 else 0 end as left_module
         from gold.dim_student_presentation d join gold.dim_module_presentation m using (mp_key)
-        where d.date_unregistration is null or d.date_unregistration > 0""").fetch_df()
+        where d.date_unregistration is null or d.date_unregistration > 0
+        order by d.sp_key""").fetch_df()
 
 
 def withdrawal(con) -> dict:

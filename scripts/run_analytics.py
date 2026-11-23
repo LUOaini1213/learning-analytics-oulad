@@ -24,7 +24,8 @@ from oulad.pipeline import CUTOFFS  # noqa: E402
 def run(lake: Lake, out: Path, fast: bool = False) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     con = lake.connect()
-    features = con.execute("select * from gold.features_early_warning").fetch_df()
+    # a fixed row order: tree models and resampling depend on it, and Delta files carry no order of their own
+    features = con.execute("select * from gold.features_early_warning order by cutoff_day, sp_key").fetch_df()
     n_boot = 40 if fast else 300
     desc = {"outcomes": descriptive.outcomes(con), "engagement_by_week": descriptive.engagement_by_week(con),
             "activity_mix": descriptive.activity_mix(con), "assessment_timeliness": descriptive.assessment_timeliness(con),
@@ -41,6 +42,8 @@ def run(lake: Lake, out: Path, fast: bool = False) -> dict:
         scored.append(s)
         print(f"day {c}: " + ", ".join(f"{k} {v['pr_auc']:.3f}" for k, v in r["models"].items()), flush=True)
     res["canary_shuffled_labels"] = model.shuffled_label_canary(features, 28)
+    res["ablation_max_abs_pr_auc_difference"] = max(
+        abs(r["ablation_with_protected_attributes"]["vs_main_model_pr_auc"]["difference"]) for r in res["cutoffs"].values())
     (out / "model.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
     exports = lake.root / "exports"
     exports.mkdir(exist_ok=True)

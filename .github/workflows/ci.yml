@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Power BI project matches its specification
+        run: python scripts/build_powerbi.py --check
+      - name: Static preview matches the measures and the committed extracts
+        run: python scripts/build_preview.py --check
+      - name: Generated documents are up to date
+        run: python scripts/build_docs.py --check
+      - name: Tests (weekly replay, drills and analytics on the committed sample; no network)
+        run: python -m pytest -q
+
+  mutation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Every planted bug must be caught
+        run: python scripts/mutate.py --record ci --require-all

@@ -100,7 +100,7 @@
     "quarantine_share_of_delivery"
    ],
    "status": "ROLLED_BACK",
-   "published_tables_untouched": false,
+   "published_tables_untouched": true,
    "remediation": "inspect silver.quarantine in bronze as landed; ask the source for a corrected file; re-run the week (the corrected file replaces the bad one)",
    "status_after_remediation": [
     "SUCCESS_WITH_WARNINGS",

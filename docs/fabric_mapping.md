@@ -1,0 +1,34 @@
+Not run on Microsoft Fabric
+
+# Mapping to Microsoft Fabric
+
+Nothing in this repository was run on Microsoft Fabric, Azure or Spark: there was no Fabric tenant. This page says
+where each part would live if it were moved, and what would have to change. Statements about Fabric are quoted from
+Microsoft Learn pages opened on 2026-11-23; anything not backed by a quote is marked UNVERIFIED and should be read
+as the author's expectation.
+
+| Part of this repository | What it does here | Fabric counterpart | Evidence (Microsoft Learn, accessed 2026-11-23) | What would change |
+|---|---|---|---|---|
+| `lake/bronze`, `lake/silver`, `lake/gold` folders of Delta tables | Three layers on local disk | A lakehouse per layer in OneLake | "Keep each layer separated in its own lakehouse or warehouse in OneLake, with data moving between the layers as it's transformed and refined." [1] | Paths become OneLake paths; Microsoft recommends a separate workspace per lakehouse [1] |
+| Bronze as landed (text, original columns) | Raw copy with load metadata | Bronze lakehouse, Files or Tables area | "Bronze (Raw): Store everything exactly as it arrives. No changes are allowed." [1] | The weekly CSV deliveries could stay as files; "Whenever possible, keep the data in its original format." [1] |
+| Delta tables written with delta-rs | Table format, time travel, restore | Delta tables written by Fabric engines | "Fabric standardizes storage file format with Delta Lake. By default, every workload engine in Fabric creates Delta tables when you write data to a new table." [1] | UNVERIFIED: that tables written by delta-rs 1.6 open unchanged in Fabric; reader and writer protocol versions would need checking |
+| `sql/silver/*.sql`, `sql/gold/*.sql` run by DuckDB | Transformations as single SELECT statements | Spark SQL in notebooks, or materialized lake views | "Notebooks — Write Spark code (Python, Scala, SQL, R) to read, transform, and write data to lakehouse tables and folders." [2]; "Declarative pipelines: Define data transformations using SQL statements rather than building manual pipelines between layers." [1] | The SQL has not been run on Spark. Known differences to fix: `sha256()` becomes `sha2(x, 256)`, `regexp_matches` becomes `rlike`, `median` and `quantile_cont` become `percentile_approx` or `percentile` |
+| `oulad/transform.py` partition overwrite of affected weeks | Idempotent incremental recompute | Delta `MERGE` or partition overwrite in a notebook | "you can perform an upsert operation by using the MERGE command. When your target table is partitioned, be sure to use a partition filter" [1] | Microsoft's guidance for silver and gold now prefers liquid clustering to partitioning [1] |
+| `contracts/contracts.yml` and `oulad/contracts.py` | Checks after each run, results stored per run | Data-quality constraints on materialized lake views, or the same checks run from a notebook | "Data quality rules: Built-in support for defining and enforcing data quality constraints as data moves through layers." [1] | UNVERIFIED: which of the contract rules (reconciliation between layers, volume against recent weeks) the built-in constraints can express |
+| `silver.quarantine` | Rejected rows kept with reasons | A Delta table in the silver lakehouse | no Fabric-specific feature claimed | none in principle |
+| `oulad/pipeline.py` weekly run, run log, rollback | Orchestration and monitoring | A pipeline that calls notebooks; run history in the service | "Pipelines — Use the copy activity and other data integration tools to pull data from external sources into the lakehouse." [2] | UNVERIFIED: scheduling, alerting and run monitoring features were not looked up; the run log table here would still be useful as data |
+| `oulad/lineage.py` OpenLineage-shaped events, `docs/lineage.md` | Table-level lineage from the SQL | Workspace lineage view | "In lineage view, you see the lineage relationships between all the items in a workspace, as well as data sources external to the workspace one-step upstream." [4] | Fabric's view is between items (lakehouse, notebook, semantic model, report); the page does not describe table-level or column-level lineage, so the events here would complement it |
+| `sql/access/*.sql` role views | Logic of the three roles, tested | SQL analytics endpoint for read access; OneLake and warehouse security | "The SQL analytics endpoint is read-only" and lets you "Query Delta tables with T-SQL" [2] | UNVERIFIED: how row-level and column-level rules would be declared on the endpoint or in OneLake; not looked up |
+| Roles in `powerbi/.../roles/*.tmdl` | Row-level security in the semantic model | Row-level security on the published semantic model | "Row-level security (RLS) restricts data access for specific users of a Power BI semantic model. Filters restrict data at the row level, and you define filters within roles." [3] | Members are assigned in the service, and "RLS only restricts data access for users with Viewer permissions. It doesn't apply to workspace Admin, Member, or Contributor roles." [3] |
+| `USERNAME()` in the Lecturer role | Looks the signed-in user up in an assignment table | Dynamic RLS | "Within the Power BI service, username() and userprincipalname() will both return the user's User Principal Name (UPN)." [3] | The assignment table would hold real sign-in names; here it holds made-up ones |
+| Management role hides student rows; aggregates are pre-computed and suppressed | Aggregates only | Same design | "Does RLS let me hide detailed data but give access to data summarized in visuals? No, you secure individual rows of data, but users can always see either the details or the summarized data." [3] | This is why the aggregates are separate, already-suppressed tables instead of measures over hidden student rows |
+| `dashboard/data/*.csv` read by Power Query | Import-mode model over CSV extracts | Semantic model over the gold lakehouse | "Connect Power BI directly — Create a Power BI semantic model to build reports on your lakehouse data." [2] | The partitions would point at gold tables instead of CSV files. UNVERIFIED: Direct Lake behaviour for this model |
+| `powerbi/` PBIP folder in Git | Model and report as text | UNVERIFIED: Fabric Git integration and deployment pipelines were not looked up | none | n/a |
+| GitHub Actions workflow | Tests on a sample, offline | UNVERIFIED: how tests would run against a Fabric workspace | none | n/a |
+
+Sources:
+
+1. Implement medallion lakehouse architecture in Fabric: https://learn.microsoft.com/en-us/fabric/onelake/onelake-medallion-lakehouse-architecture
+2. What is a lakehouse?: https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-overview
+3. Row-level security (RLS) with Power BI: https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security
+4. Lineage in Fabric: https://learn.microsoft.com/en-us/fabric/governance/lineage

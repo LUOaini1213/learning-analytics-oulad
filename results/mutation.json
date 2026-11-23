@@ -1,0 +1,105 @@
+{
+ "first": {
+  "total": 108,
+  "killed": 101,
+  "survived": 7,
+  "equivalent": 0,
+  "survivors": [
+   {
+    "id": 14,
+    "file": "sql/gold/fact_student_week.sql",
+    "original": "count(distinct date) as active_days",
+    "equivalent_because": null
+   },
+   {
+    "id": 24,
+    "file": "sql/features/features_early_warning.sql",
+    "original": "    where d.date_registration is not null\n",
+    "equivalent_because": null
+   },
+   {
+    "id": 34,
+    "file": "sql/features/features_early_warning.sql",
+    "original": "sum(case when f.days_late > 0 then 1 else 0 end) as n_late",
+    "equivalent_because": null
+   },
+   {
+    "id": 54,
+    "file": "oulad/contracts.py",
+    "original": "ok = ratio is not None and rule[\"min_ratio\"] <= ratio <= rule[\"max_ratio\"]",
+    "equivalent_because": null
+   },
+   {
+    "id": 79,
+    "file": "oulad/analytics/metrics.py",
+    "original": "        diffs.append(metric(y[i], a[i]) - metric(y[i], b[i]))",
+    "equivalent_because": null
+   },
+   {
+    "id": 87,
+    "file": "oulad/analytics/model.py",
+    "original": "            names = [c for c in row.sort_values(ascending=False).index if row[c] > 0][:top]",
+    "equivalent_because": null
+   },
+   {
+    "id": 107,
+    "file": "scripts/export_dashboard.py",
+    "original": "case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd",
+    "equivalent_because": null
+   }
+  ],
+  "seconds": 1455
+ },
+ "mutants_defined": 108,
+ "final": {
+  "total": 108,
+  "killed": 101,
+  "survived": 7,
+  "equivalent": 0,
+  "survivors": [
+   {
+    "id": 14,
+    "file": "sql/gold/fact_student_week.sql",
+    "original": "count(distinct date) as active_days",
+    "equivalent_because": null
+   },
+   {
+    "id": 24,
+    "file": "sql/features/features_early_warning.sql",
+    "original": "    where d.date_registration is not null\n",
+    "equivalent_because": null
+   },
+   {
+    "id": 34,
+    "file": "sql/features/features_early_warning.sql",
+    "original": "sum(case when f.days_late > 0 then 1 else 0 end) as n_late",
+    "equivalent_because": null
+   },
+   {
+    "id": 54,
+    "file": "oulad/contracts.py",
+    "original": "ok = ratio is not None and rule[\"min_ratio\"] <= ratio <= rule[\"max_ratio\"]",
+    "equivalent_because": null
+   },
+   {
+    "id": 79,
+    "file": "oulad/analytics/metrics.py",
+    "original": "        diffs.append(metric(y[i], a[i]) - metric(y[i], b[i]))",
+    "equivalent_because": null
+   },
+   {
+    "id": 87,
+    "file": "oulad/analytics/model.py",
+    "original": "            names = [c for c in row.sort_values(ascending=False).index if row[c] > 0][:top]",
+    "equivalent_because": null
+   },
+   {
+    "id": 107,
+    "file": "scripts/export_dashboard.py",
+    "original": "case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd",
+    "equivalent_because": null
+   }
+  ],
+  "seconds": 1455
+ }
+}

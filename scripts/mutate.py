@@ -18,10 +18,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results" / "mutation.json"
-PYTEST = [sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", "-m", "not slow and not golden"]
+PYTEST = [sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", "-m", "not slow and not golden",
+          "--deselect", "tests/test_repo.py::test_mutation_record_is_complete"]
 SG, RB, FE, CA, AN, PB = ("tests/test_silver_gold.py", "tests/test_replay_bronze.py", "tests/test_features.py",
                           "tests/test_contracts_access.py", "tests/test_analytics.py", "tests/test_powerbi.py")
-ALL = [SG, FE, AN, PB, CA, RB, "tests/test_fixture_pipeline.py", "tests/test_repo.py"]
+MO = "tests/test_more.py"
+ALL = [SG, FE, AN, PB, MO, "tests/test_digest.py", CA, RB, "tests/test_fixture_pipeline.py", "tests/test_repo.py"]
 SIL, GOLD, FEAT, ACC = "sql/silver/", "sql/gold/", "sql/features/features_early_warning.sql", "sql/access/20_management.sql"
 MET, MOD, CLU = "oulad/analytics/metrics.py", "oulad/analytics/model.py", "oulad/analytics/clustering.py"
 TM = "powerbi/LearningAnalytics.SemanticModel/definition/tables/"
@@ -44,7 +46,7 @@ MUTANTS = [
      '        pass\n    steps.materialise(lake, con, "silver.quarantine"', [SG]),
     ("oulad/transform.py", "predicate = f\"event_week in ({', '.join(map(str, weeks))})\" if weeks else None", "predicate = None", [SG]),
     # --- gold
-    (GOLD + "fact_student_week.sql", "count(distinct date) as active_days", "count(date) as active_days", [SG]),
+    (GOLD + "fact_student_week.sql", "count(distinct date) as active_days", "count(date) as active_days", [MO, SG]),
     (GOLD + "fact_student_week.sql", "max(date) as last_active_day", "min(date) as last_active_day", [SG]),
     (GOLD + "fact_assessment.sql", "case when s.is_banked = 0 then s.date_submitted - a.due_day_effective end", "s.date_submitted - a.due_day_effective", [SG]),
     (GOLD + "fact_assessment.sql", "s.date_submitted - a.due_day_effective end", "a.due_day_effective - s.date_submitted end", [SG]),
@@ -65,7 +67,7 @@ MUTANTS = [
     (FEAT, "else p.cutoff_day - 1 - e.last_active_day end", "else p.cutoff_day - e.last_active_day end", [FE]),
     (FEAT, "sum(case when f.is_banked = 0 then 1 else 0 end) as n_submitted", "count(*) as n_submitted", [FE]),
     (FEAT, "coalesce(d.n_due, 0) - coalesce(s.n_submitted_due, 0) as n_missed", "coalesce(d.n_due, 0) - coalesce(s.n_submitted, 0) as n_missed", [FE]),
-    (FEAT, "sum(case when f.days_late > 0 then 1 else 0 end) as n_late", "sum(case when f.days_late >= 0 then 1 else 0 end) as n_late", [FE]),
+    (FEAT, "sum(case when f.days_late > 0 then 1 else 0 end) as n_late", "sum(case when f.days_late >= 0 then 1 else 0 end) as n_late", [MO, FE]),
     (FEAT, "over (partition by j.cutoff_day, j.mp_key)", "over (partition by j.mp_key)", [FE]),
     ("oulad/leakage.py", "    perturb_future(altered, cutoff_day)\n", "", [FE]),
     ("oulad/leakage.py", 'if list(before["sp_key"]) != list(after["sp_key"]):', "if False:", [FE]),
@@ -88,7 +90,7 @@ MUTANTS = [
     ("oulad/contracts.py", "left == right, left, right", "True, left, right", [CA]),
     ("oulad/contracts.py", "    return None if med == 0 else current / med", "    return None if med == 0 else med / max(current, 1)", [CA]),
     ("oulad/contracts.py", "for w in range(week - rule[\"window_weeks\"], week)]", "for w in range(0, week)]", [CA]),
-    ("oulad/contracts.py", 'ok = ratio is not None and rule["min_ratio"] <= ratio <= rule["max_ratio"]', 'ok = ratio is None or rule["min_ratio"] <= ratio <= rule["max_ratio"]', [CA]),
+    ("oulad/contracts.py", 'ok = ratio is not None and rule["min_ratio"] <= ratio <= rule["max_ratio"]', 'ok = ratio is None or rule["min_ratio"] <= ratio <= rule["max_ratio"]', [MO, CA]),
     # --- ingest gate, replay, run controller
     ("oulad/bronze.py", '        if sha != manifest[name]["sha256"]:', "        if False:", [RB]),
     ("oulad/bronze.py", "        lost = [c for c in expected if c not in header]", "        lost = []", [RB]),
@@ -116,7 +118,7 @@ MUTANTS = [
     (MET, "        at_risk = int(np.sum(time >= t))", "        at_risk = int(np.sum(time > t))", [AN]),
     (MET, "        s *= 1 - d / at_risk", "        s *= 1 - d / len(time)", [AN]),
     (MET, "        if row[\"day\"] <= day:", "        if row[\"day\"] < day:", [AN]),
-    (MET, "        diffs.append(metric(y[i], a[i]) - metric(y[i], b[i]))", "        diffs.append(metric(y[i], a[i]) - metric(y, b))", [AN]),
+    (MET, "        diffs.append(metric(y[i], a[i]) - metric(y[i], b[i]))", "        diffs.append(metric(y[i], a[i]) - metric(y, b))", [MO, AN]),
     (MET, "        idx = np.flatnonzero(groups == g)\n        flag[idx[flag_top(score[idx], fraction)]] = True", "        idx = np.flatnonzero(groups == g)\n        flag[idx[flag_top(score, fraction)[idx]]] = True", [AN]),
     (MET, "    which = np.minimum((prob * bins).astype(int), bins - 1)", "    which = np.minimum((prob * bins).astype(int), bins)", [AN]),
     (MET, "    return float(y[exposed].mean() / y[~exposed].mean())", "    return float(y[~exposed].mean() / y[exposed].mean())", [AN]),
@@ -125,7 +127,7 @@ MUTANTS = [
     (MOD, '    test = df[df["presentation_year"] == 2014]', '    test = df[df["presentation_year"] >= 2013]', [AN]),
     (MOD, '    return np.where(np.isnan(score), np.where(due, 100.0, 50.0), 100.0 - score)', '    return np.where(np.isnan(score), np.where(due, 100.0, 50.0), score)', [AN]),
     (MOD, '    return -df["clicks_last_2w"].to_numpy(dtype=float)', '    return df["clicks_last_2w"].to_numpy(dtype=float)', [AN]),
-    (MOD, "            names = [c for c in row.sort_values(ascending=False).index if row[c] > 0][:top]", "            names = [c for c in row.sort_values(ascending=True).index][:top]", [AN]),
+    (MOD, "            names = [c for c in row.sort_values(ascending=False).index if row[c] > 0][:top]", "            names = [c for c in row.sort_values(ascending=True).index][:top]", [MO, AN]),
     (MOD, '    return "Most deprived 30%" if low < 30 else "Middle 40%" if low < 70 else "Least deprived 30%"', '    return "Most deprived 30%" if low <= 30 else "Middle 40%" if low < 70 else "Least deprived 30%"', [AN]),
     (MOD, "        gb = boosted(x_tr, rng.permutation(train[\"at_risk\"].to_numpy()))", "        gb = boosted(x_tr, train[\"at_risk\"].to_numpy())", [AN]),
     (CLU, '    stable = [r for r in table if r["mean_ari"] >= STABLE_ARI and r["min_ari"] >= STABLE_ARI]', '    stable = [r for r in table if r["mean_ari"] >= STABLE_ARI]', [AN]),
@@ -146,11 +148,14 @@ MUTANTS = [
     ("powerbi/LearningAnalytics.SemanticModel/definition/roles/CollegeManagement.tmdl", "tablePermission StudentSnapshot = FALSE()\n\n", "", [PB]),
     ("pbitest/model.py", "            return df[m.group(7)].isin(allowed)", "            return df[m.group(7)].notna()", [PB]),
     ("pbitest/model.py", "                if r.to_table in limited:", "                if False:", [PB]),
-    ("scripts/export_dashboard.py", "case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd", "n_left as LeftByWeekEnd", [PB]),
+    ("scripts/export_dashboard.py", "case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd", "n_left as LeftByWeekEnd", [MO, PB]),
 ]
 
 # mutants that cannot change any output, with the reason
-EQUIVALENT: dict[int, str] = {}
+EQUIVALENT: dict[int, str] = {
+    24: "Dropping 'date_registration is not null' changes nothing: the next condition, date_registration < cutoff_day, "
+        "is not true for a NULL date under SQL three-valued logic, so a student with no registration date is excluded either way.",
+}
 
 
 def run(tests: list[str]) -> bool:

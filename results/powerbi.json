@@ -1,0 +1,17 @@
+{
+ "measures": 35,
+ "contexts": 54,
+ "measure_context_pairs": 1890,
+ "tables": 12,
+ "roles": 3,
+ "checked_on": "2026-11-23",
+ "tom_version": "19.117.0",
+ "tom_validation_errors": 0,
+ "tom_tables": 12,
+ "tom_relationships": 11,
+ "tom_roles": 3,
+ "pbir_files_validated": 27,
+ "pbir_schema_errors": 0,
+ "pbir_schema_commit": "49f4a76",
+ "opened_in_power_bi_desktop": false
+}

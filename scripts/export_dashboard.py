@@ -25,6 +25,21 @@ CURRENT = "2014J"
 LAST_CURVE_WEEK = 33     # every presentation runs at least 33 full weeks, so nobody is censored before then
 T = access.THRESHOLD
 
+WITHDRAWAL_SQL = f"""
+        with followed as (
+            select d.mp_key, d.date_unregistration
+            from gold.dim_student_presentation d
+            where d.date_unregistration is null or d.date_unregistration > 0),
+        cell as (
+            select f.mp_key, w.week_index, count(*) as n,
+                   sum(case when f.date_unregistration <= w.day_to then 1 else 0 end) as n_left
+            from followed f join gold.dim_week w on w.week_index between 0 and {LAST_CURVE_WEEK}
+            group by 1, 2)
+        select mp_key as MpKey, week_index as WeekIndex,
+               case when n_left >= {T} and n - n_left >= {T} then n end as Followed,
+               case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd
+        from cell order by 1, 2"""
+
 
 def tables(lake: Lake) -> dict[str, pd.DataFrame]:
     con = lake.connect()
@@ -79,20 +94,7 @@ def tables(lake: Lake) -> dict[str, pd.DataFrame]:
                case when n_at_risk is not null then n_students end as StudentsWithRate,
                case when suppressed then 1 else 0 end as Suppressed
         from access.mgmt_outcomes_by_group order by 1, 2, 3""")
-    out["agg_withdrawal"] = q(f"""
-        with followed as (
-            select d.mp_key, d.date_unregistration
-            from gold.dim_student_presentation d
-            where d.date_unregistration is null or d.date_unregistration > 0),
-        cell as (
-            select f.mp_key, w.week_index, count(*) as n,
-                   sum(case when f.date_unregistration <= w.day_to then 1 else 0 end) as n_left
-            from followed f join gold.dim_week w on w.week_index between 0 and {LAST_CURVE_WEEK}
-            group by 1, 2)
-        select mp_key as MpKey, week_index as WeekIndex,
-               case when n_left >= {T} and n - n_left >= {T} then n end as Followed,
-               case when n_left >= {T} and n - n_left >= {T} then n_left end as LeftByWeekEnd
-        from cell order by 1, 2""")
+    out["agg_withdrawal"] = q(WITHDRAWAL_SQL)
     out["ops_run_log"] = q("""
         select run_id as RunId, week as WeekIndex, status as Status, round(duration_s, 1) as DurationSeconds,
                bronze_rows_loaded as RowsLoaded, quarantine_rows as QuarantineRows, weeks_recomputed as WeeksRecomputed,

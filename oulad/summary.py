@@ -29,6 +29,7 @@ def asof_equivalence(lake: Lake, con, cutoffs: list[int]) -> dict:
             where cutoff_day = {c}""").fetchone()
         out["cutoffs"][str(c)] = {"rows_snapshot": n_a, "rows_rebuilt": n_b, "rows_matched": n_join,
                                   "rows_with_any_difference": int(n_diff)}
+    out["rows_compared"] = sum(v["rows_matched"] for v in out["cutoffs"].values())
     out["identical"] = all(v["rows_snapshot"] == v["rows_rebuilt"] == v["rows_matched"]
                            and v["rows_with_any_difference"] == 0 for v in out["cutoffs"].values())
     return out

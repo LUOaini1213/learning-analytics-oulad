@@ -1,0 +1,103 @@
+{
+ "model": "qwen3.5:4b",
+ "reviewer": "one read by the AI assistant that built the repository; not blinded, not repeated",
+ "passed_verifier": 37,
+ "read_as_wrong_or_unsupported": 22,
+ "read_as_acceptable": 15,
+ "drafts_generated": 42,
+ "wrong_or_unsupported_by_variant": {
+  "few_shot": 4,
+  "structured": 8,
+  "zero_shot": 10
+ },
+ "items": [
+  {
+   "case": "qwen3.5:4b|few_shot|AAA-2014J|56",
+   "problem": "calls the missed count a number of assessments; wrong activity window"
+  },
+  {
+   "case": "qwen3.5:4b|few_shot|BBB-2014J|56",
+   "problem": "says this week where the figure covers two weeks"
+  },
+  {
+   "case": "qwen3.5:4b|few_shot|DDD-2014J|28",
+   "problem": "invents a policy"
+  },
+  {
+   "case": "qwen3.5:4b|few_shot|EEE-2014J|56",
+   "problem": "invents a due date"
+  },
+  {
+   "case": "qwen3.5:4b|structured|AAA-2014J|28",
+   "problem": "calls the missed count a number of assessments"
+  },
+  {
+   "case": "qwen3.5:4b|structured|AAA-2014J|56",
+   "problem": "says students registered today"
+  },
+  {
+   "case": "qwen3.5:4b|structured|BBB-2014J|28",
+   "problem": "describes missed work as awaiting a deadline"
+  },
+  {
+   "case": "qwen3.5:4b|structured|CCC-2014J|28",
+   "problem": "invents due today"
+  },
+  {
+   "case": "qwen3.5:4b|structured|CCC-2014J|56",
+   "problem": "calls the missed count a number of assessments"
+  },
+  {
+   "case": "qwen3.5:4b|structured|EEE-2014J|28",
+   "problem": "writes a number word before the placeholder"
+  },
+  {
+   "case": "qwen3.5:4b|structured|EEE-2014J|56",
+   "problem": "placeholder written without braces, so no figure appears"
+  },
+  {
+   "case": "qwen3.5:4b|structured|FFF-2014J|28",
+   "problem": "calls the missed count a number of assessments"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|AAA-2014J|28",
+   "problem": "unsupported remarks about steadiness and anomalies"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|AAA-2014J|56",
+   "problem": "writes a number word and garbles the missed count"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|BBB-2014J|28",
+   "problem": "says failed for missed; invents topics covered"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|BBB-2014J|56",
+   "problem": "unsupported remarks about progress and next module"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|CCC-2014J|28",
+   "problem": "mentions attendance, which is not in the data"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|CCC-2014J|56",
+   "problem": "mentions attendance and distractions"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|DDD-2014J|28",
+   "problem": "calls the day a week"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|EEE-2014J|28",
+   "problem": "unsupported remark that engagement is stable"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|FFF-2014J|56",
+   "problem": "mentions attendance"
+  },
+  {
+   "case": "qwen3.5:4b|zero_shot|GGG-2014J|28",
+   "problem": "calls the day a week"
+  }
+ ]
+}
