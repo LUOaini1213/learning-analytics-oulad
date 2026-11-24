@@ -41,7 +41,8 @@ DQ_SCHEMA = pa.schema([
 
 
 def _now() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    # microseconds: on a fast machine several weekly runs start within the same second
+    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="microseconds")
 
 
 def _append(lake: Lake, name: str, rows: list[dict], schema: pa.Schema) -> None:
@@ -55,7 +56,8 @@ def read_run_log(lake: Lake) -> list[dict]:
     if not lake.exists("ops.run_log"):
         return []
     rows = lake.table("ops.run_log").to_pyarrow_table().to_pylist()
-    return sorted(rows, key=lambda r: (r["started_at"], r["run_id"]))
+    # ties are broken by week and attempt as numbers: run_id sorts as text, which puts week -3 before week -5
+    return sorted(rows, key=lambda r: (r["started_at"], r["week"], int(r["run_id"].rsplit("attempt", 1)[1])))
 
 
 def quarantine_checks(con, week: int) -> list[dict]:
